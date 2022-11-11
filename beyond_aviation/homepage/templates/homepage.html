@@ -1,0 +1,47 @@
+<div class="col-md-4 col-sm-4">
+    <div class="service-feature-box"><div class="service-media">
+        {% for x in services %}
+<!--        <img src="/static/media/box1.692b2db2.webp" >-->
+
+        <h4>{{x.name}}</h4>
+    </div>
+        <p class="cnt-ab"> {{x.excerpt}} </p>
+        <p class="btnbox">
+            <img src="{{media_url}}/{{x.image}}" alt="">
+            <a href="/">
+                <span>Read more</span>
+            </a>
+        </p>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+
+<!--<div class="col-md-4 col-sm-4">-->
+<!--    <div class="service-feature-box"><div class="service-media">-->
+<!--        {% for x in offerings %}-->
+<!--&lt;!&ndash;        <img src="/static/media/box1.692b2db2.webp" >&ndash;&gt;-->
+
+<!--    </div><div class="service-body"><div class="custom-heading">-->
+<!--        <h4>{{x.title}}</h4>-->
+<!--    </div>-->
+<!--        <p class="cnt-ab"> {{x.description}} </p>-->
+<!--        <p class="btnbox">-->
+<!--            <img src="{{media_url}}/{{x.image}}" alt="">-->
+<!--        </p>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="service-icon-left-boxed">
+    <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn" style="opacity: 1;">
+        {% for x in offerings %}
+        <img src="{{media_url}}/{{x.image}}" alt=""></div>
+    <div class="service-details">
+        <h3>{{x.title}}</h3>
+        <p>{{x.description}}</p>
+    </div>
+     {% endfor %}
+</div>
