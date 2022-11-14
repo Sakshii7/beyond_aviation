@@ -1,47 +1,52 @@
-<div class="col-md-4 col-sm-4">
-    <div class="service-feature-box"><div class="service-media">
-        {% for x in services %}
-<!--        <img src="/static/media/box1.692b2db2.webp" >-->
-
-        <h4>{{x.name}}</h4>
-    </div>
-        <p class="cnt-ab"> {{x.excerpt}} </p>
-        <p class="btnbox">
-            <img src="{{media_url}}/{{x.image}}" alt="">
-            <a href="/">
-                <span>Read more</span>
-            </a>
-        </p>
-        {% endfor %}
-    </div>
-    </div>
-</div>
-
 
 <!--<div class="col-md-4 col-sm-4">-->
 <!--    <div class="service-feature-box"><div class="service-media">-->
-<!--        {% for x in offerings %}-->
+<!--        {% for x in services %}-->
 <!--&lt;!&ndash;        <img src="/static/media/box1.692b2db2.webp" >&ndash;&gt;-->
 
-<!--    </div><div class="service-body"><div class="custom-heading">-->
-<!--        <h4>{{x.title}}</h4>-->
+<!--        <h4>{{x.name}}</h4>-->
 <!--    </div>-->
-<!--        <p class="cnt-ab"> {{x.description}} </p>-->
+<!--        <p class="cnt-ab"> {{x.excerpt}} </p>-->
 <!--        <p class="btnbox">-->
-<!--            <img src="{{media_url}}/{{x.image}}" alt="">-->
+<!--            <img src="{{media_url}}/{{x.image}}" alt="" height="200px"width="300px">-->
+<!--            <a href="view_service/{{ x.id }}">-->
+<!--                <span>Read more</span>-->
+<!--            </a>-->
 <!--        </p>-->
 <!--        {% endfor %}-->
 <!--    </div>-->
 <!--    </div>-->
 <!--</div>-->
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<section>
+    <div class="container">
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="card card-01">
+                    <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px" width="300px">
+                    <div class="card-body">
+                        <h4 class="card-title">{{service.name}}</h4>
+                        <p class="card-text">{{service.excerpt}}</p>
+                        <a href="view_service/{{service.id}}" class="btn btn-default text-uppercase">Read more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <div class="service-icon-left-boxed">
     <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn" style="opacity: 1;">
-        {% for x in offerings %}
-        <img src="{{media_url}}/{{x.image}}" alt=""></div>
+        {% for service_offering in offerings %}
+
     <div class="service-details">
-        <h3>{{x.title}}</h3>
-        <p>{{x.description}}</p>
+        <div><img src="{{media_url}}/{{service_offering.image}}" alt="" height="80px" width="100px">
+            <h3>{{service_offering.title}}</h3></div>
+        <p>{{service_offering.description}}</p>
     </div>
      {% endfor %}
+</div>
 </div>

@@ -13,6 +13,10 @@ class Service(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
+        db_table = 'services'
+
 
 class ServiceOffering(models.Model):
     title = models.CharField(max_length=1000)
@@ -21,3 +25,6 @@ class ServiceOffering(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        db_table = 'service_offering'

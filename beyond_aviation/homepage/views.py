@@ -19,3 +19,11 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+def view_service(request, service_id):
+    get_service_id = Service.objects.get(id=service_id)
+    template = loader.get_template('view_service.html')
+    context = {
+        'get_service_id': get_service_id,
+    }
+    return HttpResponse(template.render(context, request))
