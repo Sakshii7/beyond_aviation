@@ -5,9 +5,9 @@ from django.db import models
 
 
 class Service(models.Model):
-    name = models.CharField(max_length=1000)
-    excerpt = models.CharField(max_length=1000, null=True)
-    description = models.CharField(max_length=1000)
+    name = models.CharField(max_length=50)
+    excerpt = models.TextField(max_length=450, null=True)
+    description = models.TextField()
     image = models.ImageField(upload_to='pics', null=True)
 
     def __str__(self):
@@ -19,8 +19,8 @@ class Service(models.Model):
 
 
 class ServiceOffering(models.Model):
-    title = models.CharField(max_length=1000)
-    description = models.CharField(max_length=1000)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
     image = models.ImageField(upload_to='icons', null=True)
 
     def __str__(self):
