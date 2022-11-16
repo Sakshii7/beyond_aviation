@@ -10,7 +10,8 @@
                     <div class="card-body">
                         <h4 class="card-title">{{service.name}}</h4>
                         <p class="card-text">{{service.excerpt}}</p>
-                        <a href="{{service.slug}}" class="btn btn-default text-uppercase">Read more</a>
+                        <a href="{{service.slug}}" class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <i class="fa fa-chevron-right"></i></span></a>
+<!--                        <a href="{{service.slug}}" class="btn btn-default text-uppercase">Read more ></a>-->
                     </div>
                 </div>
             </div>
@@ -39,7 +40,7 @@
         <img align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
         {% for sub_section in sub_sections %}
         {% if section.id == sub_section.section_id %}
-        <i class="fa fa-arrow-right"></i>  {{sub_section.content}}<br><br>
+        <i class="fa fa-arrow-right"></i> &nbsp;&nbsp; {{sub_section.content}}<br><br>
         {% endif %}
         {% endfor %}
 
