@@ -1,4 +1,5 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <section>
     <div class="container">
         <div class="row">
@@ -21,12 +22,26 @@
 <div class="service-icon-left-boxed">
     <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn" style="opacity: 1;">
         {% for service_offering in offerings %}
-
-    <div class="service-details">
-        <div><img src="{{media_url}}/{{service_offering.image}}" alt="" height="80px" width="100px">
-            <h3>{{service_offering.title}}</h3></div>
-        <p>{{service_offering.description}}</p>
+        <div class="service-details">
+            <div><img src="{{media_url}}/{{service_offering.image}}" alt="" height="80px" width="100px">
+                <h3>{{service_offering.title}}</h3></div>
+            <p>{{service_offering.description}}</p>
+        </div>
+        {% endfor %}
     </div>
-     {% endfor %}
 </div>
+
+<div class="col-md-12 col-md-offset">
+    {% for section in sections %}
+    <div class="custom-heading">
+        <h3>{{section.title}}</h3>  </div>
+        <p>{{section.description}}</p>
+        <img align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
+        {% for sub_section in sub_sections %}
+        {% if section.id == sub_section.section_id %}
+        <i class="fa fa-arrow-right"></i>  {{sub_section.content}}<br><br>
+        {% endif %}
+        {% endfor %}
+
+    {% endfor %}
 </div>

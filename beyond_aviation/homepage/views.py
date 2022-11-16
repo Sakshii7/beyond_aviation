@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from beyond_aviation.settings import  MEDIA_URL
-from .models import Service, ServiceOffering
+from .models import Service, ServiceOffering, Section, SubSection
 
 
 # Create your views here.
@@ -11,11 +11,15 @@ from .models import Service, ServiceOffering
 def index(request):
     services = Service.objects.all().values()
     offerings = ServiceOffering.objects.all()
+    sections = Section.objects.all()
+    sub_sections = SubSection.objects.all()
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
         'offerings': offerings,
-        'media_url': MEDIA_URL
+        'sections': sections,
+        'sub_sections': sub_sections,
+        'media_url': MEDIA_URL,
     }
     return HttpResponse(template.render(context, request))
 

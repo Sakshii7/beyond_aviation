@@ -39,3 +39,33 @@ class ServiceOffering(models.Model):
     class Meta:
         db_table = 'service_offering'
         ordering = ['created_on']
+
+
+class Section(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='section_images', null=True)
+    created_on = models.DateTimeField(null=True)
+
+    class Meta:
+        db_table = 'section'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.title
+
+    def section_image_preview(self):
+        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.image.url))
+
+
+class SubSection(models.Model):
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_on = models.DateTimeField(null=True)
+
+    class Meta:
+        db_table = 'sub_section'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.section.title

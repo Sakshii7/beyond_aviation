@@ -11,5 +11,11 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
     readonly_fields = ['icon_preview']
 
 
+class SectionAdmin(admin.ModelAdmin):
+    readonly_fields = ['section_image_preview']
+
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceOffering, ServiceOfferingAdmin)
+admin.site.register(Section, SectionAdmin)
+admin.site.register(SubSection)
