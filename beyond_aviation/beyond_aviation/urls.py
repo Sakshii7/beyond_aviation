@@ -18,6 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+admin.site.site_header = "Go Above And Beyond"
+admin.site.site_title = "Go Above And Beyond Admin Site"
+admin.site.index_title = "Go Above And Beyond Admin"
+
 urlpatterns = [
     path('', include('homepage.urls')),
     path('admin/', admin.site.urls),
