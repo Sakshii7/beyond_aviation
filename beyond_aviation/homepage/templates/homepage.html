@@ -1,11 +1,3 @@
-<style>
-#main {
-  display: flex;
-  flex-direction: row-reverse;
-
-
-
-</style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <section>
@@ -31,16 +23,18 @@
 <!-- Owner -->
 <div class="col-md-12 col-md-offset">
     {% for section in sections %}
-    {% if section.section_type == "owner" %}
+    {% if section.section_type == "owner" and section.status == "active" %}
     <div class="custom-heading">
         {% if section.text_align == "left" %}
         <h3>{{section.title}}</h3></div>
     <p>{{section.description}}</p>
     <img  align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
     {% for sub_section in sub_sections %}
-    {% if section.id == sub_section.section_id or sub_section.section_icon is null %}
+    {% if section.id == sub_section.section_id or sub_section.section_icon is null  %}
     <div><img align="left" src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
+        {% if sub_section.status == "active" %}
         {{sub_section.content}}
+         {% endif %}
     </div>
 
 
@@ -75,11 +69,13 @@
 <div class="service-icon-left-boxed">
     <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn" style="opacity: 1;">
         {% for service_offering in offerings %}
+        {% if service_offering.status == "active" %}
         <div class="service-details">
             <div><img src="{{media_url}}/{{service_offering.image}}" alt="" height="80px" width="100px">
                 <h3>{{service_offering.title}}</h3></div>
             <p>{{service_offering.description}}</p>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -95,7 +91,7 @@
     <img align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
     {% for sub_section in sub_sections %}
     {% if section.id == sub_section.section_id or sub_section.section_icon is null %}
-    <div><img align="left" src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
+    <div><img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
         {{sub_section.content}}
     </div>
     <br><br>

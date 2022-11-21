@@ -25,6 +25,7 @@ class Service(models.Model):
     excerpt = models.TextField(max_length=450, null=True)
     description = models.TextField()
     image = models.ImageField(upload_to='Service')
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -43,6 +44,8 @@ class ServiceOffering(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='ServiceOffering')
+    text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -62,6 +65,7 @@ class Section(models.Model):
     description = models.TextField(null=True, blank=True)
     text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
     section_type = models.CharField(max_length=10, choices=SECTIONS, default='other')
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     image = models.ImageField(upload_to='Section', null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -74,13 +78,14 @@ class Section(models.Model):
         return self.title
 
     def section_image_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.image.url))
+        return mark_safe('<img src="{url}" width="320" height="300"/>'.format(url=self.image.url))
 
 
 class SubSection(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     content = models.TextField()
     section_icon = models.ImageField(upload_to='SubSection', null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
