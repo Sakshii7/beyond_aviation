@@ -30,13 +30,11 @@
         {% if section.text_align == "left" %}
         <h3>{{section.title}}</h3></div>
     <p>{{section.description}}</p>
-    <img  align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
+    <img  style="float:right;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
     {% for sub_section in sub_sections %}
     {% if section.id == sub_section.section_id or sub_section.section_icon is null  %}
-    <div><img align="left" src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
-
+    <div> <img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
         {{sub_section.content}}
-
     </div>
 
 
@@ -48,7 +46,7 @@
     <div class="col-md-12 col-md-offset m-auto">
         <h3 class="m-auto text-center" style="margin-bottom:20px !important">{{section.title}}</h3>
         <div class="col-md-5">
-            <img style="border-radius: 50%;" align="left" src="{{media_url}}/{{section.image}}" alt="" height="350px" width="80%"/>
+            <img style="border-radius: 50%; float:left;" src="{{media_url}}/{{section.image}}" alt="" height="350px" width="80%"/>
         </div>
 
         <div class="col-md-10">
@@ -90,7 +88,7 @@
         {% if section.text_align == "left" %}
         <h3>{{section.title}}</h3></div>
     <p>{{section.description}}</p>
-    <img align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
+    <img style="float:right;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
     {% for sub_section in sub_sections %}
     {% if section.id == sub_section.section_id and sub_section.status == "active" %}
     <div><img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
@@ -106,7 +104,7 @@
     <div class="col-md-12 col-md-offset m-auto">
         <h3 class="m-auto text-center" style="margin-bottom:20px !important">{{section.title}}</h3>
         <div class="col-md-5" style="display:inline-block;height:350px;">
-            <img align="left" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="100%"/>
+            <img style="float:left;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="100%"/>
         </div>
 
         <div class="col-md-5" style="display:inline-block">
