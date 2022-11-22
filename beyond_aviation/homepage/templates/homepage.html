@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             {% for service in services %}
+            {% if service.status == "active" %}
             <div class="col-md-4">
                 <div class="card card-01">
                     <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px" width="300px">
@@ -15,6 +16,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div><br>
@@ -32,9 +34,9 @@
     {% for sub_section in sub_sections %}
     {% if section.id == sub_section.section_id or sub_section.section_icon is null  %}
     <div><img align="left" src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
-        {% if sub_section.status == "active" %}
+
         {{sub_section.content}}
-         {% endif %}
+
     </div>
 
 
@@ -52,7 +54,7 @@
         <div class="col-md-10">
             <p >{{section.description}}</p>
             {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id %}
+            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
             <div><i class="fa fa-arrow-right"></i> &nbsp;&nbsp; {{sub_section.content}}</div>
             <br><br>
             {% endif %}
@@ -78,19 +80,19 @@
         {% endif %}
         {% endfor %}
     </div>
-</div>
+</div><br>
 
 <!-- Sections -->
 <div class="col-md-12 col-md-offset">
     {% for section in sections %}
-    {% if section.section_type == "other" %}
+    {% if section.section_type == "other" and section.status == "active"%}
     <div class="custom-heading">
         {% if section.text_align == "left" %}
         <h3>{{section.title}}</h3></div>
     <p>{{section.description}}</p>
     <img align="right" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
     {% for sub_section in sub_sections %}
-    {% if section.id == sub_section.section_id or sub_section.section_icon is null %}
+    {% if section.id == sub_section.section_id and sub_section.status == "active" %}
     <div><img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
         {{sub_section.content}}
     </div>
@@ -111,7 +113,7 @@
             <p class="m-auto text-center">{{section.description}}</p>
 
             {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id %}
+            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
             <div><i class="fa fa-arrow-right"></i> &nbsp;&nbsp; {{sub_section.content}}</div>
             <br>
             {% endif %}
