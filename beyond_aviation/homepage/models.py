@@ -98,3 +98,22 @@ class SubSection(models.Model):
 
     def section_icon_preview(self):
         return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.section_icon.url))
+
+
+class Menu(models.Model):
+    name = models.CharField(max_length=50, null=True, blank=True)
+    slug = models.SlugField(null=True, unique=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+
+    class Meta:
+        db_table = 'menu'
+        ordering = ['created_on']
+
+    # def __str__(self):
+    #     return self.name
+
+    def logo_preview(self):
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))

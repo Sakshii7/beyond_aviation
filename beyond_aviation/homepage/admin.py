@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import SubSection, ServiceOffering, Service, Section
+from .models import SubSection, ServiceOffering, Service, Section, Menu
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -32,7 +32,16 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
     list_filter = ['title']
 
 
+class MenuAdmin(admin.ModelAdmin):
+    readonly_fields = ['logo_preview']
+    # prepopulating slug from title
+    prepopulated_fields = {'slug': ['name']}
+    list_display = ['name', 'created_on', 'status']
+    search_fields = ['name']
+    list_filter = ['name']
+
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
-
+admin.site.register(Menu, MenuAdmin)

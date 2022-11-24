@@ -24,6 +24,7 @@ admin.site.index_title = "Go Above And Beyond Admin"
 
 urlpatterns = [
     path('', include('homepage.urls')),
+    # path('', include('aboutus.urls')),
     path('admin/', admin.site.urls),
 ]
 

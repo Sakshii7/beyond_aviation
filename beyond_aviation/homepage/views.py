@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.template import loader
 
 from beyond_aviation.settings import MEDIA_URL
-from .models import Service, ServiceOffering, Section, SubSection
-
+from .models import Service, ServiceOffering, Section, SubSection, Menu
+from aboutus.models import Aboutus
 
 # Create your views here.
 
@@ -14,6 +14,8 @@ def index(request):
     owner_section = Section.objects.filter(section_type="owner", status="active")
     other_section = Section.objects.filter(section_type="other", status="active")
     sub_sections = SubSection.objects.filter(status="active")
+    homepage_logo = ServiceOffering.objects.filter(status="inactive")
+    menus = Menu.objects.filter(status="active")
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -21,6 +23,8 @@ def index(request):
         'owner_section': owner_section,
         'other_section': other_section,
         'sub_sections': sub_sections,
+        'homepage_logo': homepage_logo,
+        'menus': menus,
         'media_url': MEDIA_URL,
     }
     return HttpResponse(template.render(context, request))
@@ -31,5 +35,14 @@ def view_service(request, slug):
     template = loader.get_template('view_service.html')
     context = {
         'get_service_id': get_service_id,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def view_menu(request, slug_about):
+    get_about_id = Menu.objects.get(slug=slug_about)
+    template = loader.get_template('aboutus.html')
+    context = {
+        'get_about_id': get_about_id,
     }
     return HttpResponse(template.render(context, request))

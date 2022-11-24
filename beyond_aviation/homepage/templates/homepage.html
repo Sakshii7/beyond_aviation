@@ -1,13 +1,22 @@
-<style>
-.grid-container {
-  display: grid;
-}
-
-</style>
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<section>
+
+<div class="container" style="padding: 5px; background-color:#0001;">
+    <div class="row">
+        <div style="padding: 5px;">
+            {% for menu in menus %}
+            {% if menu.image %}
+            <a href="/"><img align="left" class="col-md-4" src="{{media_url}}/{{menu.image}}" alt="" height="100px"
+                             width="250px"></a>
+        </div>
+        {% else %}
+        <a style="color:black; text-transform: uppercase;" href="{{menu.slug}}/">{{menu.name}}</a>&nbsp;&nbsp;&nbsp;
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<section style="padding: 20px;">
     <div class="container">
         <div class="row">
             {% for service in services %}
@@ -17,7 +26,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{service.name}}</h4>
                         <p class="card-text">{{service.excerpt}}</p>
-                        <a href="{{service.slug}}" class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <i
+                        <a href="/{{service.slug}}" class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <i
                                 class="fa fa-chevron-right"></i></span></a>
                     </div>
                 </div>
@@ -29,25 +38,25 @@
 </section>
 
 <!-- Owner -->
-<div class="container">
+<div class="container" style="padding:30px;">
     {% for section in owner_section %}
     {% if section.text_align == "left" %}
-    <div class="col">
-        <h3>{{section.title}}</h3>
-        <div class="col-md-5">
-            <img style="border-radius: 50%; float:right;" src="{{media_url}}/{{section.image}}" alt="" height="350px"
-                 width="80%"/>
-        </div>
-
-        <div class="col-md-10">
+    <div class="row">
+        <div class="row">
+            <div class="col">
+                <img style="border-radius: 50%; float:right;" src="{{media_url}}/{{section.image}}" alt=""
+                     height="350px" width="80%"/>
+            </div>
+            <h3>{{section.title}}</h3>
             <p>{{section.description}}</p>
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id %}
-            <div><i class="fa fa-arrow-right"></i> &nbsp; &nbsp; {{sub_section.content}}</div>
-            <br><br>
-            {% endif %}
+            <div><i class="fa fa-arrow-right"></i> &nbsp; &nbsp; {{sub_section.content}}
+                <br><br>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
     </div>
 
     {% else %}
@@ -55,87 +64,99 @@
     <div class="row">
         <h3>{{section.title}}</h3>
         <div class="row">
-        <div class="col-md-5">
-            <img style="border-radius: 50%; float:left;" src="{{media_url}}/{{section.image}}" alt="" height="350px"
-                 width="80%"/>
+            <div class="col-md-5">
+                <img style="border-radius: 50%; float:left;" src="{{media_url}}/{{section.image}}" alt="" height="350px"
+                     width="80%"/>
+            </div>
+            <div>
+                <h3>{{section.title}}</h3>
+                <p>{{section.description}}</p>
+                {% for sub_section in sub_sections %}
+                {% if section.id == sub_section.section_id %}
+                <div><i class="fa fa-arrow-right"></i> &nbsp; &nbsp; {{sub_section.content}}
+                    <br><br>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div>
-        <p>{{section.description}}</p>
-        {% for sub_section in sub_sections %}
-        {% if section.id == sub_section.section_id %}
-            <div><i class="fa fa-arrow-right"></i> &nbsp; &nbsp; {{sub_section.content}}</div>
-        <br><br>
-        {% endif %}
-        {% endfor %}
-</div>
     </div>
+    <!--    </div>-->
     {% endif %}
+    {% endfor %}
 </div>
-{% endfor %}
-<!--</div>-->
 
 
 <!-- Service Offerings -->
+<div style="text-align:center;padding:30px">
+    <h3>Service Offerings</h3>
+    <p>GO ABOVE & BEYOND FOR OUR CUSTOMERS</p>
+</div>
+
 <div class="container">
     {% for service_offering in offerings %}
     {% if service_offering.text_align == "left" %}
     <div class="row">
-    <div class="col">
-        <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
-            <div class="col"><h3>{{service_offering.title}}</h3>
-        <p class="col-md-12">{{service_offering.description}}</p></div></div><br>
+        <div class="col">
+            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+                <div class="col"><h3>{{service_offering.title}}</h3>
+                    <p class="col-md-12">{{service_offering.description}}</p></div>
+            </div>
+            <br>
+        </div>
+        {% else %}
+        <div class="col">
+            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+                <div class="col"><h3>{{service_offering.title}}</h3>
+                    <p class="col-md-12">{{service_offering.description}}</p></div>
+            </div>
+            <br>
+        </div>
+        {% endif %}
+        {% endfor %}
     </div>
-
-    {% else %}
-    <div class="col">
-        <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
-            <div class="col"><h3>{{service_offering.title}}</h3>
-        <p class="col-md-12">{{service_offering.description}}</p></div></div><br>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
 </div>
 
 <!-- Sections -->
-    <div class="row">`
-<div class="col-md-12 col-md-offset">
-    {% for section in other_section %}
-    <div class="custom-heading">
-        {% if section.text_align == "left" %}
-        <br><h3>{{section.title}}</h3></div>
-    <p>{{section.description}}</p>
-    <img style="float:right;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
-    {% for sub_section in sub_sections %}
-    {% if section.id == sub_section.section_id %}
-    <div><img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
-        {{sub_section.content}}
-    </div>
-    <br><br>
-
-    {% endif %}
-    {% endfor %}
-
-    {% else %}
-
-    <div class="col col-md-offset m-auto">
-<!--        <h3 class="m-auto text-center" style="margin-bottom:20px !important">{{section.title}}</h3>-->
-        <div class="col-md-5" style="display:inline-block;height:350px;">
-            <img style="float:left;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="100%"/>
-        </div>
-        <div class="col-md-5" style="display:inline-block">
-            <h3>{{section.title}}</h3>
-            <p class="m-auto text-center">{{section.description}}</p>
-            {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id %}
-            <div><i class="fa fa-arrow-right"></i> &nbsp;&nbsp; {{sub_section.content}}</div>
+<div class="row">
+    <div class="col">
+        {% for section in other_section %}
+        <div>
+            {% if section.text_align == "left" %}
             <br>
-            {% endif %}
-            {% endfor %}<br>
+            <h3>{{section.title}}</h3></div>
+        <p>{{section.description}}</p>
+        <img style="float:right;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="500px"/><br>
+        {% for sub_section in sub_sections %}
+        {% if section.id == sub_section.section_id %}
+        <div><img src="{{media_url}}/{{sub_section.section_icon}}" alt="" height="30px" width="40px"/> &nbsp;&nbsp;
+            {{sub_section.content}}
         </div>
+        <br><br>
+
         {% endif %}
+        {% endfor %}
+
+        {% else %}
+
+        <div class="col">
+            <!--        <h3 class="m-auto text-center" style="margin-bottom:20px !important">{{section.title}}</h3>-->
+            <div class="col-md-5" style="display:inline-block;height:350px;">
+                <img style="float:left;" src="{{media_url}}/{{section.image}}" alt="" height="300px" width="100%"/>
+            </div>
+            <div class="row-md-12" style="display:inline-block">
+                <h3>{{section.title}}</h3>
+                <p>{{section.description}}</p>
+                {% for sub_section in sub_sections %}
+                {% if section.id == sub_section.section_id %}
+                <div><i class="fa fa-arrow-right"></i> &nbsp;&nbsp; {{sub_section.content}}</div>
+                <br>
+                {% endif %}
+                {% endfor %}<br>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
-</div>
-</div>
+
