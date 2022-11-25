@@ -1,8 +1,23 @@
-<div style="text-align:center;">
-
-        <form action="id" method="get">
-            <h3 style="text-transform: uppercase;">GO ABOVE & BEYOND -  {{get_about_id.name}}</h3>
-            You are here: /<a href="/"> Home</a> /<a href="/{{get_about_id.slug}}/">{{get_about_id.name}}</a>
-        </form>
-</div>
-
+<!--{% block content %}-->
+<h3>Hello</h3>
+<section style="padding: 20px;">
+    <div class="container">
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="card card-01">
+                    <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px" width="300px">
+                    <div class="card-body">
+                        <h4 class="card-title">{{service.name}}</h4>
+                        <p class="card-text">{{service.excerpt}}</p>
+                        <a href="/{{service.slug}}" class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <i
+                                class="fa fa-chevron-right"></i></span></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+</section>
+<!--{% endblock %}-->

@@ -3,7 +3,6 @@ from django.template import loader
 
 from beyond_aviation.settings import MEDIA_URL
 from .models import Service, ServiceOffering, Section, SubSection, Menu
-from aboutus.models import Aboutus
 
 # Create your views here.
 
@@ -41,7 +40,7 @@ def view_service(request, slug):
 
 def view_menu(request, slug_about):
     get_about_id = Menu.objects.get(slug=slug_about)
-    template = loader.get_template('aboutus.html')
+    template = loader.get_template('menu.html')
     context = {
         'get_about_id': get_about_id,
     }

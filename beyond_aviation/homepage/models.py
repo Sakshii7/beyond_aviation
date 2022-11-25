@@ -112,8 +112,8 @@ class Menu(models.Model):
         db_table = 'menu'
         ordering = ['created_on']
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
     def logo_preview(self):
         return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
