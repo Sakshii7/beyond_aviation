@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="container" style="padding: 5px; background-color:#0001;">
+<div class="container" style="padding: 5px;">
     <div class="row">
         <div style="padding: 5px;">
             {% for menu in menus %}
@@ -11,11 +11,13 @@
                              width="250px"></a>
         </div>
         {% else %}
-        <a style="color:black; text-transform: uppercase;" href="{% url 'homepage' menu.slug %}">{{menu.name}}</a>&nbsp;&nbsp;&nbsp;
+        <a style="color:black; text-transform: uppercase;" href="/{{menu.service_id.slug}}">{{menu.name}}</a>&nbsp;&nbsp;&nbsp;
         {% endif %}
         {% endfor %}
     </div>
 </div>
+
+
 <!-- Services  -->
 <section style="padding: 20px;">
     <div class="container">
@@ -68,7 +70,7 @@
             <div class="custom-heading">
                 <h3>{{section.title}}</h3>
             </div>
-            <p>{{section.description}}</p>
+            <p style="padding: 10px 0 10px 0;">{{section.description}}</p>
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id and sub_section.status == "active" %}
             <div class="icon-container" style="padding: 10px;">
@@ -95,33 +97,33 @@
     <p>GO ABOVE & BEYOND FOR OUR CUSTOMERS</p>
 </div>
 
-<!--<div class="container">-->
-<!--    {% for service_offering in offerings %}-->
-<!--    {% if service_offering.text_align == "left" %}-->
-<!--    <div class="row">-->
-<!--        <div class="col">-->
-<!--            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">-->
-<!--                <div class="col"><h3>{{service_offering.title}}</h3>-->
-<!--                    <p class="col-md-12">{{service_offering.description}}</p></div>-->
-<!--            </div>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--        {% else %}-->
-<!--        <div class="col">-->
-<!--            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">-->
-<!--                <div class="col"><h3>{{service_offering.title}}</h3>-->
-<!--                    <p class="col-md-12">{{service_offering.description}}</p></div>-->
-<!--            </div>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--        {% endif %}-->
-<!--        {% endfor %}-->
-<!--    </div>-->
-<!--</div>-->
+<div class="container">
+
+    {% for service_offering in offerings %}
+    {% if service_offering.text_align == "left" %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+                <div class="col"><h3>{{service_offering.title}}</h3>
+                    <p class="col-md-12">{{service_offering.description}}</p></div>
+            </div>
+            <div class="col"></div>
+        </div>
+    {% else %}
+    <div class="col-md-6">
+        <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+            <div class="col"><h3>{{service_offering.title}}</h3>
+                <p class="col-md-12">{{service_offering.description}}</p></div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+</div>
 
 <!-- Sections -->
 
-<div class="container">
+<div class="container" style="padding:30px">
     <div class="row">
         {% for section in other_section %}
         {% if section.text_align == 'right' %}
@@ -155,6 +157,7 @@
                 <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
             </div>
             <br>
+
             {% endif %}
             {% endfor %}
         </div>
@@ -167,27 +170,5 @@
 </div>
 
 
-<div class="container">
 
-    {% for service_offering in offerings %}
-    {% if service_offering.text_align == "left" %}
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
-                <div class="col"><h3>{{service_offering.title}}</h3>
-                    <p class="col-md-12">{{service_offering.description}}</p></div>
-            </div>
-            <div class="col"></div>
-        </div>
-    {% else %}
-    <div class="col-md-6">
-        <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
-            <div class="col"><h3>{{service_offering.title}}</h3>
-                <p class="col-md-12">{{service_offering.description}}</p></div>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
-</div>
 

@@ -37,11 +37,3 @@ def view_service(request, slug):
     }
     return HttpResponse(template.render(context, request))
 
-
-def view_menu(request, slug_about):
-    get_about_id = Menu.objects.get(slug=slug_about)
-    template = loader.get_template('menu.html')
-    context = {
-        'get_about_id': get_about_id,
-    }
-    return HttpResponse(template.render(context, request))

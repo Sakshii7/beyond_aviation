@@ -34,7 +34,7 @@ class Service(models.Model):
         db_table = 'services'
 
     def __str__(self):
-        return self.name
+        return self.slug
 
     def image_preview(self):
         return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
@@ -102,7 +102,8 @@ class SubSection(models.Model):
 
 class Menu(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
-    slug = models.SlugField(null=True, unique=True, blank=True)
+    slug = models.SlugField(null=True, unique=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
