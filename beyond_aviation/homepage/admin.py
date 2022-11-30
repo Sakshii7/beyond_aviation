@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import SubSection, ServiceOffering, Service, Section, Menu
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -45,3 +45,4 @@ admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)
+admin.site.register(Page)

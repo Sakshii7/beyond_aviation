@@ -118,3 +118,25 @@ class Menu(models.Model):
 
     def logo_preview(self):
         return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=100)
+    slug = models.CharField(max_length=50, null=True, unique=True)
+    description = models.TextField(null=True, blank=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True, blank=True)
+    header_img = models.ImageField(upload_to='Header Image', null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'pages'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.title
+
+    def logo_preview(self):
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.header_img.url))
+
