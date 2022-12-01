@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from beyond_aviation.settings import MEDIA_URL
-from .models import Service, ServiceOffering, Section, SubSection, Menu
+from .models import Service, ServiceOffering, Section, SubSection, Menu, Contact
 
 
 # Create your views here.
@@ -16,6 +16,7 @@ def index(request):
     sub_sections = SubSection.objects.filter(status="active")
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
+    contacts = Contact.objects.filter(status="active")
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -26,23 +27,24 @@ def index(request):
         'homepage_logo': homepage_logo,
         'menus': menus,
         'media_url': MEDIA_URL,
+        'contacts': contacts
     }
     return HttpResponse(template.render(context, request))
 
 
 def view_service(request, slug):
-    # print(slug)
-    if Service.slug == slug:
-        get_service_id = Service.objects.get(slug=slug)
-        template = loader.get_template('view_service.html')
-        context = {
-            'get_service_id': get_service_id,
-        }
-        return HttpResponse(slug)
-    else:
-        get_service_id = Menu.objects.get(slug=slug)
-        template = loader.get_template('layout.html')
-        context = {
-            'get_service_id': get_service_id,
-        }
-        return HttpResponse(Service)
+    get_service_id = Service.objects.get(slug=slug)
+    template = loader.get_template('view_service.html')
+    context = {
+        'get_service_id': get_service_id,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def view_menu_options(request, slug):
+    get_service_id = Menu.objects.get(slug=slug)
+    template = loader.get_template('contactus.html')
+    context = {
+        'get_service_id': get_service_id,
+    }
+    return HttpResponse(template.render(context, request))

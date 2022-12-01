@@ -1,0 +1,44 @@
+{% block content %}
+{% endblock %}
+<html>
+<body>
+<div class="container" style="background-color:#696969; padding:50px;">
+    <div class="row" style="color:white;">
+        <div class="col">
+            {% for owner in owner_section %}
+            <p>{{owner.description}}</p>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <h4>Quick Links</h4>
+            <a style="color:#F8F8FF;" href="/">Home</a><br>
+            {% for menu in menus %}
+            {% if menu.show_in_footer is True %}
+            <a style="color:#F8F8FF;" href="{{menu.slug}}">{{menu.name}}</a><br>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col">
+            <h4>Service Offerings</h4>
+            {% for service in services %}
+            <a style="color:#F8F8FF;" href="services/{{service.slug}}">{{service.name}}</a><br>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <h4>CONTACT US</h4>
+            {% for contact in contacts %}
+            <p>{{contact.address}}<br>
+            {{contact.phone}}<br>
+            {{contact.email}}</p>
+            {% endfor %}
+            <p>
+            <a href="https://www.facebook.com/Above-And-Beyond-111275778092657" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/m_abovenbeyond" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/aboveandbeyondca/" class="fa fa-instagram"></a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

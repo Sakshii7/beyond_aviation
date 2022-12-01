@@ -22,12 +22,13 @@ STATUS = (
 class Service(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(null=True, unique=True)
-    excerpt = models.TextField(max_length=450, null=True)
+    excerpt = models.TextField(max_length=450, null=True, blank=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='Service')
+    image = models.ImageField(upload_to='Service', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    is_flag = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_on']
@@ -103,7 +104,7 @@ class SubSection(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(null=True, unique=True)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True, blank=True)
+    show_in_footer = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
@@ -139,4 +140,22 @@ class Page(models.Model):
 
     def logo_preview(self):
         return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.header_img.url))
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.TextField()
+    phone = models.CharField(max_length=50, null=True)
+    email = models.EmailField()
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'contact'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.name
+
 

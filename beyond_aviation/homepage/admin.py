@@ -1,6 +1,7 @@
+from django import forms
 from django.contrib import admin
 
-from .models import SubSection, ServiceOffering, Service, Section, Menu, Page
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Contact
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -41,8 +42,56 @@ class MenuAdmin(admin.ModelAdmin):
     list_filter = ['name']
 
 
+class PageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_on', 'status']
+    search_fields = ['title']
+    list_filter = ['title']
+
+
+class TestingForm(forms.Form):
+    first_name = forms.CharField(max_length=200, min_length=15)
+    last_name = forms.CharField(max_length=200, min_length=15)
+    roll_number = forms.IntegerField(
+        help_text="Enter 6 digit roll number"
+    )
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
+class SettingAdmin(admin.ModelAdmin):
+    change_list_template = 'admin/change_list_custom.html'
+
+    def has_add_permission(self, request) -> bool:
+        return False
+
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return False
+
+    def has_change_permission(self, request, obj=None) -> bool:
+        return False
+
+    def changelist_view(self, request, extra_context=None):
+        request_full_path = request.get_full_path()
+
+        extra_context = {
+            "form": TestingForm()
+        }
+
+        if request.method == 'POST':
+            details = TestingForm(request.POST)
+            extra_context['form'] = details
+            if details.is_valid():
+
+                print('----------------YES----------------------')
+            else:
+                print('----------------NO----------------------')
+
+        response = super().changelist_view(request, extra_context)
+        return response
+
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)
-admin.site.register(Page)
+admin.site.register(Page, PageAdmin)
+admin.site.register(Contact)
