@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Contact
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Contact, Setting
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -49,16 +49,11 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class TestingForm(forms.Form):
-    first_name = forms.CharField(max_length=200, min_length=15)
-    last_name = forms.CharField(max_length=200, min_length=15)
-    roll_number = forms.IntegerField(
-        help_text="Enter 6 digit roll number"
-    )
-    password = forms.CharField(widget=forms.PasswordInput())
+    contact_content = forms.CharField(max_length=50)
 
 
 class SettingAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/change_list_custom.html'
+    change_list_template = '/admin/change_list_custom.html'
 
     def has_add_permission(self, request) -> bool:
         return False
@@ -95,3 +90,4 @@ admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Contact)
+admin.site.register(Setting, SettingAdmin)

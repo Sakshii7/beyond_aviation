@@ -159,3 +159,8 @@ class Contact(models.Model):
         return self.name
 
 
+class Setting(models.Model):
+    class Meta:
+        managed = False
+        db_table = "main_app_user"
+        default_permissions = ('view')

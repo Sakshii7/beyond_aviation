@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homepage.apps.HomepageConfig',
+    'homepage',
 
 ]
 
@@ -56,7 +56,9 @@ ROOT_URLCONF = 'beyond_aviation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'homepage')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
