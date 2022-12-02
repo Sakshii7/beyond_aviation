@@ -1,8 +1,45 @@
-<div class="m_col-md-4 m_col-sm-4">
-    <div class="m_service-feature-box">
-        <form action="id" method="get">
-            <h4>{{get_service_id.name}}</h4>
-            <p> {{get_service_id.description}}</p>
-        </form>
-    </div>
+{% extends "footer.html" %}
+{% block content %}
+<style>
+    .centered {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  text-shadow: 2px 2px 2px #23241f;;
+
+
+
+</style>
+{% load static %}
+<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+
+<div class="container">
+    <form action="id" method="get">
+        <div class="row">
+            <img src="{{media_url}}/{{get_service_id.image}}" alt=""
+                 height="75%" width="100%">
+            <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
+                {{get_service_id.name}}</strong></h2>
+                <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
+                        style="color:white;" href="services/{{get_service_id.slug}}">{{get_service_id.name}}</a></p></div>
+        </div>
+        <div class="row"><p>{{get_service_id.name}}</p></div>
+        <p> {{get_service_id.description}}</p>
+    </form>
 </div>
+
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
+
+{% endblock %}
+<!--<div class="m_col-md-4 m_col-sm-4">-->
+<!--    <div class="m_service-feature-box">-->
+<!--        <form action="id" method="get">-->
+<!--            <h4>{{get_service_id.name}}</h4>-->
+<!--            <p> {{get_service_id.description}}</p>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--{% include "footer.html" %}-->

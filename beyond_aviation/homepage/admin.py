@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin
-
+from tinymce.widgets import TinyMCE
+from django.db import models
 from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Contact, Setting
 
 
@@ -44,8 +45,12 @@ class MenuAdmin(admin.ModelAdmin):
 
 class PageAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status']
+    prepopulated_fields = {'slug': ['title']}
     search_fields = ['title']
     list_filter = ['title']
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE()}
+    }
 
 
 class TestingForm(forms.Form):
@@ -53,7 +58,7 @@ class TestingForm(forms.Form):
 
 
 class SettingAdmin(admin.ModelAdmin):
-    change_list_template = '/admin/change_list_custom.html'
+    change_list_template = 'admin/change_list_custom.html'
 
     def has_add_permission(self, request) -> bool:
         return False

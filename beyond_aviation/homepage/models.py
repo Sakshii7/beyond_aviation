@@ -123,10 +123,10 @@ class Menu(models.Model):
 
 class Page(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.CharField(max_length=50, null=True, unique=True)
-    description = models.TextField(null=True, blank=True)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True, blank=True)
+    slug = models.SlugField(null=True, unique=True)
+    description = models.CharField(max_length=100, null=True, blank=True)
     header_img = models.ImageField(upload_to='Header Image', null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -162,5 +162,5 @@ class Contact(models.Model):
 class Setting(models.Model):
     class Meta:
         managed = False
-        db_table = "main_app_user"
+        db_table = "auth_user"
         default_permissions = ('view')
