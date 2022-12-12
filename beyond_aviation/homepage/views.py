@@ -1,7 +1,11 @@
-from django.http import HttpResponse
-from django.template import loader
+import re
 
-from beyond_aviation.settings import MEDIA_URL
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template import loader
+from django.core.mail import send_mail
+from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
 from .models import Service, ServiceOffering, Section, SubSection, Menu, Contact, Page
 
 
@@ -16,7 +20,6 @@ def index(request):
     sub_sections = SubSection.objects.filter(status="active")
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
-    contacts = Contact.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
     template = loader.get_template('homepage.html')
     context = {
@@ -29,7 +32,6 @@ def index(request):
         'menus': menus,
         'pages': pages,
         'media_url': MEDIA_URL,
-        'contacts': contacts
     }
     return HttpResponse(template.render(context, request))
 
@@ -39,7 +41,6 @@ def view_service(request, slug):
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
     menus = Menu.objects.filter(status="active")
-    contacts = Contact.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     template = loader.get_template('view_service.html')
     context = {
@@ -48,7 +49,6 @@ def view_service(request, slug):
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
-        'contacts': contacts,
         'media_url': MEDIA_URL,
 
     }
@@ -60,7 +60,6 @@ def view_pages(request, slug):
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
     menus = Menu.objects.filter(status="active")
-    contacts = Contact.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     template = loader.get_template('pages.html')
 
@@ -70,7 +69,37 @@ def view_pages(request, slug):
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
-        'contacts': contacts,
         'media_url': MEDIA_URL,
     }
     return HttpResponse(template.render(context, request))
+
+
+def add_contact(request):
+    if request.method == "POST":
+        contact_regex = re.compile(
+            r'(^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$)')
+
+        email_regex = re.compile(
+            r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+
+        name_regex = re.compile(
+            r"(^[A-Za-z]+$)")
+
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        if not re.fullmatch(contact_regex, phone):
+            messages.error(request, 'Invalid Phone')
+        elif not re.fullmatch(email_regex, email):
+            messages.error(request, 'Invalid Email')
+        elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
+            messages.error(request, 'Invalid Name')
+        else:
+            contact_id = Contact(first_name=first_name, last_name=last_name,email=email, phone=phone,message=message)
+            contact_id.save()
+            send_mail('Contact for Query', message, 'sakshi27720@gmail.com', ['sakshi.chandel@socialmediafreaks.com'], fail_silently=False,)
+            messages.success(request, 'Thankyou for Contacting us.')
+        return redirect(request.META['HTTP_REFERER'])
+    return render(request, 'add_contact.html')

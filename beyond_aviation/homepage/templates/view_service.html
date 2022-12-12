@@ -22,11 +22,11 @@
                  height="75%" width="100%">
             <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
                 {{get_service_id.name}}</strong></h2>
-                <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
-                        style="color:white;" href="services/{{get_service_id.slug}}">{{get_service_id.name}}</a></p></div>
+                <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a style="color:white;" href="/services/{{get_service_id.slug}}">Services</a> / <a
+                        style="color:white;" href="/services/{{get_service_id.slug}}">{{get_service_id.name}}</a></p></div>
         </div>
-        <div class="row"><p>{{get_service_id.name}}</p></div>
-        <p> {{get_service_id.description}}</p>
+<!--        <div class="row"><p><h2>{{get_service_id.name}}</h2></p></div>-->
+        <p> {{get_service_id.description|safe}}</p>
     </form>
 </div>
 

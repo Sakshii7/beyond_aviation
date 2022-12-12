@@ -25,6 +25,9 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     search_fields = ['name']
     list_filter = ['name']
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE()}
+    }
 
 
 class ServiceOfferingAdmin(admin.ModelAdmin):
@@ -41,6 +44,12 @@ class MenuAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     search_fields = ['name']
     list_filter = ['name']
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'created_on']
+    search_fields = ['first_name']
+    list_filter = ['first_name']
 
 
 class PageAdmin(admin.ModelAdmin):
@@ -94,5 +103,5 @@ admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
-admin.site.register(Contact)
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(Setting, SettingAdmin)

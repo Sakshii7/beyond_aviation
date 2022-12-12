@@ -22,7 +22,7 @@ STATUS = (
 class Service(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(null=True, unique=True)
-    excerpt = models.TextField(max_length=450, null=True, blank=True)
+    excerpt = models.CharField(max_length=450, null=True, blank=True)
     description = models.TextField()
     image = models.ImageField(upload_to='Service', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
@@ -143,11 +143,11 @@ class Page(models.Model):
 
 
 class Contact(models.Model):
-    name = models.CharField(max_length=50)
-    address = models.TextField()
-    phone = models.CharField(max_length=50, null=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     email = models.EmailField()
-    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    phone = models.CharField(max_length=50, null=True)
+    message = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -156,7 +156,7 @@ class Contact(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
 
 class Setting(models.Model):
