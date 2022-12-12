@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from utils import Environment
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#)pk*=%iz3_5bit-hqzo&p&sps65)ct1h2$8_i772%7b&f9$c!'
+SECRET_KEY = Environment.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -158,8 +158,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = Environment.get("EMAIL_HOST")
+EMAIL_PORT = Environment.get("EMAIL_PORT")
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sakshi.chandel@socialmediafreaks.com'
-EMAIL_HOST_PASSWORD = 'kmxuycfelujfidxu'
+EMAIL_HOST_USER = Environment.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = Environment.get("EMAIL_HOST_PASSWORD")
