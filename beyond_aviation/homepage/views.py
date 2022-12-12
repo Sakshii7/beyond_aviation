@@ -1,10 +1,13 @@
+import os
 import re
 
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage, send_mail
+
+from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
 from .models import Service, ServiceOffering, Section, SubSection, Menu, Contact, Page
 
@@ -75,6 +78,7 @@ def view_pages(request, slug):
 
 
 def add_contact(request):
+    logo = Menu.objects.get(status="active", name="logo")
     if request.method == "POST":
         contact_regex = re.compile(
             r'(^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$)')
@@ -90,6 +94,7 @@ def add_contact(request):
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
+
         if not re.fullmatch(contact_regex, phone):
             messages.error(request, 'Invalid Phone')
         elif not re.fullmatch(email_regex, email):
@@ -97,9 +102,26 @@ def add_contact(request):
         elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
             messages.error(request, 'Invalid Name')
         else:
-            contact_id = Contact(first_name=first_name, last_name=last_name,email=email, phone=phone,message=message)
+            contact_id = Contact(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
             contact_id.save()
-            send_mail('Contact for Query', message, 'sakshi27720@gmail.com', ['sakshi.chandel@socialmediafreaks.com'], fail_silently=False,)
+            email_draft = send_mail(' Above & Beyond - Contact Form',
+                                    message,
+                                    email,
+                                    ['sakshi.chandel@socialmediafreaks.com'],
+                                    fail_silently=False,
+                                    html_message=loader.render_to_string(
+                                        'email_template.html',
+                                        {
+                                            'first_name': first_name,
+                                            'last_name': last_name,
+                                            'email': email,
+                                            'phone': phone,
+                                            'message': message,
+                                            'logo': logo,
+                                            'media_url': MEDIA_URL,
+                                        }
+                                    )
+                                    )
             messages.success(request, 'Thankyou for Contacting us.')
         return redirect(request.META['HTTP_REFERER'])
-    return render(request, 'add_contact.html')
+    return redirect(request.META['HTTP_REFERER'])
