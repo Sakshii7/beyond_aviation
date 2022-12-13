@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from django.db import models
-from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Contact, Setting
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting, Footer
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -46,7 +46,7 @@ class MenuAdmin(admin.ModelAdmin):
     list_filter = ['name']
 
 
-class ContactAdmin(admin.ModelAdmin):
+class QueryFormAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'created_on']
     search_fields = ['first_name']
     list_filter = ['first_name']
@@ -57,6 +57,12 @@ class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
     search_fields = ['title']
     list_filter = ['title']
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE()}
+    }
+
+
+class FooterAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
@@ -103,5 +109,6 @@ admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
-admin.site.register(Contact, ContactAdmin)
+admin.site.register(QueryForm, QueryFormAdmin)
 admin.site.register(Setting, SettingAdmin)
+admin.site.register(Footer, FooterAdmin)

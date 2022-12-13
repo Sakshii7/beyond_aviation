@@ -1,3 +1,4 @@
+{% load static %}
 <table cellpadding="0" cellspacing="0" style="margin:0px auto 0px;text-align:center;border-radius:4px;background-color:#fff;padding:30px;width:100%;max-width:800px;border:1px solid #ccc">
     <tbody>
     <tr>
@@ -8,7 +9,7 @@
     <tr>
         <td style="width:100%;display:table">
             <div style="text-align:center">
-                <img src="{{media_url}}/{{logo.image}}" width="300px" alt="">
+                <img src="{{ request.scheme }}://{{ request.get_host }}{% static 'images/main-logo.png' %}" alt="">
             </div>
         </td>
     </tr>
@@ -28,6 +29,9 @@
 
         <tr> <td style="padding:10px;border:1px solid #ccc;text-align:left">Email:</td>
             <td style="padding:10px;border:1px solid #ccc;text-align:left">{{email}}</td>
+        </tr>
+        <tr> <td style="padding:10px;border:1px solid #ccc;text-align:left">Contact No.:</td>
+            <td style="padding:10px;border:1px solid #ccc;text-align:left">{{phone}}</td>
         </tr>
         <tr> <td style="padding:10px;border:1px solid #ccc;text-align:left">Message:</td>
             <td style="padding:10px;border:1px solid #ccc;text-align:left">{{message}}</td>

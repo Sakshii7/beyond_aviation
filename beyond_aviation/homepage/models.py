@@ -10,7 +10,8 @@ CHOICES = (
 
 SECTIONS = (
     ('other', 'Other'),
-    ('owner', 'Owner')
+    ('owner', 'Owner'),
+    ('canada_jetline', 'Canada Jetline Cargo')
 )
 
 STATUS = (
@@ -65,7 +66,7 @@ class Section(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
-    section_type = models.CharField(max_length=10, choices=SECTIONS, default='other')
+    section_type = models.CharField(max_length=20, choices=SECTIONS, default='other')
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     image = models.ImageField(upload_to='Section', null=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -142,7 +143,7 @@ class Page(models.Model):
         return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.header_img.url))
 
 
-class Contact(models.Model):
+class QueryForm(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -152,11 +153,22 @@ class Contact(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'contact'
+        db_table = 'query_form'
         ordering = ['created_on']
 
     def __str__(self):
         return self.first_name
+
+
+class Footer(models.Model):
+    footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'footer'
 
 
 class Setting(models.Model):

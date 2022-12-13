@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage, send_mail
 
 from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
-from .models import Service, ServiceOffering, Section, SubSection, Menu, Contact, Page
+from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Footer
 
 
 # Create your views here.
@@ -24,6 +24,7 @@ def index(request):
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
+    footer = Footer.objects.filter(status="active")
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -35,6 +36,7 @@ def index(request):
         'menus': menus,
         'pages': pages,
         'media_url': MEDIA_URL,
+        'footer': footer,
     }
     return HttpResponse(template.render(context, request))
 
@@ -43,8 +45,10 @@ def view_service(request, slug):
     get_service_id = Service.objects.get(slug=slug)
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
+    canada_jetline_section = Section.objects.filter(section_type="canada_jetline", status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
+    footer = Footer.objects.filter(status="active")
     template = loader.get_template('view_service.html')
     context = {
         'get_service_id': get_service_id,
@@ -52,6 +56,8 @@ def view_service(request, slug):
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
+        'canada_jetline_section': canada_jetline_section,
+        'footer': footer,
         'media_url': MEDIA_URL,
 
     }
@@ -62,8 +68,11 @@ def view_pages(request, slug):
     get_page_id = Page.objects.get(slug=slug)
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
+    canada_jetline_section = Section.objects.filter(section_type="canada_jetline", status="active")
+    sub_sections = SubSection.objects.filter(status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
+    footer = Footer.objects.filter(status="active")
     template = loader.get_template('pages.html')
 
     context = {
@@ -72,16 +81,19 @@ def view_pages(request, slug):
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
+        'canada_jetline_section': canada_jetline_section,
+        'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
+        'footer': footer,
     }
     return HttpResponse(template.render(context, request))
 
 
-def add_contact(request):
-    logo = Menu.objects.get(status="active", name="logo")
+def query_form(request):
+    logo = Menu.objects.filter(status="active")
     if request.method == "POST":
         contact_regex = re.compile(
-            r'(^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$)')
+            r'(^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$)')
 
         email_regex = re.compile(
             r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
@@ -102,8 +114,8 @@ def add_contact(request):
         elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
             messages.error(request, 'Invalid Name')
         else:
-            contact_id = Contact(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
-            contact_id.save()
+            query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
+            query_id.save()
             email_draft = send_mail(' Above & Beyond - Contact Form',
                                     message,
                                     email,
