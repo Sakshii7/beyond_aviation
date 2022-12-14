@@ -6,7 +6,7 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -31,9 +31,30 @@
     -ms-transition: all 0.2s ease 0s;
     transition: all 0.2s ease 0s;
 }
+.custom-heading {
+    position: relative;
+    width: 100%;
+    display: block;
+    padding-top: 12px;
+    text-transform: uppercase;
+    height: 4rem;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'Raleway', 'Open Sans', Arial, sans-serif;
+    font-weight: 800;
+    margin-bottom: 25px;
+    margin-top: 0;
+    color: #333;
+}
 
 </style>
-<div style="margin:50px;">
+<div class="container">
+<div class="row">
+    <div class="col">
+      <div style="margin:20px;">
 
 <form action="/query_form/" method="POST" id="contact_form" class="contact_form">
     {% csrf_token %}
@@ -72,6 +93,15 @@
     <input type="submit" class="wpcf7-submit">
 </form>
 
+</div>
+    </div>
+    <div class="col">
+                      <div class="custom-heading"><h4>company information</h4></div>
+               {% for x in data %}
+                {{ x }}
+                {% endfor %}<br>
+    </div>
+</div>
 </div>
 
 <!--<div id="map">-->

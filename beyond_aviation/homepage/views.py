@@ -1,3 +1,4 @@
+import json
 import os
 import re
 
@@ -9,7 +10,7 @@ from django.core.mail import EmailMessage, send_mail
 
 from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
-from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Footer
+from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page
 
 
 # Create your views here.
@@ -24,7 +25,6 @@ def index(request):
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
-    footer = Footer.objects.filter(status="active")
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -36,7 +36,6 @@ def index(request):
         'menus': menus,
         'pages': pages,
         'media_url': MEDIA_URL,
-        'footer': footer,
     }
     return HttpResponse(template.render(context, request))
 
@@ -48,8 +47,10 @@ def view_service(request, slug):
     canada_jetline_section = Section.objects.filter(section_type="canada_jetline", status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
-    footer = Footer.objects.filter(status="active")
+    pages = Page.objects.filter(status="active")
     template = loader.get_template('view_service.html')
+    with open("sample.json") as jsonFile:
+        data = json.load(jsonFile)
     context = {
         'get_service_id': get_service_id,
         'offerings': offerings,
@@ -57,8 +58,10 @@ def view_service(request, slug):
         'owner_section': owner_section,
         'menus': menus,
         'canada_jetline_section': canada_jetline_section,
-        'footer': footer,
+        'pages': pages,
         'media_url': MEDIA_URL,
+        'data': data.get("address")
+
 
     }
     return HttpResponse(template.render(context, request))
@@ -72,9 +75,10 @@ def view_pages(request, slug):
     sub_sections = SubSection.objects.filter(status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
-    footer = Footer.objects.filter(status="active")
+    pages = Page.objects.filter(status="active")
     template = loader.get_template('pages.html')
-
+    with open("sample.json") as jsonFile:
+        data = json.load(jsonFile)
     context = {
         'get_page_id': get_page_id,
         'offerings': offerings,
@@ -84,7 +88,8 @@ def view_pages(request, slug):
         'canada_jetline_section': canada_jetline_section,
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
-        'footer': footer,
+        'pages': pages,
+        'data': data.get("address")
     }
     return HttpResponse(template.render(context, request))
 
@@ -116,24 +121,24 @@ def query_form(request):
         else:
             query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
             query_id.save()
-            email_draft = send_mail(' Above & Beyond - Contact Form',
-                                    message,
-                                    email,
-                                    ['sakshi.chandel@socialmediafreaks.com'],
-                                    fail_silently=False,
-                                    html_message=loader.render_to_string(
-                                        'email_template.html',
-                                        {
-                                            'first_name': first_name,
-                                            'last_name': last_name,
-                                            'email': email,
-                                            'phone': phone,
-                                            'message': message,
-                                            'logo': logo,
-                                            'media_url': MEDIA_URL,
-                                        }
-                                    )
-                                    )
+            send_mail(' Above & Beyond - Contact Form',
+                      message,
+                      email,
+                      ['sakshi.chandel@socialmediafreaks.com'],
+                      fail_silently=False,
+                      html_message=loader.render_to_string(
+                          'email_template.html',
+                          {
+                              'first_name': first_name,
+                              'last_name': last_name,
+                              'email': email,
+                              'phone': phone,
+                              'message': message,
+                              'logo': logo,
+                              'media_url': MEDIA_URL,
+                          }
+                      )
+                      )
             messages.success(request, 'Thankyou for Contacting us.')
         return redirect(request.META['HTTP_REFERER'])
     return redirect(request.META['HTTP_REFERER'])

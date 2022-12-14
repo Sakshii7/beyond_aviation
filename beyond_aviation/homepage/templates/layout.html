@@ -29,12 +29,67 @@
     padding-left: 15px;
      padding-top: 5px;
     }
+    .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 50px;
+}
 
-</style>
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #00008B;}
+
+
+
+
+    </style>
 </head>
 <body>
+<!-- Menu  -->
+<div class="container" style="padding: 5px;">
+    <div class="row">
+        <div class="col">
+            <a href="/"><img src="{% static 'images/main-logo.png' %}" alt=""
+                             height="100%" width="50%"></a>
+        </div>
+        <div class="col">
+            {% for menu in menus %}
+            {% if menu.slug == "services" %}
+            <div class="dropdown">
+                <p style="color:black; text-transform: uppercase;">Services </p>
+                <div class="dropdown-content">
+                    {% for service in services %}
+                    <a href="services/{{service.slug}}">{{service.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% else %}
+            {% for page in pages %}
+            {% if menu.slug == page.slug %}
+            <a style="color:black; text-transform: uppercase;" href="{{page.slug}}">{{page.title}}</a>&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% block content %}
 {% endblock %}
+
+<!-- Footer  -->
+
 </div>
 </div>
 <div style="background-image:url({% static 'images/footer-bkg.png' %}); background-color: #25272e;">
@@ -42,9 +97,7 @@
     vertical-align: baseline;">
         <div class="row">
             <div class="col">
-                {% for logo in footer %}
-                <img src="{{media_url}}/{{logo.footer_logo}}" alt="" height="150px" width="200px">
-                {% endfor %}
+                <img src="{% static 'images/footer_logo.png' %}" alt="" height="150px" width="200px">
                 {% for owner in owner_section %}
                 <br><br>
                 <p class="footer-dark">{{owner.description}}</p>
@@ -55,7 +108,7 @@
                 <a class="widget" href="/">Home</a><br>
                 {% for menu in menus %}
                 {% if menu.show_in_footer is True %}
-                <a class="widget"  href="{{menu.slug}}">{{menu.name}}</a><br>
+                <a class="widget" href="{{menu.slug}}">{{menu.name}}</a><br>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -67,16 +120,15 @@
             </div>
             <div class="col footer-dark title">
                 <h3>CONTACT US</h3>
-                {% for desc in footer %}
-                <p>{{desc.description|safe}}
-                    {% endfor %}
-
-                    <a style="background-color: #565f66; color: #fff; padding:10px;"
-                       href="https://www.facebook.com/Above-And-Beyond-111275778092657" class="fa fa-facebook"></a>
-                    <a style="background-color: #565f66; color: #fff; padding:10px;"
-                       href="https://twitter.com/m_abovenbeyond" class="fa fa-twitter"></a>
-                    <a style="background-color: #565f66; color: #fff; padding:10px;"
-                       href="https://www.instagram.com/aboveandbeyondca/" class="fa fa-instagram"></a>
+                {% for x in data %}
+                {{ x }}
+                {% endfor %}<br>
+                <a style="background-color: #565f66; color: #fff; padding:10px;"
+                   href="https://www.facebook.com/Above-And-Beyond-111275778092657" class="fa fa-facebook"></a>
+                <a style="background-color: #565f66; color: #fff; padding:10px;"
+                   href="https://twitter.com/m_abovenbeyond" class="fa fa-twitter"></a>
+                <a style="background-color: #565f66; color: #fff; padding:10px;"
+                   href="https://www.instagram.com/aboveandbeyondca/" class="fa fa-instagram"></a>
                 </p>
             </div>
         </div>

@@ -11,7 +11,6 @@ CHOICES = (
 SECTIONS = (
     ('other', 'Other'),
     ('owner', 'Owner'),
-    ('canada_jetline', 'Canada Jetline Cargo')
 )
 
 STATUS = (
@@ -161,19 +160,9 @@ class QueryForm(models.Model):
         return self.first_name
 
 
-class Footer(models.Model):
-    footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'footer'
-
-
 class Setting(models.Model):
     class Meta:
         managed = False
         db_table = "auth_user"
-        default_permissions = ('view')
+        default_permissions = 'view'
+

@@ -1,12 +1,17 @@
+import json
+
 from django import forms
 from django.contrib import admin
+from django.http import HttpResponse
+
 from tinymce.widgets import TinyMCE
 from django.db import models
-from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting, Footer
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
 
 
 class SubSectionAdmin(admin.TabularInline):
     model = SubSection
+    list_editable = ['status']
     readonly_fields = ['section_icon_preview']
 
 
@@ -16,6 +21,8 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status']
     search_fields = ['title']
     list_filter = ['title', 'section_type']
+    list_editable = ['status']
+    list_per_page = 5
 
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -25,6 +32,8 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     search_fields = ['name']
     list_filter = ['name']
+    list_editable = ['status']
+    list_per_page = 5
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
@@ -35,6 +44,8 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status', ]
     search_fields = ['title']
     list_filter = ['title']
+    list_editable = ['status']
+    list_per_page = 5
 
 
 class MenuAdmin(admin.ModelAdmin):
@@ -44,6 +55,8 @@ class MenuAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     search_fields = ['name']
     list_filter = ['name']
+    list_editable = ['status']
+    list_per_page = 5
 
 
 class QueryFormAdmin(admin.ModelAdmin):
@@ -57,19 +70,16 @@ class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
     search_fields = ['title']
     list_filter = ['title']
-    formfield_overrides = {
-        models.TextField: {'widget': TinyMCE()}
-    }
-
-
-class FooterAdmin(admin.ModelAdmin):
+    list_editable = ['status']
+    list_per_page = 5
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
 
 
 class TestingForm(forms.Form):
-    contact_content = forms.CharField(max_length=50)
+    address = forms.CharField(widget=forms.Textarea)
+    header_logo = forms.ImageField()
 
 
 class SettingAdmin(admin.ModelAdmin):
@@ -86,7 +96,6 @@ class SettingAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         request_full_path = request.get_full_path()
-
         extra_context = {
             "form": TestingForm()
         }
@@ -95,8 +104,16 @@ class SettingAdmin(admin.ModelAdmin):
             details = TestingForm(request.POST)
             extra_context['form'] = details
             if details.is_valid():
-
-                print('----------------YES----------------------')
+                address = request.POST['address']
+                header_logo = request.POST['header_logo']
+                context = {
+                    'address': address,
+                    'header_logo':header_logo
+                }
+                with open("sample.json", "wb") as outfile:
+                    json.dump(context, outfile)
+                response = super().changelist_view(request, extra_context)
+                return response
             else:
                 print('----------------NO----------------------')
 
@@ -111,4 +128,3 @@ admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(QueryForm, QueryFormAdmin)
 admin.site.register(Setting, SettingAdmin)
-admin.site.register(Footer, FooterAdmin)

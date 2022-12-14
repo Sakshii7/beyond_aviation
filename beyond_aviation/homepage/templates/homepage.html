@@ -1,58 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<style>
-.dropdown-content {
-  display: none;
-<!--  position: absolute;-->
-  background-color: white;
-  min-width: 50px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-<!--.dropdown:hover .dropdown-content {display: block;}-->
-
-.dropdown:hover .dropbtn {background-color: #00008B;}
-
-</style>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<div class="container" style="padding: 5px;">
-    <div class="row">
-        {% for menu in menus %}
-        {% if menu.image %}
-        <a href="/"><img style="float:left;" class="col-md-4" src="{{media_url}}/{{menu.image}}" alt=""
-                         height="100%" width="50%"></a>
-        {% elif menu.name == "Services" %}
-            <div class="dropdown">
-                <p style="color:black; text-transform: uppercase;">Services &nbsp;&nbsp;&nbsp;</p>
-                <div class="dropdown-content">
-                    {% for service in services %}
-                    <a href="services/{{service.slug}}">{{service.name}}</a>
-                    {% endfor %}
-                </div>
-                </div>
-
-        {% else %}
-        {% for page in pages %}
-        {% if menu.slug == page.slug %}
-        <a style="color:black; text-transform: uppercase;" href="{{page.slug}}">{{page.title}}</a>&nbsp;&nbsp;&nbsp;
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-
 
 <!-- Services  -->
 <section style="padding: 20px;">
@@ -178,11 +125,14 @@
             <div class="icon-container" style="padding: 10px;">
                 <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
             </div>
+            {% elif section.id == sub_section.section_id and sub_section.status == "active" and sub_section.image %}
             <br>
             {% endif %}
             {% endfor %}
         </div>
+
         {% else %}
+
         <div class="col">
             <div class="custom-heading">
                 <h3>{{section.title}}</h3>
