@@ -47,6 +47,7 @@ class ServiceOffering(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='ServiceOffering')
     text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
+    show_on_about_page = models.BooleanField(default=False)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
