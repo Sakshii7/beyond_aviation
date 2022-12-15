@@ -10,7 +10,7 @@ from django.core.mail import EmailMessage, send_mail
 
 from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
-from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page
+from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting
 
 
 # Create your views here.
@@ -76,9 +76,10 @@ def view_pages(request, slug):
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
+    system_data = Setting.objects.all()
     template = loader.get_template('pages.html')
-    with open("sample.json") as jsonFile:
-        data = json.load(jsonFile)
+    # with open("sample.json") as jsonFile:
+    #     data = json.load(jsonFile)
     context = {
         'get_page_id': get_page_id,
         'offerings': offerings,
@@ -89,7 +90,7 @@ def view_pages(request, slug):
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
         'pages': pages,
-        'data': data.get("address")
+        'system_data': system_data
     }
     return HttpResponse(template.render(context, request))
 

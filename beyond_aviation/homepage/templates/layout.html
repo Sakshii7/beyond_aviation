@@ -115,21 +115,21 @@
             <div class="col footer-dark title">
                 <h3>Service Offerings</h3>
                 {% for service in services %}
-                <a class="widget" href="services/{{service.slug}}">{{service.name}}</a><br>
+                <a class="widget" href="/services/{{service.slug}}">{{service.name}}</a><br>
                 {% endfor %}
             </div>
             <div class="col footer-dark title">
                 <h3>CONTACT US</h3>
-                {% for x in data %}
-                {{ x }}
-                {% endfor %}<br>
+                {% for x in system_data %}
+                {{ x.contact_address }}
+                <br>
                 <a style="background-color: #565f66; color: #fff; padding:10px;"
-                   href="https://www.facebook.com/Above-And-Beyond-111275778092657" class="fa fa-facebook"></a>
+                   href="{{ x.facebook_url }}" class="fa fa-facebook"></a>
                 <a style="background-color: #565f66; color: #fff; padding:10px;"
-                   href="https://twitter.com/m_abovenbeyond" class="fa fa-twitter"></a>
+                   href="{{ x.twitter_url }}" class="fa fa-twitter"></a>
                 <a style="background-color: #565f66; color: #fff; padding:10px;"
-                   href="https://www.instagram.com/aboveandbeyondca/" class="fa fa-instagram"></a>
-                </p>
+                   href="{{ x.instagram_url }}" class="fa fa-instagram"></a>
+            {% endfor %}
             </div>
         </div>
     </div>

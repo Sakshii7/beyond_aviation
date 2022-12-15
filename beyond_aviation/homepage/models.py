@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from tinymce.widgets import TinyMCE
 
 # Create your models here.
 
@@ -161,8 +162,10 @@ class QueryForm(models.Model):
 
 
 class Setting(models.Model):
-    class Meta:
-        managed = False
-        db_table = "auth_user"
-        default_permissions = 'view'
+    contact_address = models.TextField()
+    facebook_url = models.URLField()
+    instagram_url = models.URLField()
+    twitter_url = models.URLField()
 
+    class Meta:
+        db_table = "setting"

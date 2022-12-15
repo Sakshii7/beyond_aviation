@@ -78,8 +78,10 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class TestingForm(forms.Form):
-    address = forms.CharField(widget=forms.Textarea)
-    header_logo = forms.ImageField()
+    contact_address = forms.CharField()
+    facebook_url = forms.URLField()
+    instagram_url = forms.URLField()
+    twitter_url = forms.URLField()
 
 
 class SettingAdmin(admin.ModelAdmin):
@@ -104,16 +106,31 @@ class SettingAdmin(admin.ModelAdmin):
             details = TestingForm(request.POST)
             extra_context['form'] = details
             if details.is_valid():
-                address = request.POST['address']
-                header_logo = request.POST['header_logo']
-                context = {
-                    'address': address,
-                    'header_logo':header_logo
-                }
-                with open("sample.json", "wb") as outfile:
-                    json.dump(context, outfile)
-                response = super().changelist_view(request, extra_context)
-                return response
+                contact_address = request.POST['contact_address']
+                facebook_url = request.POST['facebook_url']
+                instagram_url = request.POST['instagram_url']
+                twitter_url = request.POST['twitter_url']
+                if details:
+                    system_data = Setting(contact_address=contact_address, facebook_url=facebook_url,
+                                          instagram_url=instagram_url, twitter_url=twitter_url)
+                    x = system_data.id
+                    system_data.save()
+                    detail_id = Setting.objects.get(id__isnull=False)
+                    detail_id.contact_address = contact_address
+                    detail_id.facebook_url = facebook_url
+                    detail_id.instagram_url = instagram_url
+                    detail_id.twitter_url = twitter_url
+                    for res in detail_id:
+                        res.save()
+                    # detail_id.save()
+                    print(detail_id.contact_address)
+                    system_data.save()
+                    response = super().changelist_view(request, extra_context)
+                    return response
+                else:
+
+                    response = super().changelist_view(request, extra_context)
+                    return response
             else:
                 print('----------------NO----------------------')
 

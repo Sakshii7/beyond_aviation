@@ -40,22 +40,41 @@
 {% block coltype %}{% endblock %}
 
 {% block content %}
+{% load static %}
+<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+
 <div id="content-main">
 <!--    {{test}}-->
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST">
         {% csrf_token %}
-        {{form }}
+        {% if form is null %}
+        <br>{{form.as_p}}<br>
+        {% else %}
+        <br>{{form.as_p}}<br>
+        {% endif %}
 
-<!--        {% for field in form %}-->
-<!--        <div>-->
-<!--            <div> {{ field.label }}</div>-->
-<!--            <div>{{ field }}</div>-->
-<!--        </div>-->
-<!--        {% endfor %}-->
+<!--        <div style="margin-bottom: 18px">-->
+<!--    <label><span class="required" style="color:red;">*</span> contact_address</label><br>-->
+<!--    <input type="text" name="contact_address" required="">-->
+<!--    </div>-->
+<!--         <div style="margin-bottom: 18px">-->
+<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
+<!--    <input type="text" name="facebook_url" required="">-->
+<!--    </div>-->
+<!--         <div style="margin-bottom: 18px">-->
+<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
+<!--    <input type="text" name="facebook_url" required="">-->
+<!--    </div>-->
+<!--         <div style="margin-bottom: 18px">-->
+<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
+<!--    <input type="text" name="facebook_url" required="">-->
+<!--    </div>-->
         <button type="submit">TEST</button>
 
     </form>
 
 
 </div>
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
+
 {% endblock %}
