@@ -97,8 +97,8 @@ h4 {
     </div>
     <div class="col">
                       <div class="custom-heading"><h4>company information</h4></div>
-               {% for x in data %}
-                {{ x }}
+               {% for x in system_data %}
+                {{ x.contact_address|safe }}
                 {% endfor %}<br>
     </div>
 </div>

@@ -1,9 +1,11 @@
 {% extends "admin/base_site.html" %}
+
+
 {% load i18n admin_urls static admin_list %}
 
 {% block extrastyle %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'admin/css/changelists.css' %}">
+<link rel="stylesheet" href="{% static 'admin /css/changelists.css' %}">
 {% if cl.formset %}
 <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
 {% endif %}
@@ -14,6 +16,7 @@
 {% if not actions_on_top and not actions_on_bottom %}
 <style>
       #changelist table thead th:first-child {width: inherit}
+
 
 </style>
 {% endif %}
@@ -40,41 +43,100 @@
 {% block coltype %}{% endblock %}
 
 {% block content %}
-{% load static %}
-<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
 
+<style>
+    .form-row {
+    overflow: hidden;
+    padding: 10px;
+    font-size: 0.8125rem;
+    border-bottom: 1px solid var(--hairline-color);
+}
+</style>
 <div id="content-main">
-<!--    {{test}}-->
-    <form method="POST">
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!--    {{test}}-->
+    <form enctype="multipart/form-data" method="POST" novalidate>
         {% csrf_token %}
-        {% if form is null %}
-        <br>{{form.as_p}}<br>
-        {% else %}
-        <br>{{form.as_p}}<br>
-        {% endif %}
 
-<!--        <div style="margin-bottom: 18px">-->
-<!--    <label><span class="required" style="color:red;">*</span> contact_address</label><br>-->
-<!--    <input type="text" name="contact_address" required="">-->
-<!--    </div>-->
-<!--         <div style="margin-bottom: 18px">-->
-<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
-<!--    <input type="text" name="facebook_url" required="">-->
-<!--    </div>-->
-<!--         <div style="margin-bottom: 18px">-->
-<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
-<!--    <input type="text" name="facebook_url" required="">-->
-<!--    </div>-->
-<!--         <div style="margin-bottom: 18px">-->
-<!--    <label><span class="required" style="color:red;">*</span> facebook_url</label><br>-->
-<!--    <input type="text" name="facebook_url" required="">-->
-<!--    </div>-->
-        <button type="submit">TEST</button>
+        <div style="margin-bottom: 18px">
+            <label>Contact Address</label><br>
+            <input id="id_content" type="text" name="contact_address" value="{{settings.contact_address}}">
+        </div>
+
+        <div style="margin-bottom: 18px">
+            <label>Facebook URL</label>
+            <input style="width: 30em;" type="url" name="facebook_url" value="{{settings.facebook_url}}">
+        </div>
+
+        <div style="margin-bottom: 18px">
+            <label> Instagram URL </label>
+            <input style="width: 30em;" type="url" name="instagram_url" value="{{settings.instagram_url}}">
+        </div>
+
+        <div style="margin-bottom: 18px">
+            <label> Twitter URL </label>
+            <input style="width: 30em;" type="url" name="twitter_url" value="{{settings.twitter_url}}">
+        </div>
+
+        <div style="margin-bottom: 18px">
+            <label> Homepage Logo </label><br>
+             {% if settings.homepage_logo %}
+            <p>Currently: <a href="{{media_url}}/{{ settings.homepage_logo }}">{{settings.homepage_logo}}</a><br>
+
+                Change:
+            <input type="file" {% if settings.homepage_logo %} name="homepage_logo" value="123"  {% else %}name="homepage_logo" {% endif %} accept="image/*" ></p>
+
+            <img src="{{media_url}}/{{ settings.homepage_logo }}/" alt=""
+                 height="150px;" width="200px;">
+
+            {% else %}
+            <input type="file" name="homepage_logo">
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 18px">
+            <label> Footer Logo</label><br>
+            {% if settings.footer_logo %}
+            <p>Currently: <a href="{{media_url}}/{{ settings.footer_logo }}">{{settings.footer_logo}}</a><br>
+
+                Change:
+            <input type="file" name="footer_logo" accept="image/*" ></p>
+
+            <img src="{{media_url}}/{{ settings.footer_logo }}/" alt=""
+                 height="100px;" width="150px;">
+
+            {% else %}
+            <input type="file" name="footer_logo">
+            {% endif %}
+        </div>
+
+        <button type="submit">SUBMIT</button>
 
     </form>
 
 
 </div>
 <script src="{% static 'tinymce/js/prism.js' %}"></script>
+<script src="{% static 'tinymce/js/tinymce/tinymce.min.js' %}"></script>
+
+<script type="text/javascript">
+        tinyMCE.init({
+                "height":360,
+                "width":750,
+                "cleanup_on_startup":true,
+                "custom_undo_redo_levels":20,
+                "selector":"input#id_content","theme":"modern",
+                "plugins":"\n   textcolor save link image media preview codesample contextmenu\n   table code lists fullscreen insertdatetime nonbreaking\n   contextmenu directionality searchreplace wordcount visualblocks\n   visualchars code fullscreen autolink lists charmap print hr\n   anchor pagebreak\n   ",
+                "toolbar1":"\n   fullscreen preview bold italic underline | fontselect,\n   fontsizeselect | forecolor backcolor | alignleft alignright |\n   aligncenter alignjustify | indent outdent | bullist numlist table |\n   | link image media | codesample |\n   ",
+                "toolbar2":"\n   visualblocks visualchars |\n   charmap hr pagebreak nonbreaking anchor | code |\n   ",
+                "contextmenu":"formats | link image",
+                "menubar":true,
+                "statusbar":true,
+                "language":"en",
+                "directionality":"ltr"
+        });
+
+</script>
 
 {% endblock %}

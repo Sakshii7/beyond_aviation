@@ -59,8 +59,10 @@
 <div class="container" style="padding: 5px;">
     <div class="row">
         <div class="col">
-            <a href="/"><img src="{% static 'images/main-logo.png' %}" alt=""
+            {% for x in system_data %}
+            <a href="/"><img src="{{media_url}}/{{ x.homepage_logo }}" alt=""
                              height="100%" width="50%"></a>
+            {% endfor %}
         </div>
         <div class="col">
             {% for menu in menus %}
@@ -77,7 +79,7 @@
             {% else %}
             {% for page in pages %}
             {% if menu.slug == page.slug %}
-            <a style="color:black; text-transform: uppercase;" href="{{page.slug}}">{{page.title}}</a>&nbsp;&nbsp;&nbsp;
+            <a style="color:black; text-transform: uppercase;" href="/{{page.slug}}">{{page.title}}</a>&nbsp;&nbsp;&nbsp;
             {% endif %}
             {% endfor %}
             {% endif %}
@@ -97,7 +99,9 @@
     vertical-align: baseline;">
         <div class="row">
             <div class="col">
-                <img src="{% static 'images/footer_logo.png' %}" alt="" height="150px" width="200px">
+                {% for x in system_data %}
+                <img src="{{media_url}}/{{ x.footer_logo }}" alt="" height="150px" width="200px">
+                {% endfor %}
                 {% for owner in owner_section %}
                 <br><br>
                 <p class="footer-dark">{{owner.description}}</p>
@@ -108,7 +112,7 @@
                 <a class="widget" href="/">Home</a><br>
                 {% for menu in menus %}
                 {% if menu.show_in_footer is True %}
-                <a class="widget" href="{{menu.slug}}">{{menu.name}}</a><br>
+                <a class="widget" href="/{{menu.slug}}">{{menu.name}}</a><br>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -121,8 +125,8 @@
             <div class="col footer-dark title">
                 <h3>CONTACT US</h3>
                 {% for x in system_data %}
-                {{ x.contact_address }}
-                <br>
+                {{ x.contact_address|safe }}
+                <br><br>
                 <a style="background-color: #565f66; color: #fff; padding:10px;"
                    href="{{ x.facebook_url }}" class="fa fa-facebook"></a>
                 <a style="background-color: #565f66; color: #fff; padding:10px;"

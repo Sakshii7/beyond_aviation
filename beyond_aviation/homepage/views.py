@@ -25,6 +25,7 @@ def index(request):
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
+    system_data = Setting.objects.all()
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -35,6 +36,7 @@ def index(request):
         'homepage_logo': homepage_logo,
         'menus': menus,
         'pages': pages,
+        'system_data': system_data,
         'media_url': MEDIA_URL,
     }
     return HttpResponse(template.render(context, request))
@@ -48,9 +50,8 @@ def view_service(request, slug):
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
+    system_data = Setting.objects.all()
     template = loader.get_template('view_service.html')
-    with open("sample.json") as jsonFile:
-        data = json.load(jsonFile)
     context = {
         'get_service_id': get_service_id,
         'offerings': offerings,
@@ -60,7 +61,7 @@ def view_service(request, slug):
         'canada_jetline_section': canada_jetline_section,
         'pages': pages,
         'media_url': MEDIA_URL,
-        'data': data.get("address")
+        'system_data': system_data
 
 
     }

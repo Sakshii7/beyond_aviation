@@ -1,11 +1,9 @@
-import json
-
-from django import forms
+from beyond_aviation.settings import MEDIA_URL
 from django.contrib import admin
-from django.http import HttpResponse
-
-from tinymce.widgets import TinyMCE
 from django.db import models
+from django.shortcuts import redirect
+from tinymce.widgets import TinyMCE
+
 from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
 
 
@@ -49,8 +47,6 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
 
 
 class MenuAdmin(admin.ModelAdmin):
-    readonly_fields = ['logo_preview']
-    # prepopulating slug from title
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
     search_fields = ['name']
@@ -66,22 +62,16 @@ class QueryFormAdmin(admin.ModelAdmin):
 
 
 class PageAdmin(admin.ModelAdmin):
+    readonly_fields = ['logo_preview']
     list_display = ['title', 'created_on', 'status']
     prepopulated_fields = {'slug': ['title']}
     search_fields = ['title']
-    list_filter = ['title']
+    # list_filter = ['title']
     list_editable = ['status']
     list_per_page = 5
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
-
-
-class TestingForm(forms.Form):
-    contact_address = forms.CharField()
-    facebook_url = forms.URLField()
-    instagram_url = forms.URLField()
-    twitter_url = forms.URLField()
 
 
 class SettingAdmin(admin.ModelAdmin):
@@ -97,44 +87,46 @@ class SettingAdmin(admin.ModelAdmin):
         return False
 
     def changelist_view(self, request, extra_context=None):
-        request_full_path = request.get_full_path()
-        extra_context = {
-            "form": TestingForm()
-        }
 
         if request.method == 'POST':
-            details = TestingForm(request.POST)
-            extra_context['form'] = details
-            if details.is_valid():
-                contact_address = request.POST['contact_address']
-                facebook_url = request.POST['facebook_url']
-                instagram_url = request.POST['instagram_url']
-                twitter_url = request.POST['twitter_url']
-                if details:
-                    system_data = Setting(contact_address=contact_address, facebook_url=facebook_url,
-                                          instagram_url=instagram_url, twitter_url=twitter_url)
-                    x = system_data.id
-                    system_data.save()
-                    detail_id = Setting.objects.get(id__isnull=False)
-                    detail_id.contact_address = contact_address
-                    detail_id.facebook_url = facebook_url
-                    detail_id.instagram_url = instagram_url
-                    detail_id.twitter_url = twitter_url
-                    for res in detail_id:
-                        res.save()
-                    # detail_id.save()
-                    print(detail_id.contact_address)
-                    system_data.save()
-                    response = super().changelist_view(request, extra_context)
-                    return response
-                else:
 
-                    response = super().changelist_view(request, extra_context)
-                    return response
+            contact_address = request.POST['contact_address']
+            facebook_url = request.POST['facebook_url']
+            instagram_url = request.POST['instagram_url']
+            twitter_url = request.POST['twitter_url']
+            homepage_logo = request.FILES['homepage_logo']
+            footer_logo = request.FILES['footer_logo']
+            rows_count = Setting.objects.all().count()
+            if rows_count != 0:
+                settings = Setting.objects.get()
+                settings.contact_address = contact_address
+                settings.facebook_url = facebook_url
+                settings.instagram_url = instagram_url
+                settings.twitter_url = twitter_url
+                settings.homepage_logo = request.FILES.get('homepage_logo')
+                settings.footer_logo = request.FILES.get('footer_logo')
+                # print(settings.footer_logo)
+                settings.save()
             else:
-                print('----------------NO----------------------')
 
-        response = super().changelist_view(request, extra_context)
+                query_id = Setting(contact_address=contact_address, facebook_url=facebook_url,
+                                   instagram_url=instagram_url, twitter_url=twitter_url, homepage_logo=homepage_logo,
+                                   footer_logo=footer_logo)
+                query_id.save()
+
+            return redirect('/admin/homepage/setting/')
+
+        settings = Setting.objects.all()
+        if settings.count() == 0:
+            settings = ""
+        else:
+            settings = settings[0]
+
+        context = {
+            "settings": settings,
+            "media_url": MEDIA_URL
+        }
+        response = super().changelist_view(request, context)
         return response
 
 

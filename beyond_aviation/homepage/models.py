@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from tinymce import HTMLField
 from tinymce.widgets import TinyMCE
 
 # Create your models here.
@@ -25,7 +26,7 @@ class Service(models.Model):
     slug = models.SlugField(null=True, unique=True)
     excerpt = models.CharField(max_length=450, null=True, blank=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='Service', blank=True, null=True)
+    service_image = models.ImageField(upload_to='Service', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -39,7 +40,7 @@ class Service(models.Model):
         return self.slug
 
     def image_preview(self):
-        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.service_image.url))
 
 
 class ServiceOffering(models.Model):
@@ -109,7 +110,6 @@ class Menu(models.Model):
     show_in_footer = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
 
     class Meta:
@@ -118,9 +118,6 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.name
-
-    def logo_preview(self):
-        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
 
 
 class Page(models.Model):
@@ -141,8 +138,7 @@ class Page(models.Model):
         return self.title
 
     def logo_preview(self):
-        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.header_img.url))
-
+        return mark_safe('<img src="{url}" width="200" height="150"/>'.format(url=self.header_img.url))
 
 class QueryForm(models.Model):
     first_name = models.CharField(max_length=50)
@@ -162,10 +158,12 @@ class QueryForm(models.Model):
 
 
 class Setting(models.Model):
-    contact_address = models.TextField()
-    facebook_url = models.URLField()
-    instagram_url = models.URLField()
-    twitter_url = models.URLField()
+    contact_address = HTMLField(null=True, blank=True)
+    facebook_url = models.URLField(null=True, blank=True)
+    instagram_url = models.URLField(null=True, blank=True)
+    twitter_url = models.URLField(null=True, blank=True)
+    homepage_logo = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
+    footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
 
     class Meta:
         db_table = "setting"
