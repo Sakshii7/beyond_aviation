@@ -46,7 +46,7 @@ def view_service(request, slug):
     get_service_id = Service.objects.get(slug=slug)
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
-    canada_jetline_section = Section.objects.filter(section_type="canada_jetline", status="active")
+    sections = Section.objects.filter(section_type="other", status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
@@ -58,11 +58,10 @@ def view_service(request, slug):
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
-        'canada_jetline_section': canada_jetline_section,
+        'sections': sections,
         'pages': pages,
         'media_url': MEDIA_URL,
         'system_data': system_data
-
 
     }
     return HttpResponse(template.render(context, request))
@@ -72,22 +71,21 @@ def view_pages(request, slug):
     get_page_id = Page.objects.get(slug=slug)
     services = Service.objects.filter(status="active")
     owner_section = Section.objects.filter(section_type="owner", status="active")
-    canada_jetline_section = Section.objects.filter(section_type="canada_jetline", status="active")
+    sections = Section.objects.filter(section_type="other", status="active")
     sub_sections = SubSection.objects.filter(status="active")
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
     system_data = Setting.objects.all()
     template = loader.get_template('pages.html')
-    # with open("sample.json") as jsonFile:
-    #     data = json.load(jsonFile)
+
     context = {
         'get_page_id': get_page_id,
         'offerings': offerings,
         'services': services,
         'owner_section': owner_section,
         'menus': menus,
-        'canada_jetline_section': canada_jetline_section,
+        'sections': sections,
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
         'pages': pages,

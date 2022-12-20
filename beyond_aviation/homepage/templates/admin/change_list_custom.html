@@ -85,7 +85,7 @@
             <p>Currently: <a href="{{media_url}}/{{ settings.homepage_logo }}">{{settings.homepage_logo}}</a><br>
 
                 Change:
-            <input type="file" {% if settings.homepage_logo %} name="homepage_logo" value="123"  {% else %}name="homepage_logo" {% endif %} accept="image/*" ></p>
+            <input type="file" name="homepage_logo" accept="image/*" ></p>
 
             <img src="{{media_url}}/{{ settings.homepage_logo }}/" alt=""
                  height="150px;" width="200px;">
@@ -111,6 +111,11 @@
             {% endif %}
         </div>
 
+        <div style="margin-bottom: 18px">
+            <label>Common Service Content</label><br>
+            <input id="id_service_content" type="text" name="common_service_content" value="{{settings.common_service_content}}">
+        </div>
+
         <button type="submit">SUBMIT</button>
 
     </form>
@@ -122,11 +127,11 @@
 
 <script type="text/javascript">
         tinyMCE.init({
-                "height":360,
-                "width":750,
+                "height":200,
+                "width":700,
                 "cleanup_on_startup":true,
                 "custom_undo_redo_levels":20,
-                "selector":"input#id_content","theme":"modern",
+                "selector":"input#id_content, #id_service_content","theme":"modern",
                 "plugins":"\n   textcolor save link image media preview codesample contextmenu\n   table code lists fullscreen insertdatetime nonbreaking\n   contextmenu directionality searchreplace wordcount visualblocks\n   visualchars code fullscreen autolink lists charmap print hr\n   anchor pagebreak\n   ",
                 "toolbar1":"\n   fullscreen preview bold italic underline | fontselect,\n   fontsizeselect | forecolor backcolor | alignleft alignright |\n   aligncenter alignjustify | indent outdent | bullist numlist table |\n   | link image media | codesample |\n   ",
                 "toolbar2":"\n   visualblocks visualchars |\n   charmap hr pagebreak nonbreaking anchor | code |\n   ",

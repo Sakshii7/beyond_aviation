@@ -55,10 +55,13 @@ table.fare-chart{
 }
 
 
+
 </style>
 <div class="container">
     <div class="row">
-        {% for section in canada_jetline_section %}
+        {% for section in sections %}
+        {% for page in pages %}
+        {% if page.id == section.page_id %}
         {% if section.text_align == 'right' %}
         <div class="col-md-6">
             <img style="float:left"
@@ -94,16 +97,19 @@ table.fare-chart{
             <br>
 
             {% endif %}
+
             {% endfor %}
         </div>
         <div class="col">
             <img style="float:right" src="{{media_url}}/{{section.image}}" alt="" height="250px" width="250px"/>
-        </div >
-            <div class="row">
-                 <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
-            </div>
+        </div>
+        <div class="row">
+            <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
+        </div>
 
         {% endif %}
+        {% endif %}
+        {% endfor %}
         {% endfor %}
     </div>
 </div>

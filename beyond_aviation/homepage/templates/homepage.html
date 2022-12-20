@@ -110,6 +110,7 @@
 <div class="container" style="padding:30px">
     <div class="row">
         {% for section in other_section %}
+        {% if section.page_id == null %}
         {% if section.text_align == 'right' %}
         <div class="col">
             <img style="float:left"
@@ -151,6 +152,7 @@
         <div class="col">
             <img style="float:right" src="{{media_url}}/{{section.image}}" alt="" height="400px" width="530px"/>
         </div>
+        {% endif %}
         {% endif %}
         {% endfor %}
     </div>

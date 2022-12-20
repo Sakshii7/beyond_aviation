@@ -94,8 +94,7 @@ class SettingAdmin(admin.ModelAdmin):
             facebook_url = request.POST['facebook_url']
             instagram_url = request.POST['instagram_url']
             twitter_url = request.POST['twitter_url']
-            homepage_logo = request.FILES['homepage_logo']
-            footer_logo = request.FILES['footer_logo']
+            common_service_content = request.POST['common_service_content']
             rows_count = Setting.objects.all().count()
             if rows_count != 0:
                 settings = Setting.objects.get()
@@ -103,14 +102,19 @@ class SettingAdmin(admin.ModelAdmin):
                 settings.facebook_url = facebook_url
                 settings.instagram_url = instagram_url
                 settings.twitter_url = twitter_url
-                settings.homepage_logo = request.FILES.get('homepage_logo')
-                settings.footer_logo = request.FILES.get('footer_logo')
-                # print(settings.footer_logo)
+                settings.common_service_content = common_service_content
+                settings.homepage_logo = request.FILES.get(
+                    'homepage_logo') if 'homepage_logo' in request.FILES else settings.homepage_logo
+                settings.footer_logo = request.FILES.get(
+                    'footer_logo') if 'footer_logo' in request.FILES else settings.footer_logo
+
                 settings.save()
             else:
+                homepage_logo = request.FILES['homepage_logo']
+                footer_logo = request.FILES['footer_logo']
 
                 query_id = Setting(contact_address=contact_address, facebook_url=facebook_url,
-                                   instagram_url=instagram_url, twitter_url=twitter_url, homepage_logo=homepage_logo,
+                                   instagram_url=instagram_url, twitter_url=twitter_url, common_service_content=common_service_content, homepage_logo=homepage_logo,
                                    footer_logo=footer_logo)
                 query_id.save()
 
