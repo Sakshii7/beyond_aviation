@@ -148,6 +148,7 @@ class QueryForm(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=50, null=True)
     message = models.TextField()
+    email_as_send = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -167,6 +168,7 @@ class Setting(models.Model):
     homepage_logo = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
     footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
+
 
     class Meta:
         db_table = "setting"

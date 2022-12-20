@@ -58,7 +58,7 @@
     <!--    {{test}}-->
     <form enctype="multipart/form-data" method="POST" novalidate>
         {% csrf_token %}
-
+        {{settings.key}}
         <div style="margin-bottom: 18px">
             <label>Contact Address</label><br>
             <input id="id_content" type="text" name="contact_address" value="{{settings.contact_address}}">

@@ -95,6 +95,7 @@ class SettingAdmin(admin.ModelAdmin):
             instagram_url = request.POST['instagram_url']
             twitter_url = request.POST['twitter_url']
             common_service_content = request.POST['common_service_content']
+
             rows_count = Setting.objects.all().count()
             if rows_count != 0:
                 settings = Setting.objects.get()

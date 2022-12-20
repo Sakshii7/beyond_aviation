@@ -1,15 +1,12 @@
-import json
-import os
 import re
 
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.template import loader
-from django.core.mail import EmailMessage, send_mail
 
-from beyond_aviation import settings
-from beyond_aviation.settings import MEDIA_URL, EMAIL_HOST_USER
+from beyond_aviation.settings import MEDIA_URL
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting
 
 
@@ -77,6 +74,7 @@ def view_pages(request, slug):
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
     system_data = Setting.objects.all()
+
     template = loader.get_template('pages.html')
 
     context = {
@@ -120,7 +118,9 @@ def query_form(request):
             messages.error(request, 'Invalid Name')
         else:
             query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
-            query_id.save()
+
+
+            # if query_id.email_as_send:
             send_mail(' Above & Beyond - Contact Form',
                       message,
                       email,
@@ -139,6 +139,10 @@ def query_form(request):
                           }
                       )
                       )
+            if send_mail:
+                query_id.email_as_send = True
+            query_id.save()
+
             messages.success(request, 'Thankyou for Contacting us.')
         return redirect(request.META['HTTP_REFERER'])
     return redirect(request.META['HTTP_REFERER'])
