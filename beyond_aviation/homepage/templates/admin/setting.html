@@ -1,0 +1,161 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin /css/changelists.css' %}">
+{% if cl.formset %}
+<link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+{% endif %}
+
+{% if cl.formset or action_form %}
+<script src="{% url 'admin:jsi18n' %}"></script>
+{% endif %}
+{{ media.css }}
+{% if not actions_on_top and not actions_on_bottom %}
+<style>
+    #changelist table thead th:first-child {
+        width: inherit;
+    }
+</style>
+{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+<script src="{% static 'admin/js/filters.js' %}" defer></script>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+    &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block coltype %}{% endblock %}
+
+{% block content %}
+
+<style>
+    .form-row {
+        overflow: hidden;
+        padding: 10px;
+        font-size: 0.8125rem;
+        border-bottom: 1px solid var(--hairline-color);
+    }
+</style>
+<div id="content-main">
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <form enctype="multipart/form-data" method="POST" novalidate>
+        {% csrf_token %}
+        {{settings.key}}
+        <table style="border: 2px solid black;" cellspacing="2px" cellpadding="2px">
+            <tr>
+                <td style="font-weight: bolder;">Website Logo :</td>
+                <td>{% if settings.homepage_logo %}
+                    <p>Currently: <a
+                            href="{{media_url}}/{{ settings.homepage_logo }}">{{settings.homepage_logo}}</a><br>
+
+                        Change:
+                        <input type="file" name="homepage_logo" accept="image/*"></p>
+
+                    <img src="{{media_url}}/{{ settings.homepage_logo }}/" alt=""
+                         height="150px" width="350px;">
+
+                    {% else %}
+                    <input type="file" name="homepage_logo">
+                    {% endif %}
+                </td>
+                <td style="font-weight: bolder;">
+                    Footer Logo :
+                </td>
+                <td>
+                    {% if settings.footer_logo %}
+                    <p>Currently: <a href="{{media_url}}/{{ settings.footer_logo }}">{{settings.footer_logo}}</a><br>
+                        Change:
+                        <input type="file" name="footer_logo" accept="image/*"></p>
+
+                    <img src="{{media_url}}/{{ settings.footer_logo }}/" alt=""
+                         height="150px;" width="150px;">
+
+                    {% else %}
+                    <input type="file" name="footer_logo">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder;">Facebook URL :</td>
+                <td colspan="3" style="text-align: center;">
+                    <label>
+                        <input style="width: 30em;" type="url" name="facebook_url" value="{{settings.facebook_url}}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder;">Instagram URL :</td>
+                <td colspan="3" style="text-align: center;">
+                    <label>
+                        <input style="width: 30em;" type="url" name="instagram_url" value="{{settings.instagram_url}}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder;">Twitter URL :</td>
+                <td colspan="3" style="text-align: center;">
+                    <label>
+                        <input style="width: 30em;" type="url" name="twitter_url" value="{{settings.twitter_url}}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder;">Contact Address :</td>
+                <td colspan="3" style="text-align: center;">
+                    <label>
+                        <input id="id_content" type="text" name="contact_address" value="{{settings.contact_address}}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bolder;">Common Service Content :</td>
+                <td colspan="3" style="text-align: center;">
+                    <label>
+                        <input id="id_service_content" type="text" name="common_service_content"
+                       value="{{settings.common_service_content}}">
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-success">SUBMIT</button>
+    </form>
+</div>
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
+<script src="{% static 'tinymce/js/tinymce/tinymce.min.js' %}"></script>
+
+<script type="text/javascript">
+    tinyMCE.init({
+        "height": 200,
+        "width": 700,
+        "cleanup_on_startup": true,
+        "custom_undo_redo_levels": 20,
+        "selector": "input#id_content, #id_service_content", "theme": "modern",
+        "plugins": "\n   textcolor save link image media preview codesample contextmenu\n   table code lists fullscreen insertdatetime nonbreaking\n   contextmenu directionality searchreplace wordcount visualblocks\n   visualchars code fullscreen autolink lists charmap print hr\n   anchor pagebreak\n   ",
+        "toolbar1": "\n   fullscreen preview bold italic underline | fontselect,\n   fontsizeselect | forecolor backcolor | alignleft alignright |\n   aligncenter alignjustify | indent outdent | bullist numlist table |\n   | link image media | codesample |\n   ",
+        "toolbar2": "\n   visualblocks visualchars |\n   charmap hr pagebreak nonbreaking anchor | code |\n   ",
+        "contextmenu": "formats | link image",
+        "menubar": true,
+        "statusbar": true,
+        "language": "en",
+        "directionality": "ltr"
+    });
+
+</script>
+
+{% endblock %}

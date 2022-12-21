@@ -9,73 +9,81 @@ from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, Q
 
 class SubSectionAdmin(admin.TabularInline):
     model = SubSection
+    fields = ['status', 'content', 'icon', 'icon_preview']
+    readonly_fields = ['icon_preview']
     list_editable = ['status']
-    readonly_fields = ['section_icon_preview']
-
 
 class SectionAdmin(admin.ModelAdmin):
-    readonly_fields = ['section_image_preview']
+    fields = ['status', 'title', 'section_type', 'page', 'text_align', 'description', 'image', 'image_preview']
+    readonly_fields = ['image_preview']
     inlines = [SubSectionAdmin]
     list_display = ['title', 'created_on', 'status']
-    search_fields = ['title']
     list_filter = ['title', 'section_type']
     list_editable = ['status']
     list_per_page = 5
-
+    search_fields = ['title']
+    ordering = ['-created_on']
 
 class ServiceAdmin(admin.ModelAdmin):
+    fields = ['status', 'name', 'slug', 'excerpt', 'description', 'is_featured', 'image', 'image_preview']
     readonly_fields = ['image_preview']
     # prepopulating slug from title
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
-    search_fields = ['name']
     list_filter = ['name']
     list_editable = ['status']
     list_per_page = 5
+    search_fields = ['name']
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
-
+    ordering = ['-created_on']
 
 class ServiceOfferingAdmin(admin.ModelAdmin):
+    fields = ['status', 'title', 'description', 'text_align', 'icon', 'icon_preview']
     readonly_fields = ['icon_preview']
     list_display = ['title', 'created_on', 'status', ]
-    search_fields = ['title']
     list_filter = ['title']
     list_editable = ['status']
     list_per_page = 5
+    search_fields = ['title']
+    ordering = ['-created_on']
 
 
 class MenuAdmin(admin.ModelAdmin):
+    fields = ['status', 'name', 'slug', 'show_in_footer']
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
-    search_fields = ['name']
     list_filter = ['name']
     list_editable = ['status']
     list_per_page = 5
+    search_fields = ['name']
+    ordering = ['-created_on']
 
 
 class QueryFormAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'created_on']
-    search_fields = ['first_name']
     list_filter = ['first_name']
-
+    search_fields = ['first_name']
+    ordering = ['-created_on']
 
 class PageAdmin(admin.ModelAdmin):
-    readonly_fields = ['logo_preview']
-    list_display = ['title', 'created_on', 'status']
+    fields = ['status', 'title', 'slug', 'header_img', 'header_image_preview', 'content']
     prepopulated_fields = {'slug': ['title']}
-    search_fields = ['title']
-    # list_filter = ['title']
+    readonly_fields = ['header_image_preview']
+    list_display = ['title', 'created_on', 'status']
     list_editable = ['status']
+    list_filter = ['status']
     list_per_page = 5
+    search_fields = ['title']
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
     }
+    ordering = ['-created_on']
 
 
 class SettingAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/change_list_custom.html'
+    change_list_template = 'admin/setting.html'
 
     def has_add_permission(self, request) -> bool:
         return False
@@ -115,7 +123,8 @@ class SettingAdmin(admin.ModelAdmin):
                 footer_logo = request.FILES['footer_logo']
 
                 query_id = Setting(contact_address=contact_address, facebook_url=facebook_url,
-                                   instagram_url=instagram_url, twitter_url=twitter_url, common_service_content=common_service_content, homepage_logo=homepage_logo,
+                                   instagram_url=instagram_url, twitter_url=twitter_url,
+                                   common_service_content=common_service_content, homepage_logo=homepage_logo,
                                    footer_logo=footer_logo)
                 query_id.save()
 

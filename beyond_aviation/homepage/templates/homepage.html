@@ -9,7 +9,8 @@
             {% if service.is_flag is True%}
             <div class="col-md-4">
                 <div class="card card-01">
-                    <img class="card-img-top" src="{{media_url}}/{{service.service_image}}" alt="" height="200px" width="300px">
+                    <img class="card-img-top" src="{{media_url}}/{{service.service_image}}" alt="" height="200px"
+                         width="300px">
                     <div class="card-body">
                         <h4 class="card-title">{{service.name}}</h4>
                         <p class="card-text">{{service.excerpt}}</p>
@@ -87,7 +88,7 @@
     {% if service_offering.text_align == "left" %}
     <div class="row">
         <div class="col-md-6">
-            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+            <div class="row"><img src="{{media_url}}/{{service_offering.icon}}" alt="" height="100px" width="100px">
                 <div class="col"><h3>{{service_offering.title}}</h3>
                     <p class="col-md-12">{{service_offering.description}}</p></div>
             </div>
@@ -95,7 +96,7 @@
         </div>
         {% else %}
         <div class="col-md-6">
-            <div class="row"><img src="{{media_url}}/{{service_offering.image}}" alt="" height="100px" width="100px">
+            <div class="row"><img src="{{media_url}}/{{service_offering.icon}}" alt="" height="100px" width="100px">
                 <div class="col"><h3>{{service_offering.title}}</h3>
                     <p class="col-md-12">{{service_offering.description}}</p></div>
             </div>

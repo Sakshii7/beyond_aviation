@@ -1,112 +1,114 @@
-
 <style>
-  .wpcf7-text, .wpcf7-textarea {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    width: 100%;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    padding: 8px 15px;
-}
+    .wpcf7-text, .wpcf7-textarea {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: 8px 15px;
+    }
 
-.wpcf7-textarea.wpcf7-submit{
-    padding: 13px 40px;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    float: right;
-    color: #fff;
+    .wpcf7-textarea.wpcf7-submit {
+        padding: 13px 40px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        float: right;
+        color: #fff;
 
-    -webkit-transition: all 0.2s ease 0s;
-    -moz-transition: all 0.2s ease 0s;
-    -o-transition: all 0.2s ease 0s;
-    -ms-transition: all 0.2s ease 0s;
-    transition: all 0.2s ease 0s;
-}
-.custom-heading {
-    position: relative;
-    width: 100%;
-    display: block;
-    padding-top: 12px;
-    text-transform: uppercase;
-    height: 4rem;
-}
+        -webkit-transition: all 0.2s ease 0s;
+        -moz-transition: all 0.2s ease 0s;
+        -o-transition: all 0.2s ease 0s;
+        -ms-transition: all 0.2s ease 0s;
+        transition: all 0.2s ease 0s;
+    }
 
-h4 {
-    font-size: 18px;
-    line-height: 22px;
-    font-family: 'Raleway', 'Open Sans', Arial, sans-serif;
-    font-weight: 800;
-    margin-bottom: 25px;
-    margin-top: 0;
-    color: #333;
-}
+    .custom-heading {
+        position: relative;
+        width: 100%;
+        display: block;
+        padding-top: 12px;
+        text-transform: uppercase;
+        height: 4rem;
+    }
+
+    h4 {
+        font-size: 18px;
+        line-height: 22px;
+        font-family: 'Raleway', 'Open Sans', Arial, sans-serif;
+        font-weight: 800;
+        margin-bottom: 25px;
+        margin-top: 0;
+        color: #333;
+    }
 
 </style>
 <!--<div class="container">-->
 <div class="row">
     <div class="col">
-      <div style="margin:20px;">
+        <div style="margin:20px;">
 
-<form action="/query_form/" method="POST" id="contact_form" class="contact_form">
-    {% csrf_token %}
-    <div style="margin-bottom: 18px">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <strong>{{message}}</strong>
-    </div>
-    {% endfor %}
-    {% endif %}
-    </div>
-    <div style="margin-bottom: 18px">
-    <label><span class="required" style="color:red;">*</span> First Name:</label><br>
-    <input type="text" class="wpcf7-text" id="contact-name" name="first_name" required="">
-    </div>
-    <div style="margin-bottom: 18px">
-    <label><span class="required" style="color:red;">*</span> Last Name:</label><br>
-    <input type="text" class="wpcf7-text" id="contact-last-name" name="last_name" required="">
-    </div>
-    <div style="margin-bottom: 18px">
-    <label><span class="required" style="color:red;">*</span> Email:</label><br>
-    <input type="email" class="wpcf7-text" id="contact-email" name="email" required="">
-    </div>
-    <div style="margin-bottom: 18px">
-    <label>Phone:</label><br>
-        <input type="phone" class="wpcf7-text" id="contact-phone" name="phone">
-    </div>
-        <div style="margin-bottom: 18px">
-    <label><span class="required" style="color:red;">*</span> Message:</label><br>
-    <textarea rows="8" class="wpcf7-textarea" id="contact-message" name="message" required=""></textarea>
-    </div>
-    <input type="submit" class="wpcf7-submit">
-</form>
+            <form action="/query_form/" method="POST" id="contact_form" class="contact_form">
+                {% csrf_token %}
+                <div style="margin-bottom: 18px">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>{{message}}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 18px">
+                    <label><span class="required" style="color:red;">*</span> First Name:</label><br>
+                    <input type="text" class="wpcf7-text" id="contact-name" name="first_name" required="">
+                </div>
+                <div style="margin-bottom: 18px">
+                    <label><span class="required" style="color:red;">*</span> Last Name:</label><br>
+                    <input type="text" class="wpcf7-text" id="contact-last-name" name="last_name" required="">
+                </div>
+                <div style="margin-bottom: 18px">
+                    <label><span class="required" style="color:red;">*</span> Email:</label><br>
+                    <input type="email" class="wpcf7-text" id="contact-email" name="email" required="">
+                </div>
+                <div style="margin-bottom: 18px">
+                    <label>Phone:</label><br>
+                    <input type="phone" class="wpcf7-text" id="contact-phone" name="phone">
+                </div>
+                <div style="margin-bottom: 18px">
+                    <label><span class="required" style="color:red;">*</span> Message:</label><br>
+                    <textarea rows="8" class="wpcf7-textarea" id="contact-message" name="message"
+                              required=""></textarea>
+                </div>
+                <input type="submit" class="wpcf7-submit">
+            </form>
 
-</div>
+        </div>
     </div>
     <div class="col">
 
-            <div class="custom-heading"><h3>Company Headquarters </h3></div>
-    <div id="map">
-                <iframe title="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.1738765212713!2d-79.76091708499119!3d43.727714655627885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b1614426304dd%3A0x7cd959eeb0cc69f1!2s15%20Nymark%20Pl%2C%20Brampton%2C%20ON%20L6S%205T5%2C%20Canada!5e0!3m2!1sen!2sin!4v1640583069566!5m2!1sen!2sin"
-                        style="border: 0px none;" allowfullscreen="" loading="lazy" width="600" height="450"></iframe>
-    </div>
+        <div class="custom-heading"><h3>Company Headquarters </h3></div>
+        <div id="map">
+            <iframe title="Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2883.1738765212713!2d-79.76091708499119!3d43.727714655627885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b1614426304dd%3A0x7cd959eeb0cc69f1!2s15%20Nymark%20Pl%2C%20Brampton%2C%20ON%20L6S%205T5%2C%20Canada!5e0!3m2!1sen!2sin!4v1640583069566!5m2!1sen!2sin"
+                    style="border: 0px none;" allowfullscreen="" loading="lazy" width="600" height="450"></iframe>
+        </div>
 
-                      <div class="custom-heading"><h4>company information</h4></div>
-               {% for x in system_data %}
-                {{ x.contact_address|safe }}
-                {% endfor %}<br>
+        <div class="custom-heading"><h4>company information</h4></div>
+        {% for x in system_data %}
+        {{ x.contact_address|safe }}
+        {% endfor %}<br>
     </div>
 </div>
 <!--    </div>-->

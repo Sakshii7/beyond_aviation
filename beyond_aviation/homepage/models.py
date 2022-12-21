@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from tinymce import HTMLField
-from tinymce.widgets import TinyMCE
 
 # Create your models here.
 
@@ -26,27 +25,27 @@ class Service(models.Model):
     slug = models.SlugField(null=True, unique=True)
     excerpt = models.CharField(max_length=450, null=True, blank=True)
     description = models.TextField()
-    service_image = models.ImageField(upload_to='Service', blank=True, null=True)
+    image = models.ImageField(upload_to='Service', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    is_flag = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_on']
         db_table = 'services'
 
     def __str__(self):
-        return self.slug
+        return self.name
 
     def image_preview(self):
-        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.service_image.url))
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
 
 
 class ServiceOffering(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='ServiceOffering')
+    icon = models.ImageField(upload_to='ServiceOffering')
     text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
     show_on_about_page = models.BooleanField(default=False)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
@@ -61,14 +60,13 @@ class ServiceOffering(models.Model):
         return self.title
 
     def icon_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.image.url))
+        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.icon.url))
 
 
 class Page(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(null=True, unique=True)
-    description = models.CharField(max_length=100, null=True, blank=True)
-    header_img = models.ImageField(upload_to='Header Image', null=True, blank=True)
+    header_img = models.ImageField(upload_to='Header Image', null=True, blank=True, verbose_name='Header Image')
     content = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
@@ -81,7 +79,7 @@ class Page(models.Model):
     def __str__(self):
         return self.title
 
-    def logo_preview(self):
+    def header_image_preview(self):
         return mark_safe('<img src="{url}" width="200" height="150"/>'.format(url=self.header_img.url))
 
 
@@ -103,14 +101,14 @@ class Section(models.Model):
     def __str__(self):
         return self.title
 
-    def section_image_preview(self):
+    def image_preview(self):
         return mark_safe('<img src="{url}" width="320" height="300"/>'.format(url=self.image.url))
 
 
 class SubSection(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     content = models.TextField()
-    section_icon = models.ImageField(upload_to='SubSection', null=True, blank=True)
+    icon = models.ImageField(upload_to='SubSection', null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -122,8 +120,8 @@ class SubSection(models.Model):
     def __str__(self):
         return self.section.title
 
-    def section_icon_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.section_icon.url))
+    def icon_preview(self):
+        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.icon.url))
 
 
 class Menu(models.Model):
@@ -168,7 +166,6 @@ class Setting(models.Model):
     homepage_logo = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
     footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
-
 
     class Meta:
         db_table = "setting"
