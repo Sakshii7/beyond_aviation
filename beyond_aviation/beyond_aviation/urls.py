@@ -18,9 +18,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-admin.site.site_header = "Go Above And Beyond"
-admin.site.site_title = "Go Above And Beyond Admin Site"
-admin.site.index_title = "Go Above And Beyond Admin"
+admin.site.site_header = 'Go Above And Beyond'
+admin.site.site_title = 'Go Above And Beyond Admin Site'
+admin.site.index_title = 'Go Above And Beyond'
 
 urlpatterns = [
     path('', include('homepage.urls')),

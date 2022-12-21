@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.shortcuts import redirect
 from tinymce.widgets import TinyMCE
+from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
 
@@ -13,16 +14,18 @@ class SubSectionAdmin(admin.TabularInline):
     readonly_fields = ['icon_preview']
     list_editable = ['status']
 
+
 class SectionAdmin(admin.ModelAdmin):
     fields = ['status', 'title', 'section_type', 'page', 'text_align', 'description', 'image', 'image_preview']
     readonly_fields = ['image_preview']
     inlines = [SubSectionAdmin]
     list_display = ['title', 'created_on', 'status']
-    list_filter = ['title', 'section_type']
+    list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
     list_per_page = 5
     search_fields = ['title']
     ordering = ['-created_on']
+
 
 class ServiceAdmin(admin.ModelAdmin):
     fields = ['status', 'name', 'slug', 'excerpt', 'description', 'is_featured', 'image', 'image_preview']
@@ -30,7 +33,7 @@ class ServiceAdmin(admin.ModelAdmin):
     # prepopulating slug from title
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
-    list_filter = ['name']
+    list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
     list_per_page = 5
     search_fields = ['name']
@@ -39,11 +42,12 @@ class ServiceAdmin(admin.ModelAdmin):
     }
     ordering = ['-created_on']
 
+
 class ServiceOfferingAdmin(admin.ModelAdmin):
     fields = ['status', 'title', 'description', 'text_align', 'icon', 'icon_preview']
     readonly_fields = ['icon_preview']
     list_display = ['title', 'created_on', 'status', ]
-    list_filter = ['title']
+    list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
     list_per_page = 5
     search_fields = ['title']
@@ -54,7 +58,7 @@ class MenuAdmin(admin.ModelAdmin):
     fields = ['status', 'name', 'slug', 'show_in_footer']
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
-    list_filter = ['name']
+    list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
     list_per_page = 5
     search_fields = ['name']
@@ -63,9 +67,13 @@ class MenuAdmin(admin.ModelAdmin):
 
 class QueryFormAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'created_on']
-    list_filter = ['first_name']
+    list_filter = (('created_on', DateRangeFilter), 'first_name')
     search_fields = ['first_name']
     ordering = ['-created_on']
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 class PageAdmin(admin.ModelAdmin):
     fields = ['status', 'title', 'slug', 'header_img', 'header_image_preview', 'content']
@@ -73,7 +81,7 @@ class PageAdmin(admin.ModelAdmin):
     readonly_fields = ['header_image_preview']
     list_display = ['title', 'created_on', 'status']
     list_editable = ['status']
-    list_filter = ['status']
+    list_filter = (('created_on', DateRangeFilter), 'status')
     list_per_page = 5
     search_fields = ['title']
     formfield_overrides = {
