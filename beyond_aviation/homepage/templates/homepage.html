@@ -1,62 +1,189 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-{{ '<' }}{{ '!DOCTYPE html>' }}
-<style>
-    #slider {
-	overflow: hidden;
-}
-
-@keyframes slider {
-	0% { left: 0; }
-	30% { left: 0; }
-	33% { left: -100%; }
-	63% { left: -100%; }
-	66% { left: -200%; }
-	95% { left: -200%; }
-	100% { left: 0; }
-}
-#slider figure {
-	width:300%;
-	position: relative;
-	animation: 9s slider infinite;
-}
 
 
-#slider figure img {
-	width: 33.333333333%;
-	height : 100%;
-	float: left;
-}
-</style>
-<!--<div id="slider">-->
-<!--					  <figure>-->
-<!--						    <img src="{% static 'images/Airline-Cargo-Sales-and-Facilitation.1dada3b3.png' %}" alt="">-->
-<!--						    <img src="{% static 'images/AIR-CARGO-Perishales.4ec63ee9.png' %}" alt="">-->
-<!--						    <img src="{% static 'images/End-to-end-Truck-Provisioning&#45;&#45;Maintenance.00627373.png' %}" alt="">-->
-<!--&lt;!&ndash;						    <img src="{% static 'images/fleet-parking-and-yard-management.png' %}" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;						    <img src="{% static 'images/Specialized-Cargo-Handling-and-Charters.47322c53.png' %}" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;						    <img src="{% static 'images/Trucking&#45;&#45;Logistics.0d0624ec.png' %}" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;						    <img src="{% static 'images/Warehousing-(Dry-Goods&#45;&#45;Specialized-Cargo).029918d7.png' %}" alt="">&ndash;&gt;-->
-<!--					  </figure>-->
-<!--				</div>-->
-
+<!-- Slider  -->
+<div id="masterslider" class="master-slider ms-skin-default mb-0 ms-wk"
+     style="margin: 0px; visibility: visible; opacity: 1; width: 1349px;">
+    <div class="ms-container">
+        <div class="ms-inner-controls-cont">
+            <div class="ms-view ms-basic-view ms-grab-cursor" style="width: 1349px; height: 854px;">
+                <div class="ms-slide-container" style="transform: translateX(-4047px) translateZ(0px);">
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 0px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/Specialized-Cargo-Handling-and-Charters.47322c53.png' %}"
+                                alt="Specialized Cargo Handling and Charters"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0px; top: 310px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 340px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Specialized Cargo</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 400px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Handling and</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 460px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Charters</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 1349px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/Trucking--Logistics.0d0624ec.png' %}"
+                                alt="Trucking &amp; Logistics"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 273px; top: 390px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Trucking &amp; Logistics</h2>
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 2698px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/Warehousing-(Dry-Goods--Specialized-Cargo).029918d7.png' %}"
+                                alt="Specialized Cargo Handling and Charters"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0px; top: 310px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 340px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Warehousing</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 400px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    (Dry Goods &amp;</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 460px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Specialized Cargo)</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide ms-sl-selected" style="width: 1349px; height: 854px; left: 4047px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/Airline-Cargo-Sales-and-Facilitation.1dada3b3.png' %}"
+                                alt="Airline Cargo Sales and Facilitation"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0px; top: 310px; width: 66px; height: 4px; margin: 0px; padding: 0px;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 340px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px;">
+                                    airline cargo</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 400px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px;">
+                                    sales and</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 460px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px;">
+                                    facilitation</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 5396px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/AIR-CARGO-Perishales.4ec63ee9.png' %}"
+                                alt="AIR Cargo Perishables"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 273px; top: 390px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    air cargo perishables</h2>
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 6745px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/End-to-end-Truck-Provisioning--Maintenance.00627373.png' %}"
+                                alt="End to end Truck Provisioning &amp; Maintenance"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0px; top: 310px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 340px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    End to end Truck</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 400px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Provisioning &amp;</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 460px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Maintenance</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-slide" style="width: 1349px; height: 854px; left: 8094px;">
+                        <div class="ms-slide-bgcont" style="height: 100%; opacity: 1;"><img
+                                src="{% static 'assets/img/fleet-parking-and-yard-management.png' %}"
+                                alt="Fleet Parking &amp; Yard-Management"
+                                style="height: 854px; width: 1923px; margin-top: 0px; margin-left: -287px;"></div>
+                        <div class="ms-slide-layers" style="left: 104.5px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0px; top: 310px; width: 66px; height: 4px; margin: 0px; padding: 0px; display: none;">
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 340px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Fleet Parking &amp;</h2>
+                                <h2 class="ms-layer pi-caption01"
+                                    style="left: 0px; top: 400px; margin: 0px 0px 25px; padding: 0px; font-size: 55px; line-height: 26px; display: none;">
+                                    Yard-Management</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-nav-next ms-ctrl-hide" style="opacity: 0;"></div>
+            <div class="ms-nav-prev ms-ctrl-hide" style="opacity: 0;"></div>
+        </div>
+    </div>
+</div>
 
 <!-- Services  -->
-<section style="padding: 20px;">
+<div class="page-content parallax parallax01 mb-70">
     <div class="container">
-        <div class="row">
+        <div class="row services-negative-top">
+
             {% for service in services %}
-            {% if service.is_featured is True%}
-            <div class="col-md-4">
-                <div class="card card-01">
-                    <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px"
-                         width="300px">
-                    <div class="card-body">
-                        <h4 class="card-title">{{service.name}}</h4>
-                        <p class="card-text">{{service.excerpt}}</p>
-                        <a href="/services/{{service.slug}}" class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
-                                class="fa fa-chevron-right"></em></span></a>
+            {% if service.is_featured is True %}
+            <div class="col-md-4 col-sm-4">
+
+                <div class="service-feature-box">
+
+                    <div class="service-media"><img src="{{media_url}}/{{service.image}}" alt="Trucking"></div>
+                    <div class="service-body">
+                        <div class="custom-heading">
+                            <h4>{{service.name}}</h4>
+                        </div>
+                        <p class="cnt-ab">{{service.excerpt}}</p>
+                        <p class="btnbox"><a href="/services/{{service.slug}}"
+                                             class="read-more02 btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
+                                class="fa fa-chevron-right"></em></span></a></p>
                     </div>
                 </div>
             </div>
@@ -64,58 +191,106 @@
             {% endfor %}
         </div>
     </div>
-    <br>
-</section>
+</div>
 
 <!-- Owner  -->
-
-<div class="container">
-    <div class="row">
-        {% for section in owner_section %}
-        {% if section.text_align == 'right' %}
-        <div class="col">
-            <img style="border-radius: 50%; width: 500px; height: 500px; padding: 10px;"
-                 src="{{media_url}}/{{section.image}}" alt="" height="350px"
-                 width="80%"/>
+<div class="row">
+    {% for section in owner_section %}
+    {% if section.text_align == 'right' %}
+    <div class="col-md-6 col-sm-6 custom-col-padding-both1">
+        <img class="droji-image" src="{{media_url}}/{{section.image}}" alt="icon"></div>
+    <div class="col-md-6  col-sm-6 custom-col-padding-both">
+        <div class="custom-heading">
+            <h3>{{section.title}}</h3>
         </div>
-        <div class="col">
-            <div class="custom-heading">
-                <h3>{{section.title}}</h3>
-            </div>
-            <p style="padding: 10px 0 10px 0;">{{section.description}}</p>
-            {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="icon-container" style="padding: 10px;">
-                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
-            </div>
-            <br>
-            {% endif %}
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="col">
-            <div class="custom-heading">
-                <h3>{{section.title}}</h3>
-            </div>
-            <p style="padding: 10px 0 10px 0;">{{section.description}}</p>
-            {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="icon-container" style="padding: 10px;">
-                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
-            </div>
-            <br>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col">
-            <img style="border-radius: 50%; width: 500px; height: 500px; padding: 10px;"
-                 src="{{media_url}}/{{section.image}}" alt="" height="350px"
-                 width="80%"/>
-        </div>
+        <p>{{section.description}}</p>
+        {% for sub_section in sub_sections %}
+        {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+        <ul class="service-list clearfix">
+            <li>
+                <div class="icon-container"><em class="fa fa-arrow-right"></em></div>
+                <p>{{sub_section.content}}</p>
+            </li>
+        </ul>
         {% endif %}
         {% endfor %}
     </div>
+
+    {% else %}
+
+
+    <div class="col-md-6  col-sm-6 custom-col-padding-both">
+        <div class="custom-heading">
+            <h3>{{section.title}}</h3>
+        </div>
+        <p>{{section.description}}</p>
+        {% for sub_section in sub_sections %}
+        {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+        <ul class="service-list clearfix">
+            <li>
+                <div class="icon-container"><i class="fa fa-arrow-right"></i></div>
+                <p>{{sub_section.content}}</p>
+            </li>
+        </ul>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="col-md-6 col-sm-6 custom-col-padding-both1">
+        <img class="droji-image" src="{{media_url}}/{{section.image}}" alt="icon"></div>
+    {% endif %}
+    {% endfor %}
 </div>
+
+
+
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        {% for section in owner_section %}-->
+<!--        {% if section.text_align == 'right' %}-->
+<!--        <div class="col">-->
+<!--            <img style="border-radius: 50%; width: 500px; height: 500px; padding: 10px;"-->
+<!--                 src="{{media_url}}/{{section.image}}" alt="" height="350px"-->
+<!--                 width="80%"/>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="custom-heading">-->
+<!--                <h3>{{section.title}}</h3>-->
+<!--            </div>-->
+<!--            <p style="padding: 10px 0 10px 0;">{{section.description}}</p>-->
+<!--            {% for sub_section in sub_sections %}-->
+<!--            {% if section.id == sub_section.section_id and sub_section.status == "active" %}-->
+<!--            <div class="icon-container" style="padding: 10px;">-->
+<!--                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        {% else %}-->
+<!--        <div class="col">-->
+<!--            <div class="custom-heading">-->
+<!--                <h3>{{section.title}}</h3>-->
+<!--            </div>-->
+<!--            <p style="padding: 10px 0 10px 0;">{{section.description}}</p>-->
+<!--            {% for sub_section in sub_sections %}-->
+<!--            {% if section.id == sub_section.section_id and sub_section.status == "active" %}-->
+<!--            <div class="icon-container" style="padding: 10px;">-->
+<!--                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <img style="border-radius: 50%; width: 500px; height: 500px; padding: 10px;"-->
+<!--                 src="{{media_url}}/{{section.image}}" alt="" height="350px"-->
+<!--                 width="80%"/>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!-- Service Offerings -->
@@ -166,15 +341,16 @@
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id and sub_section.status == "active" %}
             {% if sub_section.image %}
-             <div class="icon-container" style="padding: 10px;">
+            <div class="icon-container" style="padding: 10px;">
                 <img style="float:left"
-                 src="{{media_url}}/{{sub_section.icon}}" alt="" height="10px" width="50px"/> &nbsp;&nbsp; {{sub_section.content}}
+                     src="{{media_url}}/{{sub_section.icon}}" alt="" height="10px" width="50px"/> &nbsp;&nbsp;
+                {{sub_section.content}}
 
             </div>
             {% else %}
             <div class="icon-container" style="padding: 10px;">
-                   <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
-                 </div>
+                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
+            </div>
             {% endif %}
             {% endif %}
             {% endfor %}
@@ -190,14 +366,15 @@
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id and sub_section.status == "active" %}
             {% if sub_section.icon %}
-                 <div class="icon-container" style="padding: 10px;">
+            <div class="icon-container" style="padding: 10px;">
                 <img style="float:left"
-                 src="{{media_url}}/{{sub_section.icon}}" alt="" height="auto" width="50px"/> &nbsp;&nbsp; {{sub_section.content}}
+                     src="{{media_url}}/{{sub_section.icon}}" alt="" height="auto" width="50px"/> &nbsp;&nbsp;
+                {{sub_section.content}}
             </div>
 
             <br>
             {% else %}
-             <div class="icon-container" style="padding: 10px;">
+            <div class="icon-container" style="padding: 10px;">
                 <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
             </div>
             {% endif %}
