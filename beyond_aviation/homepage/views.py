@@ -22,7 +22,7 @@ def index(request):
     homepage_logo = ServiceOffering.objects.filter(status="inactive")
     menus = Menu.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
-    system_data = Setting.objects.all()
+    settings = Setting.objects.all()
     template = loader.get_template('homepage.html')
     context = {
         'services': services,
@@ -33,7 +33,7 @@ def index(request):
         'homepage_logo': homepage_logo,
         'menus': menus,
         'pages': pages,
-        'system_data': system_data,
+        'settings': settings,
         'media_url': MEDIA_URL,
     }
     return HttpResponse(template.render(context, request))
@@ -47,7 +47,7 @@ def view_service(request, slug):
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
-    system_data = Setting.objects.all()
+    settings = Setting.objects.all()
     template = loader.get_template('view_service.html')
     context = {
         'get_service_id': get_service_id,
@@ -58,7 +58,7 @@ def view_service(request, slug):
         'sections': sections,
         'pages': pages,
         'media_url': MEDIA_URL,
-        'system_data': system_data
+        'settings': settings
 
     }
     return HttpResponse(template.render(context, request))
@@ -73,7 +73,7 @@ def view_pages(request, slug):
     menus = Menu.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
-    system_data = Setting.objects.all()
+    settings = Setting.objects.all()
 
     template = loader.get_template('pages.html')
 
@@ -87,7 +87,7 @@ def view_pages(request, slug):
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
         'pages': pages,
-        'system_data': system_data
+        'settings': settings
     }
     return HttpResponse(template.render(context, request))
 

@@ -1,15 +1,56 @@
 {% extends "layout.html" %}
 {% block content %}
+{% load static %}
+{{ '<' }}{{ '!DOCTYPE html>' }}
+<style>
+    #slider {
+	overflow: hidden;
+}
+
+@keyframes slider {
+	0% { left: 0; }
+	30% { left: 0; }
+	33% { left: -100%; }
+	63% { left: -100%; }
+	66% { left: -200%; }
+	95% { left: -200%; }
+	100% { left: 0; }
+}
+#slider figure {
+	width:300%;
+	position: relative;
+	animation: 9s slider infinite;
+}
+
+
+#slider figure img {
+	width: 33.333333333%;
+	height : 100%;
+	float: left;
+}
+</style>
+<!--<div id="slider">-->
+<!--					  <figure>-->
+<!--						    <img src="{% static 'images/Airline-Cargo-Sales-and-Facilitation.1dada3b3.png' %}" alt="">-->
+<!--						    <img src="{% static 'images/AIR-CARGO-Perishales.4ec63ee9.png' %}" alt="">-->
+<!--						    <img src="{% static 'images/End-to-end-Truck-Provisioning&#45;&#45;Maintenance.00627373.png' %}" alt="">-->
+<!--&lt;!&ndash;						    <img src="{% static 'images/fleet-parking-and-yard-management.png' %}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;						    <img src="{% static 'images/Specialized-Cargo-Handling-and-Charters.47322c53.png' %}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;						    <img src="{% static 'images/Trucking&#45;&#45;Logistics.0d0624ec.png' %}" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;						    <img src="{% static 'images/Warehousing-(Dry-Goods&#45;&#45;Specialized-Cargo).029918d7.png' %}" alt="">&ndash;&gt;-->
+<!--					  </figure>-->
+<!--				</div>-->
+
 
 <!-- Services  -->
 <section style="padding: 20px;">
     <div class="container">
         <div class="row">
             {% for service in services %}
-            {% if service.is_flag is True%}
+            {% if service.is_featured is True%}
             <div class="col-md-4">
                 <div class="card card-01">
-                    <img class="card-img-top" src="{{media_url}}/{{service.service_image}}" alt="" height="200px"
+                    <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px"
                          width="300px">
                     <div class="card-body">
                         <h4 class="card-title">{{service.name}}</h4>
@@ -124,11 +165,17 @@
             <p style="padding: 10px 0 10px 0;">{{section.description}}</p>
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="icon-container" style="padding: 10px;">
-                <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
+            {% if sub_section.image %}
+             <div class="icon-container" style="padding: 10px;">
+                <img style="float:left"
+                 src="{{media_url}}/{{sub_section.icon}}" alt="" height="10px" width="50px"/> &nbsp;&nbsp; {{sub_section.content}}
+
             </div>
-            {% elif section.id == sub_section.section_id and sub_section.status == "active" and sub_section.image %}
-            <br>
+            {% else %}
+            <div class="icon-container" style="padding: 10px;">
+                   <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
+                 </div>
+            {% endif %}
             {% endif %}
             {% endfor %}
         </div>
@@ -142,11 +189,18 @@
             <p>{{section.description}}</p>
             {% for sub_section in sub_sections %}
             {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="icon-container" style="padding: 10px;">
+            {% if sub_section.icon %}
+                 <div class="icon-container" style="padding: 10px;">
+                <img style="float:left"
+                 src="{{media_url}}/{{sub_section.icon}}" alt="" height="auto" width="50px"/> &nbsp;&nbsp; {{sub_section.content}}
+            </div>
+
+            <br>
+            {% else %}
+             <div class="icon-container" style="padding: 10px;">
                 <em class="fa fa-arrow-right"></em> &nbsp;&nbsp; {{sub_section.content}}
             </div>
-            <br>
-
+            {% endif %}
             {% endif %}
             {% endfor %}
         </div>

@@ -1,22 +1,28 @@
 {% load static %}
-
+{{ '<' }}{{ '!DOCTYPE html>' }}
 <html>
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static '/assets/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/masterslider/style/masterslider.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/masterslider/skins/default/style.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/owl-carousel/owl.carousel.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/color-blue.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/retina.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/responsive.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.3.0/css/font-awesome.min.css' %}"/>
+    <link href="{% static '/assets/static/css/main.7400d2a6.chunk.css' %}" rel="stylesheet"/>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
-    <style>
+     <style>
         .footer-dark {
             color: #bcc0c4;
             background-size: cover;
@@ -48,46 +54,56 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        {% for x in system_data %}
-        <a href="/"><img src="{{media_url}}/{{ x.homepage_logo }}" alt=""
-                         height="100%" width="50%"></a>
-        {% endfor %}
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            {% for menu in menus %}
-            {% if menu.slug == "services" %}
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Services
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {% for service in services %}
-                        <a href="services/{{service.slug}}">{{service.name}}</a>
-                        {% endfor %}
-                    </div>
-                </li>
-            </ul>
-        </div>
-        {% else %}
-        {% for page in pages %}
-        {% if menu.slug == page.slug %}
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color:black; text-transform: uppercase;" href="/{{page.slug}}">{{page.title}}</a>&nbsp;&nbsp;&nbsp;
-                </li>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
 
-    </nav>
+<div class="header-wrapper header-transparent">
+    <header id="header" class="header-style01">
+        <div class="container">
+            <div class="main-nav">
+                <div class="row-main">
+                    <div class="col-md-12">
+                        <nav class="navbar navbar-default nav-left" role="navigation" aria-label="">
+                            <div class="navbar-header">
+                                <div class="logo">
+                                    {% for website_logo in settings %}
+                                    <a href="/"><img src="{{media_url}}/{{ website_logo.homepage_logo }}" alt=""
+                                                     height="auto" width="50%"></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="current-menu-item "></li>
+                                    {% for menu in menus %}
+
+                                    {% if menu.slug == "services" %}
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
+                                        <ul class="dropdown-menu">
+                                            {% for service in services %}
+                                            <li><a href="services/{{service.slug}}">{{service.name}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li></li>
+                                    {% else %}
+                                    {% for page in pages %}
+                                    {% if menu.slug == page.slug %}
+                                    <li><a href="/{{page.slug}}">{{page.title}}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 </div>
+
 
 {% block content %}
 {% endblock %}
@@ -156,3 +172,22 @@
 </body>
 </html>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="{% static '/assets/js/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/assets/js/jquery.srcipts.min.js' %}"></script>
+<script src="{% static '/assets/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static '/assets/masterslider/masterslider.min.js' %}"></script>
+<script src="{% static '/assets/js/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static '/assets/js/jquery.dlmenu.min.js' %}"></script>
+<script src="{% static '/assets/js/include.js' %}"></script>
+<script src="{% static '/assets/static/js/2.8fa45533.chunk.js' %}"></script>
+<script src="{% static '/assets/static/js/main.da7a0512.chunk.js' %}"></script>

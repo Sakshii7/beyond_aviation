@@ -16,7 +16,7 @@
 
 <form action="id" method="get">
     <div class="row">
-        <img src="{{media_url}}/{{get_service_id.service_image}}" alt=""
+        <img src="{{media_url}}/{{get_service_id.image}}" alt=""
              height="470px" width="100%">
         <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
             {{get_service_id.name}}</strong></h2>
@@ -38,7 +38,7 @@
 <div class="container">
     <div class="row">
         {% for service in services %}
-        {% if service.is_flag is True%}
+        {% if service.is_featured is True%}
         <div class="col-md-4">
             <div class="card card-01">
                 <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px"
