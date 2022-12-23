@@ -14,15 +14,35 @@
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
     <form action="id" method="get">
-        <div class="row">
-            <img src="{{ media_url }}/{{ get_page_id.header_img }}" alt=""
-                 height="450px" width="100%">
-            <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
-                {{ get_page_id.title }}</strong></h2>
-                <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
-                        style="color:white;" href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></p></div>
+
+
+        <img src="{{ media_url }}/{{ get_page_id.header_img }}" alt=""
+             height="450px" width="100%">
+        <div class="page-title-style01 page-title-negative-top pt-bkg08">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>
+                            GO ABOVE & BEYOND - {{ get_page_id.title }}
+                        </h1>
+                        <div class="breadcrumb-container">
+                            <ul class="breadcrumb clearfix">
+                                <li>You are here:</li>
+                                <li><a href="">Home</a></li>
+                                <li><a href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% comment %}<div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
+                        {{ get_page_id.title }}</strong></h2>
+                        <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
+                                style="color:white;" href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></p>
+                    </div>{% endcomment %}
+                </div>
+                <div class="row"><p>{{ get_page_id.content|safe }}</p></div>
+            </div>
         </div>
-        <div class="row"><p>{{ get_page_id.content|safe }}</p></div>
     </form>
 
     <script src="{% static 'tinymce/js/prism.js' %}"></script>

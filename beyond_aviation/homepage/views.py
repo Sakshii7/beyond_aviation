@@ -11,84 +11,75 @@ from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryFo
 
 
 # Create your views here.
-
-
-def index(request):
-    services = Service.objects.filter(status="active")
-    offerings = ServiceOffering.objects.filter(status="active")
-    owner_section = Section.objects.filter(section_type="owner", status="active")
-    other_section = Section.objects.filter(section_type="other", status="active")
-    sub_sections = SubSection.objects.filter(status="active")
-    homepage_logo = ServiceOffering.objects.filter(status="inactive")
+def fetch_common_object_data():
     menus = Menu.objects.filter(status="active")
     pages = Page.objects.filter(status="active")
+    offerings = ServiceOffering.objects.filter(status="active")
+    services = Service.objects.filter(status="active")
+    owner_section = Section.objects.filter(section_type="owner", status="active")
+    other_sections = Section.objects.filter(section_type="other", status="active")
+    sub_sections = SubSection.objects.filter(status="active")
     settings = Setting.objects.all()
-    template = loader.get_template('homepage.html')
-    context = {
-        'services': services,
-        'offerings': offerings,
-        'owner_section': owner_section,
-        'other_section': other_section,
-        'sub_sections': sub_sections,
-        'homepage_logo': homepage_logo,
+
+    pair_first_values = []
+    for i in range(0, len(offerings), 2):
+        pair_first_values.append(offerings[i])
+
+    pair_second_values = []
+    for i in range(1, len(offerings), 2):
+        pair_second_values.append(offerings[i])
+
+    max_length = max(len(pair_first_values), len(pair_second_values))
+    offerings_pair_list = []
+    for i in range(max_length):
+        try:
+            first_val = pair_first_values[i]
+        except IndexError:
+            first_val = None
+        try:
+            second_val = pair_second_values[i]
+        except IndexError:
+            second_val = None
+        offerings_pair_list.append([first_val, second_val])
+
+    common_obj_data = {
         'menus': menus,
         'pages': pages,
         'settings': settings,
+        'services': services,
+        'offerings': offerings_pair_list,
+        'owner_section': owner_section,
+        'other_sections': other_sections,
+        'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
     }
+
+    return common_obj_data
+
+
+def index(request):
+    template = loader.get_template('homepage.html')
+    context = fetch_common_object_data()
+
     return HttpResponse(template.render(context, request))
 
 
 def view_service(request, slug):
     get_service_id = Service.objects.get(slug=slug)
-    services = Service.objects.filter(status="active")
-    owner_section = Section.objects.filter(section_type="owner", status="active")
-    sections = Section.objects.filter(section_type="other", status="active")
-    menus = Menu.objects.filter(status="active")
-    offerings = ServiceOffering.objects.filter(status="active")
-    pages = Page.objects.filter(status="active")
-    settings = Setting.objects.all()
-    template = loader.get_template('view_service.html')
-    context = {
-        'get_service_id': get_service_id,
-        'offerings': offerings,
-        'services': services,
-        'owner_section': owner_section,
-        'menus': menus,
-        'sections': sections,
-        'pages': pages,
-        'media_url': MEDIA_URL,
-        'settings': settings
 
-    }
+    template = loader.get_template('view_service.html')
+    context = fetch_common_object_data()
+    context['get_service_id'] = get_service_id
+
     return HttpResponse(template.render(context, request))
 
 
 def view_pages(request, slug):
     get_page_id = Page.objects.get(slug=slug)
-    services = Service.objects.filter(status="active")
-    owner_section = Section.objects.filter(section_type="owner", status="active")
-    sections = Section.objects.filter(section_type="other", status="active")
-    sub_sections = SubSection.objects.filter(status="active")
-    menus = Menu.objects.filter(status="active")
-    offerings = ServiceOffering.objects.filter(status="active")
-    pages = Page.objects.filter(status="active")
-    settings = Setting.objects.all()
-
     template = loader.get_template('pages.html')
+    context = fetch_common_object_data()
+    context['get_page_id'] = get_page_id
 
-    context = {
-        'get_page_id': get_page_id,
-        'offerings': offerings,
-        'services': services,
-        'owner_section': owner_section,
-        'menus': menus,
-        'sections': sections,
-        'sub_sections': sub_sections,
-        'media_url': MEDIA_URL,
-        'pages': pages,
-        'settings': settings
-    }
     return HttpResponse(template.render(context, request))
 
 
@@ -119,7 +110,6 @@ def query_form(request):
         else:
             query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
 
-
             # if query_id.email_as_send:
             send_mail(' Above & Beyond - Contact Form',
                       message,
@@ -137,8 +127,7 @@ def query_form(request):
                               'logo': logo,
                               'media_url': MEDIA_URL,
                           }
-                      )
-                      )
+                      ))
             if send_mail:
                 query_id.email_as_send = True
             query_id.save()

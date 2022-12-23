@@ -28,8 +28,8 @@
         <p> {{ get_service_id.description|safe }}</p>
     </form>
     <div style="background-color:black;">
-        {% for x in system_data %}
-            <p style="margin:20px;">{{ x.common_service_content|safe }}</p>
+        {% for data in system_data %}
+            <p style="margin:20px;">{{ data.common_service_content|safe }}</p>
         {% endfor %}
     </div>
     <div style="text-align:center;padding:10px">
