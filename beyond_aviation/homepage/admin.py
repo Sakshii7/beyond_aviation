@@ -2,8 +2,8 @@ from beyond_aviation.settings import MEDIA_URL
 from django.contrib import admin
 from django.db import models
 from django.shortcuts import redirect
+from rangefilter.filters import DateRangeFilter
 from tinymce.widgets import TinyMCE
-from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
 

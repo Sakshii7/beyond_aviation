@@ -1,63 +1,64 @@
 {% extends "layout.html" %}
 {% block content %}
-<style>
-    .centered {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        text-shadow: 2px 2px 2px #23241f;
-    }
-</style>
-{% load static %}
-<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <style>
+        .centered {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 2px #23241f;
+        }
+    </style>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
 
 
-<form action="id" method="get">
-    <div class="row">
-        <img src="{{media_url}}/{{get_service_id.image}}" alt=""
-             height="470px" width="100%">
-        <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
-            {{get_service_id.name}}</strong></h2>
-            <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
-                    style="color:white;" href="/services/{{get_service_id.slug}}">Services</a> / <a
-                    style="color:white;" href="/services/{{get_service_id.slug}}">{{get_service_id.name}}</a></p></div>
-    </div>
-    <p> {{get_service_id.description|safe}}</p>
-</form>
-<div style="background-color:black;">
-    {% for x in system_data %}
-    <p style="margin:20px;">{{x.common_service_content|safe}}</p>
-    {% endfor %}
-</div>
-<div style="text-align:center;padding:10px">
-    <h3>Other services</h3>
-    <p>GO ABOVE & BEYOND LOGISTICS SERVICES</p>
-</div>
-<div class="container">
-    <div class="row">
-        {% for service in services %}
-        {% if service.is_featured is True%}
-        <div class="col-md-4">
-            <div class="card card-01">
-                <img class="card-img-top" src="{{media_url}}/{{service.image}}" alt="" height="200px"
-                     width="300px">
-                <div class="card-body">
-                    <h4 class="card-title">{{service.name}}</h4>
-                    <p class="card-text">{{service.excerpt}}</p>
-                    <a href="/services/{{service.slug}}"
-                       class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
-                            class="fa fa-chevron-right"></em></span></a>
-                </div>
-            </div>
+    <form action="id" method="get">
+        <div class="row">
+            <img src="{{ media_url }}/{{ get_service_id.image }}" alt=""
+                 height="470px" width="100%">
+            <div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
+                {{ get_service_id.name }}</strong></h2>
+                <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
+                        style="color:white;" href="/services/{{ get_service_id.slug }}">Services</a> / <a
+                        style="color:white;" href="/services/{{ get_service_id.slug }}">{{ get_service_id.name }}</a>
+                </p></div>
         </div>
-        {% endif %}
+        <p> {{ get_service_id.description|safe }}</p>
+    </form>
+    <div style="background-color:black;">
+        {% for x in system_data %}
+            <p style="margin:20px;">{{ x.common_service_content|safe }}</p>
         {% endfor %}
     </div>
-</div>
+    <div style="text-align:center;padding:10px">
+        <h3>Other services</h3>
+        <p>GO ABOVE & BEYOND LOGISTICS SERVICES</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for service in services %}
+                {% if service.is_featured is True %}
+                    <div class="col-md-4">
+                        <div class="card card-01">
+                            <img class="card-img-top" src="{{ media_url }}/{{ service.image }}" alt="" height="200px"
+                                 width="300px">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ service.name }}</h4>
+                                <p class="card-text">{{ service.excerpt }}</p>
+                                <a href="/services/{{ service.slug }}"
+                                   class=" btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
+                                        class="fa fa-chevron-right"></em></span></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 
-<script src="{% static 'tinymce/js/prism.js' %}"></script>
+    <script src="{% static 'tinymce/js/prism.js' %}"></script>
 
 {% endblock %}
 

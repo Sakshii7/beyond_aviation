@@ -83,10 +83,7 @@
         backface-visibility: hidden;
         border-radius: 25px;
         -webkit-border-radius: 25px;
-
     }
-
-
 </style>
 {% load static %}
 <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
@@ -95,8 +92,8 @@
     <div class="col">
         <div style="color:red;">
             {% for x in settings %}
-            <!--            <p style="margin:20px; color:white !important;"></p>-->
-            {{x.common_service_content|safe}}
+                <!--            <p style="margin:20px; color:white !important;"></p>-->
+                {{ x.common_service_content|safe }}
             {% endfor %}
         </div>
     </div>
@@ -117,22 +114,22 @@
     </div>
 
     {% for service_offering in offerings %}
-    {% if service_offering.show_on_about_page == True %}
-    <div class="row">
+        {% if service_offering.show_on_about_page == True %}
+            <div class="row">
 
-        <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6">
 
-            <div class="service-icon-center">
-                <div class="icon-container">
-                    <img src="{{media_url}}/{{service_offering.icon}}" alt="checklist icon">
+                    <div class="service-icon-center">
+                        <div class="icon-container">
+                            <img src="{{ media_url }}/{{ service_offering.icon }}" alt="checklist icon">
+                        </div>
+                        <h4>{{ service_offering.title }}</h4>
+                        <p>{{ service_offering.description }}</p>
+
+                    </div>
                 </div>
-                <h4>{{service_offering.title}}</h4>
-                <p>{{service_offering.description}}</p>
-
             </div>
-        </div>
-    </div>
-    {% endif %}
+        {% endif %}
     {% endfor %}
 
 </div>

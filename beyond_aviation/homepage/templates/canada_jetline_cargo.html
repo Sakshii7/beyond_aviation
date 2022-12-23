@@ -64,56 +64,59 @@
 <div class="container">
     <div class="row">
         {% for section in sections %}
-        {% for page in pages %}
-        {% if page.id == section.page_id %}
-        {% if section.text_align == 'right' %}
-        <div class="col-md-6">
-            <img style="float:left"
-                 src="{{media_url}}/{{section.image}}" alt="" height="250px" width="270px"/>
-        </div>
-        <div class="col-md-6">
-            <div class="custom-heading">
-                <h3>{{section.title}}</h3>
-            </div>
-            <p class="body">{{section.description}}</p>
-            {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="body">
-                <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em> &nbsp; {{sub_section.content}}
-            </div>
-            <br>
-            {% endif %}
+            {% for page in pages %}
+                {% if page.id == section.page_id %}
+                    {% if section.text_align == 'right' %}
+                        <div class="col-md-6">
+                            <img style="float:left"
+                                 src="{{ media_url }}/{{ section.image }}" alt="" height="250px" width="270px"/>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="custom-heading">
+                                <h3>{{ section.title }}</h3>
+                            </div>
+                            <p class="body">{{ section.description }}</p>
+                            {% for sub_section in sub_sections %}
+                                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                                    <div class="body">
+                                        <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em>
+                                        &nbsp; {{ sub_section.content }}
+                                    </div>
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                    {% else %}
+
+                        <div class="col-md-6">
+                            <div class="custom-heading">
+                                <h3>{{ section.title }}</h3>
+                            </div>
+                            <p>{{ section.description }}</p>
+                            {% for sub_section in sub_sections %}
+                                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                                    <div class="body">
+                                        <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em>
+                                        &nbsp;&nbsp; {{ sub_section.content }}
+                                    </div>
+                                    <br>
+
+                                {% endif %}
+
+                            {% endfor %}
+                        </div>
+                        <div class="col">
+                            <img style="float:right" src="{{ media_url }}/{{ section.image }}" alt="" height="250px"
+                                 width="250px"/>
+                        </div>
+                        <div class="row">
+                            <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
+                        </div>
+
+                    {% endif %}
+                {% endif %}
             {% endfor %}
-        </div>
-
-        {% else %}
-
-        <div class="col-md-6">
-            <div class="custom-heading">
-                <h3>{{section.title}}</h3>
-            </div>
-            <p>{{section.description}}</p>
-            {% for sub_section in sub_sections %}
-            {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-            <div class="body">
-                <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em> &nbsp;&nbsp; {{sub_section.content}}
-            </div>
-            <br>
-
-            {% endif %}
-
-            {% endfor %}
-        </div>
-        <div class="col">
-            <img style="float:right" src="{{media_url}}/{{section.image}}" alt="" height="250px" width="250px"/>
-        </div>
-        <div class="row">
-            <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
-        </div>
-
-        {% endif %}
-        {% endif %}
-        {% endfor %}
         {% endfor %}
     </div>
 </div>

@@ -60,14 +60,14 @@
                 {% csrf_token %}
                 <div style="margin-bottom: 18px">
                     {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <strong>{{message}}</strong>
-                    </div>
-                    {% endfor %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% endfor %}
                     {% endif %}
                 </div>
                 <div style="margin-bottom: 18px">
@@ -107,7 +107,7 @@
 
         <div class="custom-heading"><h4>company information</h4></div>
         {% for x in system_data %}
-        {{ x.contact_address|safe }}
+            {{ x.contact_address|safe }}
         {% endfor %}<br>
     </div>
 </div>
