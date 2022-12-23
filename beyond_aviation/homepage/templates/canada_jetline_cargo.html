@@ -62,7 +62,7 @@
 </style>
 <div class="container">
     <div class="row">
-        {% for section in sections %}
+        {% for section in other_sections %}
             {% for page in pages %}
                 {% if page.id == section.page_id %}
                     {% if section.text_align == 'right' %}

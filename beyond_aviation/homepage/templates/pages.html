@@ -14,11 +14,8 @@
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
     <form action="id" method="get">
-
-
-        <img src="{{ media_url }}/{{ get_page_id.header_img }}" alt=""
-             height="450px" width="100%">
-        <div class="page-title-style01 page-title-negative-top pt-bkg08">
+        <div class="page-title-style01 page-title-negative-top pt-bkg"
+             style="background-image: url('{{ media_url }}/{{ get_page_id.header_img }}')">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -33,20 +30,19 @@
                             </ul>
                         </div>
                     </div>
-
-                    {% comment %}<div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
-                        {{ get_page_id.title }}</strong></h2>
-                        <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
-                                style="color:white;" href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></p>
-                    </div>{% endcomment %}
                 </div>
-                <div class="row"><p>{{ get_page_id.content|safe }}</p></div>
             </div>
         </div>
     </form>
 
-    <script src="{% static 'tinymce/js/prism.js' %}"></script>
+    {% comment %}<div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
+                        {{ get_page_id.title }}</strong></h2>
+                        <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
+                                style="color:white;" href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></p>
+                    </div>{% endcomment %}
+    {{ get_page_id.content|safe }}
 
+    <script src="{% static 'tinymce/js/prism.js' %}"></script>
     {% if get_page_id.slug == "contact-us" %}
         {% include "contactus.html" %}
     {% elif get_page_id.slug == "canada-jetlines-cargo" %}

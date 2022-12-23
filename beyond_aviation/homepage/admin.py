@@ -1,10 +1,10 @@
-from beyond_aviation.settings import MEDIA_URL
 from django.contrib import admin
 from django.db import models
 from django.shortcuts import redirect
 from rangefilter.filters import DateRangeFilter
 from tinymce.widgets import TinyMCE
 
+from beyond_aviation.settings import MEDIA_URL
 from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
 
 
@@ -55,7 +55,7 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
 
 
 class MenuAdmin(admin.ModelAdmin):
-    fields = ['status', 'name', 'slug', 'show_in_footer']
+    fields = ['status', 'name', 'slug', 'sequence', 'show_in_footer']
     prepopulated_fields = {'slug': ['name']}
     list_display = ['name', 'created_on', 'status']
     list_filter = (('created_on', DateRangeFilter), 'status')

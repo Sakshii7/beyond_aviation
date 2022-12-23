@@ -66,7 +66,7 @@ class ServiceOffering(models.Model):
 class Page(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(null=True, unique=True)
-    header_img = models.ImageField(upload_to='Header Image', null=True, blank=True, verbose_name='Header Image')
+    header_img = models.ImageField(upload_to='HeaderImage', null=True, blank=True, verbose_name='Header Image')
     content = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
@@ -127,6 +127,7 @@ class SubSection(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(null=True, unique=True)
+    sequence = models.IntegerField(default=0)
     show_in_footer = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -163,8 +164,8 @@ class Setting(models.Model):
     facebook_url = models.URLField(null=True, blank=True)
     instagram_url = models.URLField(null=True, blank=True)
     twitter_url = models.URLField(null=True, blank=True)
-    homepage_logo = models.ImageField(upload_to='Homepage Logo', null=True, blank=True)
-    footer_logo = models.ImageField(upload_to='Footer Logo', null=True, blank=True)
+    homepage_logo = models.ImageField(upload_to='HomepageLogo', null=True, blank=True)
+    footer_logo = models.ImageField(upload_to='FooterLogo', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
 
     class Meta:

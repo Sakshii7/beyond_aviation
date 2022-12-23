@@ -12,7 +12,7 @@ from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryFo
 
 # Create your views here.
 def fetch_common_object_data():
-    menus = Menu.objects.filter(status="active")
+    menus = Menu.objects.filter(status="active").order_by('sequence')
     pages = Page.objects.filter(status="active")
     offerings = ServiceOffering.objects.filter(status="active")
     services = Service.objects.filter(status="active")
