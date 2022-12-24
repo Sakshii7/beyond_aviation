@@ -1,19 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-    <style>
-        .centered {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-shadow: 2px 2px 2px #23241f;
-        }
-    </style>
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-
-
     <form action="id" method="get">
         <div class="page-title-style01 page-title-negative-top pt-bkg"
              style="background-image: url('{{ media_url }}/{{ get_service_id.image }}')">
@@ -49,18 +37,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                </div>
-                <div class="custom-heading02 simple">
-                    <div class="text">
-                        {% for data in settings %}
-                            {{ data.common_service_content|safe }}
-                        {% endfor %}
+                    <div class="custom-heading02 simple">
+                        <div class="text">
+                            {% for data in settings %}
+                                {{ data.common_service_content|safe }}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <br/>
+    <br/>
     {% comment %} Other Services {% endcomment %}
     <div class="page-content">
         <div class="container">
@@ -75,7 +64,6 @@
             <div class="row">
                 {% for service in services %}
                     {% if service.is_featured is True %}
-
                         <div class="col-md-4 col-sm-4">
                             <div class="service-feature-box">
                                 <div class="service-media"><img src="{{ media_url }}/{{ service.image }}"
@@ -94,6 +82,5 @@
         </div>
     </div>
     <script src="{% static 'tinymce/js/prism.js' %}"></script>
-
 {% endblock %}
 

@@ -35,7 +35,7 @@
     table.fare-chart {
         animation: slide-down 1s forwards;
         max-width: 100%;
-        width: 94%;
+        width: 100%;
         height: 20rem;
         margin-right: auto;
         margin-left: auto;
@@ -46,7 +46,7 @@
 
     .mail-to-btn {
         background: #95c03d;
-        color: white;
+        color: #fff;
         padding: 13px 22px;
         font-size: 17px;
         font-weight: 700;
@@ -55,111 +55,115 @@
         border: none;
         display: block;
         width: 125px;
-        margin: auto;
+        margin: 20px auto;
     }
 
 
 </style>
 <div class="container">
-    <div class="row">
+
+    {% for page in pages %}
         {% for section in other_sections %}
-            {% for page in pages %}
-                {% if page.id == section.page_id %}
-                    {% if section.text_align == 'right' %}
-                        <div class="col-md-6">
-                            <img style="float:left"
-                                 src="{{ media_url }}/{{ section.image }}" alt="" height="250px" width="270px"/>
+            {% if page.id == section.page_id %}
+                {% if section.text_align == 'right' %}
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div style="text-align: center;">
+                                <img class="mx-auto" style="width: 250px; height:250px; margin: 0 auto;"
+                                     src="{{ media_url }}/{{ section.image }}" alt="{{ section.title }}"/>
+                                {% if section.show_mail_us_button %}
+                                    <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="custom-heading">
-                                <h3>{{ section.title }}</h3>
+                                <h2>{{ section.title }}</h2>
                             </div>
                             <p class="body">{{ section.description }}</p>
                             {% for sub_section in sub_sections %}
-                                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-                                    <div class="body">
-                                        <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em>
-                                        &nbsp; {{ sub_section.content }}
-                                    </div>
-                                    <br>
+                                {% if section.id == sub_section.section_id %}
+                                    <ul>
+                                        <li class="list"> {{ sub_section.content }}</li>
+                                    </ul>
                                 {% endif %}
                             {% endfor %}
                         </div>
-
-                    {% else %}
-
+                    </div>
+                {% else %}
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="custom-heading">
-                                <h3>{{ section.title }}</h3>
+                                <h2>{{ section.title }}</h2>
                             </div>
-                            <p>{{ section.description }}</p>
+                            <p class="body">{{ section.description }}</p>
                             {% for sub_section in sub_sections %}
-                                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
-                                    <div class="body">
-                                        <em style="color: #777; font-size: 8px;" class="fa fa-circle"></em>
-                                        &nbsp;&nbsp; {{ sub_section.content }}
-                                    </div>
-                                    <br>
-
+                                {% if section.id == sub_section.section_id %}
+                                    <ul>
+                                        <li class="list"> {{ sub_section.content }}</li>
+                                    </ul>
                                 {% endif %}
-
                             {% endfor %}
                         </div>
-                        <div class="col">
-                            <img style="float:right" src="{{ media_url }}/{{ section.image }}" alt="" height="250px"
-                                 width="250px"/>
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div style="text-align: center;">
+                                <img class="mx-auto" style="width: 250px; height:250px; margin: 0 auto;"
+                                     src="{{ media_url }}/{{ section.image }}" alt="{{ section.title }}"/>
+                                {% if section.show_mail_us_button %}
+                                    <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="row">
-                            <a class="mail-to-btn" href="mailto:info@beyondaviation.ca">Mail Us</a>
-                        </div>
-
-                    {% endif %}
+                    </div>
                 {% endif %}
-            {% endfor %}
+            {% endif %}
         {% endfor %}
-    </div>
+    {% endfor %}
 </div>
-<table class="fare-chart">
-    <tr>
-        <th>YYZ</th>
-        <th>Departure</th>
-        <th>Cut-off</th>
-        <th>YYC</th>
-        <th>Arrival</th>
-    </tr>
-    <tr>
-        <td>DAY 4,7</td>
-        <td>1015(L)</td>
-        <td>0800 (L)</td>
-        <td>1230 (L)</td>
-        <td>+4 = 15</td>
-    </tr>
-    <tr>
-        <th>YYZ</th>
-        <th>Departure</th>
-        <th>Cut-off</th>
-        <th>YYC</th>
-        <th>Arrival</th>
-    </tr>
-    <tr>
-        <td>DAY 4,7</td>
-        <td>1015(L)</td>
-        <td>0800 (L)</td>
-        <td>1230 (L)</td>
-        <td>+4 = 15</td>
-    </tr>
-    <tr>
-        <th>YYZ</th>
-        <th>Departure</th>
-        <th>Cut-off</th>
-        <th>YYC</th>
-        <th>Arrival</th>
-    </tr>
-    <tr>
-        <td>DAY 4,7</td>
-        <td>1015(L)</td>
-        <td>0800 (L)</td>
-        <td>1230 (L)</td>
-        <td>+4 = 15</td>
-    </tr>
-</table>
+<div class="container">
+    <table class="fare-chart">
+        <tr>
+            <th>YYZ</th>
+            <th>Departure</th>
+            <th>Cut-off</th>
+            <th>YYC</th>
+            <th>Arrival</th>
+        </tr>
+        <tr>
+            <td>DAY 4,7</td>
+            <td>1015(L)</td>
+            <td>0800 (L)</td>
+            <td>1230 (L)</td>
+            <td>+4 = 15</td>
+        </tr>
+        <tr>
+            <th>YYZ</th>
+            <th>Departure</th>
+            <th>Cut-off</th>
+            <th>YYC</th>
+            <th>Arrival</th>
+        </tr>
+        <tr>
+            <td>DAY 4,7</td>
+            <td>1015(L)</td>
+            <td>0800 (L)</td>
+            <td>1230 (L)</td>
+            <td>+4 = 15</td>
+        </tr>
+        <tr>
+            <th>YYZ</th>
+            <th>Departure</th>
+            <th>Cut-off</th>
+            <th>YYC</th>
+            <th>Arrival</th>
+        </tr>
+        <tr>
+            <td>DAY 4,7</td>
+            <td>1015(L)</td>
+            <td>0800 (L)</td>
+            <td>1230 (L)</td>
+            <td>+4 = 15</td>
+        </tr>
+    </table>
+</div>
+

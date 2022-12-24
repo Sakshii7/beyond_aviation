@@ -91,6 +91,7 @@ class Section(models.Model):
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     image = models.ImageField(upload_to='Section', null=True)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True, blank=True)
+    show_mail_us_button = models.BooleanField(default=False, verbose_name='Show Mail Us Button')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

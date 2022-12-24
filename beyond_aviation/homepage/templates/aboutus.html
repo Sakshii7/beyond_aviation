@@ -5,18 +5,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-            </div>
-            <div class="call-to-action clearfix">
-                <div class="text">
-                    {% for data in settings %}
-                        {{ data.common_service_content|safe }}
-                    {% endfor %}
+                <div class="call-to-action clearfix">
+                    <div class="text">
+                        {% for data in settings %}
+                            {{ data.common_service_content|safe }}
+                        {% endfor %}
+                    </div>
+                    <a href="/contact-us" class="btn btn-big"><span>get a quote</span></a>
                 </div>
-                <a href="/contact-us" class="btn btn-big"><span>get a quote</span></a>
             </div>
         </div>
     </div>
 </div>
+
+<br/>
+<br/>
 
 <div class="page-content">
     <div class="container">
