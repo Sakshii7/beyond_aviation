@@ -125,16 +125,17 @@ class SettingAdmin(admin.ModelAdmin):
                     'homepage_logo') if 'homepage_logo' in request.FILES else settings.homepage_logo
                 settings.footer_logo = request.FILES.get(
                     'footer_logo') if 'footer_logo' in request.FILES else settings.footer_logo
-
+                settings.fav_icon = request.FILES.get(
+                    'fav_icon') if 'fav_icon' in request.FILES else settings.fav_icon
                 settings.save()
             else:
                 homepage_logo = request.FILES['homepage_logo']
                 footer_logo = request.FILES['footer_logo']
-
+                fav_icon = request.FILES['fav_icon']
                 query_id = Setting(contact_address=contact_address, facebook_url=facebook_url,
                                    instagram_url=instagram_url, twitter_url=twitter_url,
                                    common_service_content=common_service_content, homepage_logo=homepage_logo,
-                                   footer_logo=footer_logo)
+                                   footer_logo=footer_logo, fav_icon=fav_icon)
                 query_id.save()
 
             return redirect('/admin/homepage/setting/')

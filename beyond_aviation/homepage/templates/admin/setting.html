@@ -125,6 +125,27 @@
                     {% endif %}
                 </tr>
                 <tr>
+                    <td class="field-label">
+                        Fav Icon :
+                    </td>
+                    {% if settings.fav_icon %}
+                        <td>
+                            <p>Currently: <a
+                                    href="{{ media_url }}/{{ settings.fav_icon }}">{{ settings.fav_icon }}</a><br>
+                                Change:
+                                <input type="file" name="fav_icon" accept="image/*"></p>
+                        </td>
+                        <td>
+                            <img src="{{ media_url }}/{{ settings.fav_icon }}/" alt=""
+                                 height="auto" width="40px;">
+                        </td>
+                    {% else %}
+                        <td colspan="2">
+                            <input type="file" name="fav_icon">
+                        </td>
+                    {% endif %}
+                </tr>
+                <tr>
                     <td class="field-label">Facebook URL :</td>
                     <td colspan="2">
                         <label>

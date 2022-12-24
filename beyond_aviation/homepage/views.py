@@ -20,6 +20,9 @@ def fetch_common_object_data():
     other_sections = Section.objects.filter(section_type="other", status="active")
     sub_sections = SubSection.objects.filter(status="active")
     settings = Setting.objects.all()
+    fav_icon = ""
+    for setting in settings:
+        fav_icon = setting.fav_icon
 
     pair_first_values = []
     for i in range(0, len(offerings), 2):
@@ -52,6 +55,7 @@ def fetch_common_object_data():
         'other_sections': other_sections,
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
+        'fav_icon': fav_icon
     }
 
     return common_obj_data

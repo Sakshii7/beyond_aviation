@@ -1,161 +1,160 @@
 {% load static %}
 {{ '<' }}{{ '!DOCTYPE html>' }}
-<!--<!DOCTYPE html>-->
-<div lang="en-GB">
-    <head>
-        <title>Go Above & Beyond</title>
-        <link rel="stylesheet"
-              href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.css' %}">
-        <link rel="stylesheet" href="{% static '/assets/css/bootstrap.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/masterslider/style/masterslider.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/masterslider/skins/default/style.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/owl-carousel/owl.carousel.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/css/style.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/css/color-blue.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/css/retina.css' %}"/>
-        <link rel="stylesheet" href="{% static '/assets/css/responsive.css' %}"/>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600"
-              rel="stylesheet"/>
-        <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
-        <link href="{% static '/assets/static/css/main.7400d2a6.chunk.css' %}" rel="stylesheet"/>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-    </head>
-    <div>
-        <div class="header-wrapper header-transparent">
-            <header id="header" class="header-style01">
-                <div class="container">
-                    <div class="main-nav">
-                        <div class="row-main">
-                            <div class="col-md-12">
-                                <nav class="navbar navbar-default nav-left" role="navigation" aria-label="">
-                                    <div class="navbar-header">
-                                        <div class="logo">
-                                            {% for logo in settings %}
-                                                <a href="/"><img src="{{ media_url }}/{{ logo.homepage_logo }}"
-                                                                 alt="Go Above & Beyond"></a>
-                                            {% endfor %}
-                                        </div>
+<html lang="en">
+<head>
+    <title>Go Above & Beyond</title>
+    <link rel="icon" href="{{ media_url }}{{ fav_icon }}">
+    <link rel="stylesheet"
+          href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/masterslider/style/masterslider.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/masterslider/skins/default/style.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/owl-carousel/owl.carousel.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/color-blue.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/retina.css' %}"/>
+    <link rel="stylesheet" href="{% static '/assets/css/responsive.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
+    <link href="{% static '/assets/static/css/main.7400d2a6.chunk.css' %}" rel="stylesheet"/>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+<div>
+    <div class="header-wrapper header-transparent">
+        <header id="header" class="header-style01">
+            <div class="container">
+                <div class="main-nav">
+                    <div class="row-main">
+                        <div class="col-md-12">
+                            <nav class="navbar navbar-default nav-left" role="navigation" aria-label="">
+                                <div class="navbar-header">
+                                    <div class="logo">
+                                        {% for logo in settings %}
+                                            <a href="/"><img src="{{ media_url }}/{{ logo.homepage_logo }}"
+                                                             alt="Go Above & Beyond"></a>
+                                        {% endfor %}
                                     </div>
-                                    <div class="collapse navbar-collapse">
-                                        <ul class="nav navbar-nav">
-                                            <li class="current-menu-item "></li>
-                                            {% for menu in menus %}
+                                </div>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li class="current-menu-item "></li>
+                                        {% for menu in menus %}
 
-                                                {% if menu.slug == "services" %}
-                                                    <li class="dropdown">
-                                                        <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
-                                                        <ul class="dropdown-menu">
-                                                            {% for service in services %}
-                                                                <li>
-                                                                    <a href="/services/{{ service.slug }}">{{ service.name }}</a>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </li>
-                                                    <li></li>
-                                                {% else %}
-                                                    {% for page in pages %}
-                                                        {% if menu.slug == page.slug %}
-                                                            <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
+                                            {% if menu.slug == "services" %}
+                                                <li class="dropdown">
+                                                    <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
+                                                    <ul class="dropdown-menu">
+                                                        {% for service in services %}
+                                                            <li>
+                                                                <a href="/services/{{ service.slug }}">{{ service.name }}</a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                                <li></li>
+                                            {% else %}
+                                                {% for page in pages %}
+                                                    {% if menu.slug == page.slug %}
+                                                        <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>
-            </header>
-        </div>
-    </div>
-
-    {% block content %}
-    {% endblock %}
-
-    <!-- Footer  -->
-    <div id="footer-wrapper" class="footer-dark">
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <ul class="col-md-3 col-sm-6 footer-widget-container clearfix">
-                        <li class="widget widget_newsletterwidget">
-                            <div class="title"></div>
-                            {% for logo in settings %}
-                                <img src="{{ media_url }}/{{ logo.footer_logo }}" alt="LOGO illustration"><br>
-                            {% endfor %}
-                            {% for owner in owner_section %}
-                                <p>{{ owner.description }}</p>
-                            {% endfor %}
-                        </li>
-                    </ul>
-                    <ul class="col-md-3 col-sm-6 footer-widget-container">
-                        <li class="widget widget_pages">
-                            <div class="title">
-                                <h3>quick links</h3>
-                            </div>
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                {% for menu in menus %}
-                                    {% if menu.show_in_footer is True %}
-                                        <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="col-md-3 col-sm-6 footer-widget-container">
-                        <li class="widget widget_pages">
-                            <div class="title">
-                                <h3>Service Offerings </h3>
-                            </div>
-                            <ul>
-                                {% for service in services %}
-                                    <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="col-md-3 col-sm-6 footer-widget-container">
-                        <li class="widget widget-text">
-                            <div class="title">
-                                <h3>contact us</h3>
-                            </div>
-                            {% for data in settings %}
-                                <address>{{ data.contact_address|safe }}
-                                    <ul class="footer-social-icons">
-                                        <li><a href="{{ data.facebook_url }}"
-                                               class="fa fa-facebook"></a></li>
-                                        <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
-                                        <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
-                                    </ul>
-                                </address>
-                            {% endfor %}
-                    </ul>
-                </div>
             </div>
-        </footer>
-        <div class="copyright-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>GO ABOVE &amp; BEYOND 2022. All RIGHTS RESERVED.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="align-right">DESIGNED AND DEVELOPED BY <a href="https://01synergy.com/">01
-                            SYNERGY</a>.
-                        </p>
-                    </div>
-                </div>
+        </header>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+<!-- Footer  -->
+<div id="footer-wrapper" class="footer-dark">
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <ul class="col-md-3 col-sm-6 footer-widget-container clearfix">
+                    <li class="widget widget_newsletterwidget">
+                        <div class="title"></div>
+                        {% for logo in settings %}
+                            <img src="{{ media_url }}/{{ logo.footer_logo }}" alt="LOGO illustration"><br>
+                        {% endfor %}
+                        {% for owner in owner_section %}
+                            <p>{{ owner.description }}</p>
+                        {% endfor %}
+                    </li>
+                </ul>
+                <ul class="col-md-3 col-sm-6 footer-widget-container">
+                    <li class="widget widget_pages">
+                        <div class="title">
+                            <h3>quick links</h3>
+                        </div>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            {% for menu in menus %}
+                                {% if menu.show_in_footer is True %}
+                                    <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="col-md-3 col-sm-6 footer-widget-container">
+                    <li class="widget widget_pages">
+                        <div class="title">
+                            <h3>Service Offerings </h3>
+                        </div>
+                        <ul>
+                            {% for service in services %}
+                                <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="col-md-3 col-sm-6 footer-widget-container">
+                    <li class="widget widget-text">
+                        <div class="title">
+                            <h3>contact us</h3>
+                        </div>
+                        {% for data in settings %}
+                            <address>{{ data.contact_address|safe }}
+                                <ul class="footer-social-icons">
+                                    <li><a href="{{ data.facebook_url }}"
+                                           class="fa fa-facebook"></a></li>
+                                    <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
+                                    <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </address>
+                        {% endfor %}
+                </ul>
             </div>
         </div>
-        <div><a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
+    </footer>
+    <div class="copyright-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>GO ABOVE &amp; BEYOND 2022. All RIGHTS RESERVED.</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="align-right">DESIGNED AND DEVELOPED BY <a href="https://01synergy.com/">01
+                        SYNERGY</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    <div><a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -267,6 +266,5 @@
 }([])</script>
 <script src="{% static '/assets/static/js/2.8fa45533.chunk.js' %}"></script>
 <script src="{% static '/assets/static/js/main.da7a0512.chunk.js' %}"></script>
-
 </body>
 </html>

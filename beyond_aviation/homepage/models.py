@@ -167,6 +167,7 @@ class Setting(models.Model):
     twitter_url = models.URLField(null=True, blank=True)
     homepage_logo = models.ImageField(upload_to='HomepageLogo', null=True, blank=True)
     footer_logo = models.ImageField(upload_to='FooterLogo', null=True, blank=True)
+    fav_icon = models.ImageField(upload_to='FavIcon', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
 
     class Meta:
