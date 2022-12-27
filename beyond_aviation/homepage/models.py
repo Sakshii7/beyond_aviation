@@ -1,3 +1,4 @@
+from colorfield.fields import ColorField
 from django.db import models
 from django.utils.safestring import mark_safe
 from tinymce import HTMLField
@@ -92,6 +93,8 @@ class Section(models.Model):
     image = models.ImageField(upload_to='Section', null=True)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True, blank=True)
     show_mail_us_button = models.BooleanField(default=False, verbose_name='Show Mail Us Button')
+    background_color = ColorField(default='#FFFFFFFF', format="hexa")
+    text_color = ColorField(default='#FFFFFFFF', format="hexa")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

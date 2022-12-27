@@ -1247,7 +1247,7 @@ a.download-link span i {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    -webkit-animation: slide-down 3s forwards;
+    -webkit-    animation: slide-down 3s forwards;
     animation: slide-down 3s forwards;
 }
 
@@ -4082,7 +4082,7 @@ blockquote {
 }
 
 .bkg-dark-alice .custom-col-padding-both p {
-    color: #252525 !important;
+    color: ;
 }
 
 .icon-container .fa {

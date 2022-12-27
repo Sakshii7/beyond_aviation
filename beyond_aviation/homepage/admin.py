@@ -17,7 +17,7 @@ class SubSectionAdmin(admin.TabularInline):
 
 class SectionAdmin(admin.ModelAdmin):
     fields = ['status', 'title', 'section_type', 'page', 'text_align', 'description', 'image', 'image_preview',
-              'show_mail_us_button']
+              'show_mail_us_button', 'background_color', 'text_color']
     readonly_fields = ['image_preview']
     inlines = [SubSectionAdmin]
     list_display = ['title', 'created_on', 'status']
