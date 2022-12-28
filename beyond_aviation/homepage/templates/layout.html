@@ -20,50 +20,11 @@
     <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 
-
-
 </head>
 <body>
-
-
-
-<!--    <div class="container-fluid" style="padding-right:0px; padding-left:0px;">-->
-
-<!--  <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-<!--    &lt;!&ndash; Indicators &ndash;&gt;-->
-<!--&lt;!&ndash;    <ol class="carousel-indicators">&ndash;&gt;-->
-<!--&lt;!&ndash;      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>&ndash;&gt;-->
-<!--&lt;!&ndash;      <li data-target="#myCarousel" data-slide-to="1"></li>&ndash;&gt;-->
-<!--&lt;!&ndash;      <li data-target="#myCarousel" data-slide-to="2"></li>&ndash;&gt;-->
-<!--&lt;!&ndash;    </ol>&ndash;&gt;-->
-
-<!--    &lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-<!--    <div class="carousel-inner">-->
-<!--      <div class="item active">-->
-<!--        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Los Angeles" style="width:100%;">-->
-<!--      </div>-->
-
-<!--      <div class="item">-->
-<!--        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Chicago" style="width:100%;">-->
-<!--      </div>-->
-
-<!--      <div class="item">-->
-<!--        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="New york" style="width:100%;">-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Left and right controls &ndash;&gt;-->
-<!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev">-->
-<!--      <span class="glyphicon glyphicon-chevron-left"></span>-->
-<!--      <span class="sr-only">Previous</span>-->
-<!--    </a>-->
-<!--    <a class="right carousel-control" href="#myCarousel" data-slide="next">-->
-<!--      <span class="glyphicon glyphicon-chevron-right"></span>-->
-<!--      <span class="sr-only">Next</span>-->
-<!--    </a>-->
-<!--  </div>-->
-<!--</div>-->
     <div id="root" style="position: relative;">
+
+<!--  Header -->
     <div class="header-wrapper header-transparent">
         <header id="header" class="header-style01">
             <div class="container">
@@ -83,7 +44,6 @@
                                     <ul class="nav navbar-nav">
                                         <li class="current-menu-item "></li>
                                         {% for menu in menus %}
-
                                             {% if menu.slug == "services" %}
                                                 <li class="dropdown">
                                                     <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
@@ -105,6 +65,31 @@
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
+                                    <div id="dl-menu" class="dl-menuwrapper">
+                                        <button class="dl-trigger">Open Menu</button>
+                                        <ul class="dl-menu">
+                                            <li><a href="/" class="active">Home</a></li>
+                                             {% for menu in menus %}
+                                            {% if menu.slug == "services" %}
+                                            <li><a href="/">Services</a>
+                                                <ul class="dl-submenu">
+                                                    {% for service in services %}
+                                                    <li class="dl-back"><a href="#">back</a></li>
+                                                    <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
+                                                     {% endfor %}
+                                                </ul>
+                                            </li>
+
+                                            {% else %}
+                                            {% for page in pages %}
+                                                    {% if menu.slug == page.slug %}
+                                           <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                                            {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
                                 </div>
                             </nav>
                         </div>
@@ -180,6 +165,7 @@
             </div>
         </div>
     </footer>
+<!-- Copyright Content -->
     <div class="copyright-container">
         <div class="container">
             <div class="row">
@@ -194,7 +180,8 @@
             </div>
         </div>
     </div>
-    <div><a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
+    <div>
+        <a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
 </div>
 
 </div>

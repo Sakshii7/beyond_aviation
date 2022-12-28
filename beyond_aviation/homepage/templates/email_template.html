@@ -1,99 +1,77 @@
-{% load static %}
-<style>
-    .email-template-table {
-        margin: 0 auto 0;
-        text-align: center;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 30px;
-        width: 100%;
-        max-width: 800px;
-        border: 1px solid #ccc
-    }
-
-    .table-data-label {
-        padding: 10px;
-        border: 1px solid #ccc;
-        text-align: left
-    }
-
-
-    .table1 {
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 25px;
-        width: 100%
-    }
-
-    .table1-td {
-        width: 100%;
-        display: table
-    }
-
-    .table2 {
-        border-collapse: collapse;
-        width: 100%;
-        background-color: #0b3e64;
-        color: #ffffff
-    }
-
-    .table2-th {
-        padding: 15px;
-        font-size: 20px;
-        text-transform: uppercase;
-        border: 1px solid #ccc;
-        border-bottom: none
-    }
-</style>
-<table class="email-template-table">
-    <tbody>
-    <tr>
-        <td>
-            <div style="padding:15px;margin:0">
-                <table class="table1">
+<html lang="en">
+<title>
+    Above & Beyond - Contact Form
+</title>
+<body>
+<div>
+    <table width="100%" style="padding:0">
+        <tbody>
+        <tr>
+            <td>
+                <table style="margin:0px auto 0px;text-align:center;border-radius:4px;background-color:#fff;padding:30px;width:100%;max-width:800px;border:1px solid #ccc">
                     <tbody>
                     <tr>
-                        <td class="table1-td">
-                            <div style="text-align:center">
-                                <img src="{{ request.scheme }}://
-                                        {{ request.get_host }}{% static 'images/main-logo.png' %}"
-                                     alt="">
+                        <td>
+                            <div style="padding:15px;margin:0">
+                                <table style="border-bottom:1px solid #ccc;margin-bottom:25px;width:100%">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width:100%;display:table">
+                                            <div style="text-align:center">
+                                                <img src="https://ci6.googleusercontent.com/proxy/b6IjlrVVrlK0_bEFEAsyw6pNoRXDkJ_pkizKbcucPyDcneFky1i9EMoWPbY6ddAv-K_ZHwKcHv15uRzen4_dC-_4qaHFRD0AFVu6=s0-d-e1-ft#https://dev.01s.in/above-and-beyond/assets/Logo/logo.png"
+                                                     alt="" width="300px" class="CToWUd" data-bit="iit">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table style="border-collapse:collapse;width:100%;background-color:#0b3e64;color:#ffffff">
+                                    <tbody>
+                                    <tr style="text-align:center">
+                                        <th colspan="2"
+                                            style="padding:15px;font-size:20px;text-transform:uppercase;border:1px solid #ccc;border-bottom:none">
+                                            Consultation Form - Above &amp; Beyond
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">First Name:</td>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">{{first_name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">Last Name:</td>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">{{last_name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">Email:</td>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">
+                                            {{email}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">Contact No.:</td>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">
+                                            <a href="{{ email }}" target="_blank">
+                                                {{phone}}</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">Message:</td>
+                                        <td style="padding:10px;border:1px solid #ccc;text-align:left">{{message}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <table class="table2">
-                    <tbody>
-                    <tr style="text-align:center">
-                        <th colspan="2" class="table2-th">
-                            Consultation Form - Above &amp; Beyond
-                        </th>
-                    </tr>
-                    <tr>
-                        <td class="table-data-label">First Name:</td>
-                        <td class="table-data-label">{{ first_name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="table-data-label">Last Name:</td>
-                        <td class="table-data-label">{{ last_name }}</td>
-                    </tr>
-
-                    <tr>
-                        <td class="table-data-label">Email:</td>
-                        <td class="table-data-label">{{ email }}</td>
-                    </tr>
-                    <tr>
-                        <td class="table-data-label">Contact No.:</td>
-                        <td class="table-data-label">{{ phone }}</td>
-                    </tr>
-                    <tr>
-                        <td class="table-data-label">Message:</td>
-                        <td class="table-data-label">{{ message }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

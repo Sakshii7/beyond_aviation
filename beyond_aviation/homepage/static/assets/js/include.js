@@ -2,10 +2,10 @@
 
     // MAIN NAVIGATION
     $('.nav .dropdown').hover(function () {
-        $(this).find('> .dropdown-menu').slideDown(0);
+        $(this).find('> .dropdown-menu').slideDown(200);
 
     }, function () {
-        $(this).find('> .dropdown-menu').fadeOut(0);
+        $(this).find('> .dropdown-menu').fadeOut(200);
     });
 
     // RESPONSIVE NAVIGATION
