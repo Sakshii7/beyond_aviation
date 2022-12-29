@@ -1,9 +1,0 @@
-
-PWeb:AvoidCommentedOutCodeCheck	"Remove this commented out code.(ö‘î£8Ëø¿åÕ0
-UWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(Ñ¢Ô•ûÿÿÿÿ8Ìø¿åÕ0
-IWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(‹ü­½
-UWeb:FieldsetWithoutLegendCheck"$Add a <legend> tag to this fieldset.(¨Ïçñ8Ïø¿åÕ0
-UWeb:FieldsetWithoutLegendCheck"$Add a <legend> tag to this fieldset.(¨Ïçñ8Ïø¿åÕ0
-UWeb:FieldsetWithoutLegendCheck"$Add a <legend> tag to this fieldset.(¨Ïçñ8Ğø¿åÕ0
-UWeb:FieldsetWithoutLegendCheck#"$Add a <legend> tag to this fieldset.(¨Ïçñ8Ğø¿åÕ0
-UWeb:FieldsetWithoutLegendCheck'"$Add a <legend> tag to this fieldset.(¨Ïçñ8Ñø¿åÕ0
