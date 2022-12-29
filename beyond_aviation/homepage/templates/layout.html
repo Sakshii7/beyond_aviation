@@ -4,7 +4,7 @@
 <head>
     <title>Go Above & Beyond</title>
     <link rel="icon" href="{{ media_url }}{{ fav_icon }}">
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="{% static '/assets/css/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static '/assets/masterslider/style/masterslider.css' %}"/>
     <link rel="stylesheet" href="{% static '/assets/masterslider/skins/default/style.css' %}"/>
@@ -22,7 +22,7 @@
 
 </head>
 <body>
-    <div id="root" style="position: relative;">
+    <div id="root">
 
 <!--  Header -->
     <div class="header-wrapper header-transparent">
@@ -73,13 +73,12 @@
                                             {% if menu.slug == "services" %}
                                             <li><a href="/">Services</a>
                                                 <ul class="dl-submenu">
-                                                    {% for service in services %}
                                                     <li class="dl-back"><a href="#">back</a></li>
+                                                    {% for service in services %}
                                                     <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
                                                      {% endfor %}
                                                 </ul>
                                             </li>
-
                                             {% else %}
                                             {% for page in pages %}
                                                     {% if menu.slug == page.slug %}
