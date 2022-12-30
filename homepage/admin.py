@@ -92,6 +92,7 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class SettingAdmin(admin.ModelAdmin):
+
     change_list_template = 'admin/setting.html'
 
     def has_add_permission(self, request) -> bool:
