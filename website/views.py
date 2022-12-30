@@ -118,7 +118,7 @@ def query_form(request):
             send_mail(' Above & Beyond - Contact Form',
                       message,
                       email,
-                      ['sakshi.chandel@socialmediafreaks.com'],
+                      ['goabovebeyondaviation@gmail.com'],
                       fail_silently=False,
                       html_message=loader.render_to_string(
                           'email_template.html',

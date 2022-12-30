@@ -23,7 +23,7 @@ admin.site.site_title = 'Go Above And Beyond Admin Site'
 admin.site.index_title = 'Go Above And Beyond'
 
 urlpatterns = [
-    path('', include('homepage.urls')),
+    path('', include('website.urls')),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
 ]
