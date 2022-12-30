@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Beyond Aviation.iml" filepath="$PROJECT_DIR$/.idea/Beyond Aviation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/beyond_aviation.iml" filepath="$PROJECT_DIR$/.idea/beyond_aviation.iml" />
     </modules>
   </component>
 </project>
