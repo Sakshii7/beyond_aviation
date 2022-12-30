@@ -22,9 +22,9 @@
 
 </head>
 <body>
-    <div id="root">
+<div id="root">
 
-<!--  Header -->
+    <!--  Header -->
     <div class="header-wrapper header-transparent">
         <header id="header" class="header-style01">
             <div class="container">
@@ -69,24 +69,26 @@
                                         <button class="dl-trigger">Open Menu</button>
                                         <ul class="dl-menu">
                                             <li><a href="/" class="active">Home</a></li>
-                                             {% for menu in menus %}
-                                            {% if menu.slug == "services" %}
-                                            <li><a href="/">Services</a>
-                                                <ul class="dl-submenu">
-                                                    <li class="dl-back"><a href="#">back</a></li>
-                                                    {% for service in services %}
-                                                    <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
-                                                     {% endfor %}
-                                                </ul>
-                                            </li>
-                                            {% else %}
-                                            {% for page in pages %}
-                                                    {% if menu.slug == page.slug %}
-                                           <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
-                                            {% endif %}
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
+                                            {% for menu in menus %}
+                                                {% if menu.slug == "services" %}
+                                                    <li><a href="/">Services</a>
+                                                        <ul class="dl-submenu">
+                                                            <li class="dl-back"><a href="#">back</a></li>
+                                                            {% for service in services %}
+                                                                <li>
+                                                                    <a href="/services/{{ service.slug }}">{{ service.name }}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                {% else %}
+                                                    {% for page in pages %}
+                                                        {% if menu.slug == page.slug %}
+                                                            <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
@@ -99,89 +101,89 @@
     </div>
 
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-<!-- Footer  -->
-<div id="footer-wrapper" class="footer-dark">
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <ul class="col-md-3 col-sm-6 footer-widget-container clearfix">
-                    <li class="widget widget_newsletterwidget">
-                        <div class="title"></div>
-                        {% for logo in settings %}
-                            <img src="{{ media_url }}/{{ logo.footer_logo }}" alt="LOGO illustration"><br>
-                        {% endfor %}
-                        {% for owner in owner_section %}
-                            <p>{{ owner.description }}</p>
-                        {% endfor %}
-                    </li>
-                </ul>
-                <ul class="col-md-3 col-sm-6 footer-widget-container">
-                    <li class="widget widget_pages">
-                        <div class="title">
-                            <h3>quick links</h3>
-                        </div>
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            {% for menu in menus %}
-                                {% if menu.show_in_footer is True %}
-                                    <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
-                                {% endif %}
+    <!-- Footer  -->
+    <div id="footer-wrapper" class="footer-dark">
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <ul class="col-md-3 col-sm-6 footer-widget-container clearfix">
+                        <li class="widget widget_newsletterwidget">
+                            <div class="title"></div>
+                            {% for logo in settings %}
+                                <img src="{{ media_url }}/{{ logo.footer_logo }}" alt="LOGO illustration"><br>
                             {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="col-md-3 col-sm-6 footer-widget-container">
-                    <li class="widget widget_pages">
-                        <div class="title">
-                            <h3>Service Offerings </h3>
-                        </div>
-                        <ul>
-                            {% for service in services %}
-                                <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
+                            {% for owner in owner_section %}
+                                <p>{{ owner.description }}</p>
                             {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="col-md-3 col-sm-6 footer-widget-container">
-                    <li class="widget widget-text">
-                        <div class="title">
-                            <h3>contact us</h3>
-                        </div>
-                        {% for data in settings %}
-                            <address>{{ data.contact_address|safe }}
-                                <ul class="footer-social-icons">
-                                    <li><a href="{{ data.facebook_url }}"
-                                           class="fa fa-facebook"></a></li>
-                                    <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
-                                    <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </address>
-                        {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </footer>
-<!-- Copyright Content -->
-    <div class="copyright-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>GO ABOVE &amp; BEYOND 2022. All RIGHTS RESERVED.</p>
-                </div>
-                <div class="col-md-6">
-                    <p class="align-right">DESIGNED AND DEVELOPED BY <a href="https://01synergy.com/">01
-                        SYNERGY</a>.
-                    </p>
+                        </li>
+                    </ul>
+                    <ul class="col-md-3 col-sm-6 footer-widget-container">
+                        <li class="widget widget_pages">
+                            <div class="title">
+                                <h3>quick links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                {% for menu in menus %}
+                                    {% if menu.show_in_footer is True %}
+                                        <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="col-md-3 col-sm-6 footer-widget-container">
+                        <li class="widget widget_pages">
+                            <div class="title">
+                                <h3>Service Offerings </h3>
+                            </div>
+                            <ul>
+                                {% for service in services %}
+                                    <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="col-md-3 col-sm-6 footer-widget-container">
+                        <li class="widget widget-text">
+                            <div class="title">
+                                <h3>contact us</h3>
+                            </div>
+                            {% for data in settings %}
+                                <address>{{ data.contact_address|safe }}
+                                    <ul class="footer-social-icons">
+                                        <li><a href="{{ data.facebook_url }}"
+                                               class="fa fa-facebook"></a></li>
+                                        <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
+                                        <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
+                                    </ul>
+                                </address>
+                            {% endfor %}
+                    </ul>
                 </div>
             </div>
+        </footer>
+        <!-- Copyright Content -->
+        <div class="copyright-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>GO ABOVE &amp; BEYOND 2022. All RIGHTS RESERVED.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="align-right">DESIGNED AND DEVELOPED BY <a href="https://01synergy.com/">01
+                            SYNERGY</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div>
+            <a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
     </div>
-    <div>
-        <a href="/" class="scroll-up" style="display: block;">Scroll</a></div>
-</div>
 
 </div>
 <script src="{% static '/assets/js/jquery-2.1.4.min.js' %}"></script>
@@ -192,39 +194,43 @@
 <script src="{% static '/assets/js/jquery.dlmenu.min.js' %}"></script>
 <script src="{% static '/assets/js/include.js' %}"></script>
 <script>
-    $(document).ready((function(){$("ul.navbar-nav > li").click((function(a){$("ul.navbar-nav > li").removeClass("active"),$(this).addClass("active")}))}))
+    $(document).ready((function () {
+        $("ul.navbar-nav > li").click((function (a) {
+            $("ul.navbar-nav > li").removeClass("active"), $(this).addClass("active")
+        }))
+    }))
 </script>
 <script>
     jQuery(document).ready(function ($) {
-                'use strict';
+        'use strict';
 
-                function equalHeight() {
-                    $('.page-content.column-img-bkg *[class*="custom-col-padding"]').each(function () {
-                        var maxHeight = $(this).outerHeight();
-                        $('.page-content.column-img-bkg *[class*="img-bkg"]').height(maxHeight);
-                    });
-                };
+        function equalHeight() {
+            $('.page-content.column-img-bkg *[class*="custom-col-padding"]').each(function () {
+                var maxHeight = $(this).outerHeight();
+                $('.page-content.column-img-bkg *[class*="img-bkg"]').height(maxHeight);
+            });
+        };
 
-                $(document).ready(equalHeight);
-                $(window).resize(equalHeight);
-
-
-                var slider = new MasterSlider();
-                slider.setup('masterslider', {
-                    width: 1140, // slider standard width
-                    height: 854, // slider standard height
-                    space: 0,
-                    speed: 50,
-                    layout: "fullwidth",
-                    centerControls: false,
-                    loop: true,
-                    autoplay: true
+        $(document).ready(equalHeight);
+        $(window).resize(equalHeight);
 
 
-                });
+        var slider = new MasterSlider();
+        slider.setup('masterslider', {
+            width: 1140, // slider standard width
+            height: 854, // slider standard height
+            space: 0,
+            speed: 50,
+            layout: "fullwidth",
+            centerControls: false,
+            loop: true,
+            autoplay: true
 
-                slider.control('arrows');
-                });
+
+        });
+
+        slider.control('arrows');
+    });
 
 </script>
 </body>
