@@ -55,8 +55,8 @@
             if (position > header_height) {
 
                 $('.header-wrapper').css(
-                        'top', -top_bar_height - 20
-                        );
+                    'top', -top_bar_height - 20
+                );
             } else {
                 $('.header-wrapper').css('top', 0);
             }
@@ -64,8 +64,8 @@
             var header_height02 = $(".header-style03").height();
             if (position > header_height02) {
                 $('.header-wrapper.style03').css(
-                        'top', 0
-                        );
+                    'top', 0
+                );
             } else {
                 $('.header-wrapper.style03').css('top', 0);
             }
@@ -175,28 +175,28 @@
         var counter = 1;
 
         $('.triggerAnimation').waypoint(function () {
-            var $this = $(this);
-            var rowIndex = $('.row').index($(this).closest('.row'));
-            if (rowIndex !== currentRow) {
-                currentRow = rowIndex;
-                $('.row').eq(rowIndex).find('.triggerAnimation').each(function (i, val) {
-                    var element = $(this);
-                    setTimeout(function () {
-                        var animation = element.attr('data-animate');
-                        element.css('opacity', '1');
-                        element.addClass("animated " + animation);
-                    }, (i * 250));
-                });
+                var $this = $(this);
+                var rowIndex = $('.row').index($(this).closest('.row'));
+                if (rowIndex !== currentRow) {
+                    currentRow = rowIndex;
+                    $('.row').eq(rowIndex).find('.triggerAnimation').each(function (i, val) {
+                        var element = $(this);
+                        setTimeout(function () {
+                            var animation = element.attr('data-animate');
+                            element.css('opacity', '1');
+                            element.addClass("animated " + animation);
+                        }, (i * 250));
+                    });
 
-            }
-
-            //counter++;
-
-        },
-                {
-                    offset: '70%',
-                    triggerOnce: true
                 }
+
+                //counter++;
+
+            },
+            {
+                offset: '70%',
+                triggerOnce: true
+            }
         );
 
     }
@@ -245,7 +245,7 @@
         }, 'xml');
 
     });
-    
+
     /*
      * SVG COLOR CHANGING
      */
