@@ -2,7 +2,7 @@
 {% block content %}
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <form action="id" method="get">
+    <form action="{{ get_page_id.slug }}" method="get">
         <div class="page-title-style01 page-title-negative-top pt-bkg"
              style="background-image: url('{{ media_url }}{{ get_page_id.header_img }}')">
             <div class="container">
@@ -23,12 +23,6 @@
             </div>
         </div>
     </form>
-
-    {% comment %}<div class="centered"><h2 style="text-transform: uppercase;"><strong>GO ABOVE & BEYOND -
-                        {{ get_page_id.title }}</strong></h2>
-                        <p style="text-align:center;">You are here: / <a style="color:white;" href="/">Home</a> / <a
-                                style="color:white;" href="/{{ get_page_id.slug }}">{{ get_page_id.title }}</a></p>
-                    </div>{% endcomment %}
 
     <div class="page-content">
         <div class="container">

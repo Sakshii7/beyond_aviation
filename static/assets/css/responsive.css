@@ -116,7 +116,7 @@ Responsive template styles
     -webkit-font-smoothing: antialiased;
     line-height: 40px;
     font-size: 10px;
-    font-family: 'FontAwesome';
+    font-family: 'FontAwesome', sans-serif;
     content: "\f054";
     color: #888;
 }
@@ -403,7 +403,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-content .row{
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     .header-style03 .info-container{
@@ -580,7 +580,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-title-map.page-title-negative-top{
-        margin-top: 0px !important;
+        margin-top: 0 !important;
         padding-top: 0;
     }
 
@@ -918,7 +918,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-content .row{
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
     
     *[class*="col-"] + [class*="img-bkg"]{
@@ -1096,7 +1096,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-title-map.page-title-negative-top{
-        margin-top: 0px !important;
+        margin-top: 0 !important;
         padding-top: 0;
     }
 
@@ -1433,7 +1433,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-content .row{
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     .header-style03 .info-container{
@@ -1460,7 +1460,7 @@ All this is done for any sub-level being entered.
 
     .header-style03 .navbar a.btn{
         width: 49%;
-        top: 0px;
+        top: 0;
         padding: 12px 40px;
     }
 
@@ -1582,7 +1582,7 @@ All this is done for any sub-level being entered.
     }
 
     .page-title-map.page-title-negative-top{
-        margin-top: 0px !important;
+        margin-top: 0 !important;
         padding-top: 0;
     }
 

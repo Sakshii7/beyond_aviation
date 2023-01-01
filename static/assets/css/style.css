@@ -1182,28 +1182,17 @@ a.download-link span i {
 }
 
 .img-bkg01 {
-    background-image: url('../../abImages/bus-cargo.webp');
     height: auto !important;
     min-height: 740px;
 
 }
 
 .img-bkg04 {
-    background-image: url('../../abImages/spacial-cargo.webp');
     height: auto !important;
     min-height: 875px;
 }
 
-.img-bkg02 {
-    background-image: url('../img/pics/img-bkg02.jpg');
-}
-
-.img-bkg03 {
-    background-image: url('../img/pics/img-bkg03.jpg');
-}
-
 .img-customer {
-    background-image: url('../../abImages/customer.webp');
     height: 676px;
     background-repeat: no-repeat;
 }
@@ -1247,7 +1236,7 @@ a.download-link span i {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    -webkit-    animation: slide-down 3s forwards;
+    -webkit-animation: slide-down 3s forwards;
     animation: slide-down 3s forwards;
 }
 
@@ -4079,10 +4068,6 @@ blockquote {
 
 .bkg-dark-alice .custom-heading h3 {
     color: #252525;
-}
-
-.bkg-dark-alice .custom-col-padding-both p {
-    color: ;
 }
 
 .icon-container .fa {

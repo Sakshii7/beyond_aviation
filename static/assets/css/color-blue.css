@@ -1,5 +1,4 @@
-
-/* 
+/*
     Here you can change default template color
 */
 
@@ -47,11 +46,11 @@
 .numbers-counter .counter-container::after,
 .master-slider .pi-button:hover,
 .master-slider .tooltip h6::after,
-.ms-skin-default .ms-tooltip-point .ms-point-center{  
-  background-color: #95c03d;
+.ms-skin-default .ms-tooltip-point .ms-point-center {
+    background-color: #95c03d;
 }
 
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus,
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,
 .breadcrumb li a:hover,
 .colored,
 .footer-widget-container a:hover,
@@ -68,15 +67,15 @@ a.download-link:hover span,
 .pi-latest-posts a:hover h4,
 .pi-latest-posts02 li .post-details a:hover h4,
 .header-style02 #quick-links li i,
-.header-style02 .navbar-default .navbar-nav>li>a:hover, 
+.header-style02 .navbar-default .navbar-nav > li > a:hover,
 .header-style02 .nav > li.current-menu-item > a,
 .header-style01 #quick-links li i,
 .header-style01 #quick-links li a:hover,
 .header-style02 #top-bar-wrapper.dark #quick-links li a:hover,
-.header-wrapper.dark .navbar-default .navbar-nav>li.current-menu-item>a,
+.header-wrapper.dark .navbar-default .navbar-nav > li.current-menu-item > a,
 .header-style03 #quick-links i,
-.header-style03 .navbar-nav>li>a:hover,
-.header-style03 .navbar-nav>li.current-menu-item>a,
+.header-style03 .navbar-nav > li > a:hover,
+.header-style03 .navbar-nav > li.current-menu-item > a,
 .custom-bkg.dark a:hover,
 .custom-bkg.dark a:hover span,
 .custom-bkg.dark a:hover i,
@@ -87,20 +86,20 @@ a.download-link:hover span,
 .pi-latest-posts02 .post-category i,
 .accordion .title::before,
 .pi-latest-posts03 li .post-media i,
-.news-carousel-container .icon-title i{
+.news-carousel-container .icon-title i {
     color: #95c03d;
 }
 
-.header-style01 .navbar-default .navbar-nav>li>a:hover,
+.header-style01 .navbar-default .navbar-nav > li > a:hover,
 .header-style01 .nav > li.current-menu-item > a,
 .hover-mask-container .hover-details span,
 .hover-mask-container .hover-zoom,
-.master-slider .pi-button{
+.master-slider .pi-button {
     border-color: #95c03d;
 }
 
 .dropdown .dropdown-menu .dropdown-submenu > a:hover:after,
-blockquote{
+blockquote {
     border-left-color: #0b3e64;
 }
 
@@ -112,12 +111,12 @@ blockquote{
 .service-feature-box .service-media:hover i,
 .btn:hover,
 .tracking .submit:hover,
-.shipping-quote .submit:hover{
+.shipping-quote .submit:hover {
     background-color: #0b3e64;
 }
 
 
-.icon-container .st1{
+.icon-container .st1 {
     fill: #0b3e64;
 }
 

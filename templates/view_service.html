@@ -2,7 +2,7 @@
 {% block content %}
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <form action="id" method="get">
+    <form action="{{ get_service_id.slug }}" method="get">
         <div class="page-title-style01 page-title-negative-top pt-bkg"
              style="background-image: url('{{ media_url }}{{ get_service_id.image }}')">
             <div class="container">
