@@ -4,7 +4,7 @@
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
     <form action="id" method="get">
         <div class="page-title-style01 page-title-negative-top pt-bkg"
-             style="background-image: url('{{ media_url }}/{{ get_service_id.image }}')">
+             style="background-image: url('{{ media_url }}{{ get_service_id.image }}')">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -66,7 +66,7 @@
                     {% if service.is_featured is True %}
                         <div class="col-md-4 col-sm-4">
                             <div class="service-feature-box">
-                                <div class="service-media"><img src="{{ media_url }}/{{ service.image }}"
+                                <div class="service-media"><img src="{{ media_url }}{{ service.image }}"
                                                                 alt="{{ service.name }}"></div>
                                 <div class="service-body">
                                     <div class="custom-heading"><h4>{{ service.name }}</h4></div>

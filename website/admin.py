@@ -139,7 +139,7 @@ class SettingAdmin(admin.ModelAdmin):
                                    footer_logo=footer_logo, fav_icon=fav_icon)
                 query_id.save()
 
-            return redirect('/admin/homepage/setting/')
+            return redirect('/admin/website/setting/')
 
         settings = Setting.objects.all()
         if settings.count() == 0:

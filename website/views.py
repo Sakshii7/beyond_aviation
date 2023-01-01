@@ -79,10 +79,12 @@ def view_service(request, slug):
 
 
 def view_pages(request, slug):
-    get_page_id = Page.objects.get(slug=slug)
     template = loader.get_template('pages.html')
     context = fetch_common_object_data()
-    context['get_page_id'] = get_page_id
+    if slug != 'undefined':
+        print(slug)
+        get_page_id = Page.objects.get(slug=slug)
+        context['get_page_id'] = get_page_id
 
     return HttpResponse(template.render(context, request))
 

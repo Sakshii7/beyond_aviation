@@ -35,7 +35,7 @@
                                 <div class="navbar-header">
                                     <div class="logo">
                                         {% for logo in settings %}
-                                            <a href="/"><img src="{{ media_url }}/{{ logo.homepage_logo }}"
+                                            <a href="/"><img src="{{ media_url }}{{ logo.homepage_logo }}"
                                                              alt="Go Above & Beyond" style="height:60px"></a>
                                         {% endfor %}
                                     </div>
@@ -113,7 +113,7 @@
                         <li class="widget widget_newsletterwidget">
                             <div class="title"></div>
                             {% for logo in settings %}
-                                <img src="{{ media_url }}/{{ logo.footer_logo }}" alt="LOGO illustration"><br>
+                                <img src="{{ media_url }}{{ logo.footer_logo }}" alt="LOGO illustration"><br>
                             {% endfor %}
                             {% for owner in owner_section %}
                                 <p>{{ owner.description }}</p>
@@ -196,7 +196,8 @@
 <script>
     $(document).ready((function () {
         $("ul.navbar-nav > li").click((function (a) {
-            $("ul.navbar-nav > li").removeClass("active"), $(this).addClass("active")
+            $("ul.navbar-nav > li").removeClass("active");
+            $(this).addClass("active");
         }))
     }))
 </script>
@@ -209,7 +210,7 @@
                 var maxHeight = $(this).outerHeight();
                 $('.page-content.column-img-bkg *[class*="img-bkg"]').height(maxHeight);
             });
-        };
+        }
 
         $(document).ready(equalHeight);
         $(window).resize(equalHeight);
