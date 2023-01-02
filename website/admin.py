@@ -5,7 +5,7 @@ from rangefilter.filters import DateRangeFilter
 from tinymce.widgets import TinyMCE
 
 from beyond_aviation.settings import MEDIA_URL
-from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting
+from .models import SubSection, ServiceOffering, Service, Section, Menu, Page, QueryForm, Setting, Slider, Slides
 
 
 class SubSectionAdmin(admin.TabularInline):
@@ -75,6 +75,9 @@ class QueryFormAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
+    def has_change_permission(self, request, obj=None) -> bool:
+        return False
+
 
 class PageAdmin(admin.ModelAdmin):
     fields = ['status', 'title', 'slug', 'header_img', 'header_image_preview', 'content']
@@ -92,7 +95,6 @@ class PageAdmin(admin.ModelAdmin):
 
 
 class SettingAdmin(admin.ModelAdmin):
-
     change_list_template = 'admin/setting.html'
 
     def has_add_permission(self, request) -> bool:
@@ -155,6 +157,30 @@ class SettingAdmin(admin.ModelAdmin):
         return response
 
 
+class SlidesAdmin(admin.TabularInline):
+    model = Slides
+    fields = ['status', 'slide_name', 'slide_image', 'slide_image_preview', 'text_align', 'desc_1', 'desc_2', 'desc_3']
+    readonly_fields = ['slide_image_preview']
+    list_editable = ['status']
+
+
+class SliderAdmin(admin.ModelAdmin):
+    fields = ['status', 'name', 'code']
+    inlines = [SlidesAdmin]
+    list_display = ['name', 'created_on', 'status']
+    list_filter = (('created_on', DateRangeFilter), 'status')
+    list_editable = ['status']
+    list_per_page = 5
+    search_fields = ['name']
+    ordering = ['-created_on']
+    rows_count = Slider.objects.all().count()
+    print(rows_count, 'count')
+    if rows_count != 0:
+
+        def has_add_permission(self, request, obj=None):
+            return False
+
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceOffering, ServiceOfferingAdmin)
 admin.site.register(Section, SectionAdmin)
@@ -162,3 +188,4 @@ admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(QueryForm, QueryFormAdmin)
 admin.site.register(Setting, SettingAdmin)
+admin.site.register(Slider, SliderAdmin)

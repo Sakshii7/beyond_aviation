@@ -7,7 +7,8 @@ from tinymce import HTMLField
 
 CHOICES = (
     ('left', 'Left'),
-    ('right', 'Right')
+    ('right', 'Right'),
+    ('center', 'Center')
 )
 
 SECTIONS = (
@@ -175,3 +176,41 @@ class Setting(models.Model):
 
     class Meta:
         db_table = "setting"
+
+
+class Slider(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=50)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'slider'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.name
+
+
+class Slides(models.Model):
+    section = models.ForeignKey(Slider, on_delete=models.CASCADE)
+    slide_name = models.CharField(max_length=50)
+    slide_image = models.ImageField(upload_to='SlidesImage', null=True, blank=True)
+    text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
+    desc_1 = models.CharField(max_length=50)
+    desc_2 = models.CharField(max_length=50)
+    desc_3 = models.CharField(max_length=50)
+    status = models.CharField(max_length=10, choices=STATUS, default='inactive')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'slides'
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.slide_name
+
+    def slide_image_preview(self):
+        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.slide_image.url))

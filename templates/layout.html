@@ -1,5 +1,4 @@
-{% load static %}
-{{ '<' }}{{ '!DOCTYPE html>' }}
+{{ '<' }}{{ '!DOCTYPE html>' }}{% load static %}
 <html lang="en">
 <head>
     <title>Go Above & Beyond</title>
@@ -19,7 +18,6 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-
 </head>
 <body>
 <div id="root">
@@ -190,9 +188,11 @@
 <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
 <script src="{% static '/assets/js/jquery.srcipts.min.js' %}"></script>
 <script src="{% static '/assets/masterslider/masterslider.min.js' %}"></script>
+<script src="{% static '/assets/masterslider/masterslider.js' %}"></script>
 <script src="{% static '/assets/js/jquery.matchHeight-min.js' %}"></script>
 <script src="{% static '/assets/js/jquery.dlmenu.min.js' %}"></script>
 <script src="{% static '/assets/js/include.js' %}"></script>
+
 <script>
     $(document).ready((function () {
         $("ul.navbar-nav > li").click((function (a) {
