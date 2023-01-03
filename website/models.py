@@ -7,8 +7,7 @@ from tinymce import HTMLField
 
 CHOICES = (
     ('left', 'Left'),
-    ('right', 'Right'),
-    ('center', 'Center')
+    ('right', 'Right')
 )
 
 SECTIONS = (
@@ -21,6 +20,10 @@ STATUS = (
     ('inactive', 'InActive'),
 )
 
+SLIDER_CHOICES = (
+    ('left', 'Left'),
+    ('center', 'Center')
+)
 
 class Service(models.Model):
     name = models.CharField(max_length=50)
@@ -179,7 +182,7 @@ class Setting(models.Model):
 
 
 class Slider(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     code = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
@@ -197,10 +200,10 @@ class Slides(models.Model):
     slider = models.ForeignKey(Slider, on_delete=models.CASCADE)
     slide_name = models.CharField(max_length=50)
     slide_image = models.ImageField(upload_to='SlidesImage', null=True, blank=True)
-    text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
+    text_align = models.CharField(max_length=10, choices=SLIDER_CHOICES, default='left')
     desc_1 = models.CharField(max_length=50)
-    desc_2 = models.CharField(max_length=50)
-    desc_3 = models.CharField(max_length=50)
+    desc_2 = models.CharField(max_length=50, null=True, blank=True)
+    desc_3 = models.CharField(max_length=50, null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='inactive')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

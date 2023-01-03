@@ -1,16 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
+<!--<style>-->
+<!--    #h2_2 {-->
+<!-- left: 0;-->
+<!--  top: 400px;-->
+<!--   margin: 0 0 25px;-->
+<!--    padding: 0;-->
+<!--     font-size: 55px;-->
+<!--      line-height: 26px;-->
+<!--        display: none;-->
+<!--}-->
+<!--#h2_3{-->
+<!--left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;-->
+<!--}-->
+<!--#left_slide_layer{-->
+<!--left: 105px;-->
+<!-- max-width: 1140px;-->
+<!--}-->
+<!--#yellow_line_img{-->
+<!--left: 0;-->
+<!-- top: 310px;-->
+<!--  width: 66px;-->
+<!--   height: 4px;-->
+<!--    margin: 0;-->
+<!--     padding: 0;-->
+<!--      display: none;-->
+<!--}-->
 
+<!--</style>-->
+
+<!-- Master Slider -->
 <div id="masterslider" class="master-slider ms-skin-default mb-0">
 
     {% for slider in sliders %}
     {% for slide in slides %}
-    {% if slider.id == slide.slider_id and slide.status == "active" and slide.text_align == "left" %}
+    {% if slider.id == slide.slider_id and  slide.text_align == "left" %}
             <div class="ms-slide">
                 <img src="{{ media_url }}{{ slide.slide_image }}"
                      data-src="{{ media_url }}{{ slide.slide_image }}"
-                     alt="Worldwide freight services"/>
+                     alt="Strongest distribution network"/>
                 <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
                     <div class="ms-anim-layers" style="opacity: 1; display: none;">
                         <img class="ms-layer"
@@ -18,170 +47,45 @@
                              alt=""
                              style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
                              data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
-                        <h2  class="ms-layer pi-caption01"
-
+                        {% if slide.desc_1 %}
+                        <h2 class="ms-layer pi-caption01" style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
                             data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">{{slide.desc_1}}</h2>
-                        <h2  class="ms-layer pi-caption01"
-
+                        {% endif %}
+                        {% if slide.desc_2 %}
+                        <h2 class="ms-layer pi-caption01" style="left: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
                             data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
                             {{slide.desc_2}}</h2>
-                        <h2  class="ms-layer pi-caption01"
-
+                        {% endif %}
+                        {% if slide.desc_3 %}
+                        <h2 class="ms-layer pi-caption01" style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
                             data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
                             {{slide.desc_3}}</h2>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-
-
-<!--    <div class="ms-slide">-->
-<!--        <img src="{{ media_url }}{{ slide.slide_image }}"-->
-<!--             data-src="{{ media_url }}{{ slide.slide_image }}"-->
-<!--             alt="Strongest distribution network"/>-->
-<!--        <div class="ms-slide-layers" id="left_slide_layer">-->
-<!--            <div class="ms-anim-layers" style="opacity: 1; display: none;">-->
-<!--                <img class="ms-layer" id="yellow_line_img"-->
-<!--                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-<!--                     alt=""-->
-<!--                     data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">-->
-<!--                <h2 class="ms-layer pi-caption01" id="h2_1"-->
-<!--                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">-->
-<!--                    {{slide.desc_1}}</h2>-->
-<!--                <h2 class="ms-layer pi-caption01" id="h2_2"-->
-<!--                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">-->
-<!--                    {{slide.desc_2}}</h2>-->
-<!--                <h2 class="ms-layer pi-caption01" id="h2_3"-->
-
-<!--                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">-->
-<!--                    {{slide.desc_3}}</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    {% else %}
+            <div class="ms-slide">
+                <img src="{{ media_url }}{{ slide.slide_image }}"
+                     data-src="{{ media_url }}{{ slide.slide_image }}"
+                     alt="Worldwide freight services"/>
+                <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
+                    <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                        <h2 class="ms-layer pi-caption01"
+                            style="left: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                            data-type="text" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
+                            data-delay="0">{{slide.desc_1}}</h2>
+                        <img class="ms-layer"
+                             src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                             alt=""
+                             style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                             data-type="image" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
+                             data-delay="300"></div>
+                </div>
+            </div>
 {% endif %}
     {% endfor %}
     {% endfor %}
-    <!--        <div class="ms-slide">-->
-    <!--            <img src="{% static 'assets/img/AIR-CARGO-Perishales.4ec63ee9.png' %}"-->
-    <!--                 data-src="{% static 'assets/img/AIR-CARGO-Perishales.4ec63ee9.png' %}"-->
-    <!--                 alt="International Air freight"/>-->
-    <!--            <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">-->
-    <!--                <div class="ms-anim-layers" style="opacity: 1; display: none;"><h2 class="ms-layer pi-caption01"-->
-    <!--                                                                                   style="left: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                                                                                   data-type="text"-->
-    <!--                                                                                   data-effect="top(short)"-->
-    <!--                                                                                   data-duration="300"-->
-    <!--                                                                                   data-hide-effect="fade"-->
-    <!--                                                                                   data-delay="0">air cargo-->
-    <!--                    perishables</h2>-->
-    <!--                    <img class="ms-layer"-->
-    <!--                         src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-    <!--                         alt=""-->
-    <!--                         style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"-->
-    <!--                         data-type="image" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                         data-delay="300"></div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    /
-
-    <!--        <div class="ms-slide">-->
-    <!--            <img src="{% static 'assets/img/fleet-parking-and-yard-management.png' %}"-->
-    <!--                 data-src="{% static 'assets/img/fleet-parking-and-yard-management.png' %}"-->
-    <!--                 alt="Worldwide freight services"/>-->
-    <!--            <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">-->
-    <!--                <div class="ms-anim-layers" style="">-->
-    <!--                    <img class="ms-layer"-->
-    <!--                         src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-    <!--                         alt="" style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0;"-->
-    <!--                         data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                         data-delay="300">-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px;"-->
-    <!--                        data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="600">Fleet Parking &amp;</h2>-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 400px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px;"-->
-    <!--                        data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="900">Yard-Management</h2>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="ms-slide">-->
-
-    <!--            <img src="{% static 'assets/img/Specialized-Cargo-Handling-and-Charters.47322c53.png' %}"-->
-    <!--                 data-src="{% static 'assets/img/Specialized-Cargo-Handling-and-Charters.47322c53.png' %}"-->
-    <!--                 alt="Worldwide freight services"/>-->
-    <!--            <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">-->
-    <!--                <div class="ms-anim-layers" style="opacity: 1; display: none;">-->
-    <!--                    <img class="ms-layer"-->
-    <!--                         src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-    <!--                         alt=""-->
-    <!--                         style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"-->
-    <!--                         data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">-->
-    <!--                        Specialized Cargo</h2>-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 400px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="900">Handling-->
-    <!--                        and</h2>-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">-->
-    <!--                        Charters</h2>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="ms-slide">-->
-
-    <!--            <img src="{% static 'assets/img/Trucking&#45;&#45;Logistics.0d0624ec.png' %}"-->
-    <!--                 data-src="{% static 'assets/img/Trucking&#45;&#45;Logistics.0d0624ec.png  ' %}"-->
-    <!--                 alt="Worldwide freight services"/>-->
-    <!--            <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">-->
-    <!--                <div class="ms-anim-layers" style="opacity: 1; display: none;">-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-type="text" data-effect="top(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="0">Trucking &amp; Logistics</h2>-->
-    <!--                    <img class="ms-layer"-->
-    <!--                         src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-    <!--                         alt=""-->
-    <!--                         style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"-->
-    <!--                         data-type="image" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                         data-delay="300"></div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="ms-slide">-->
-
-    <!--            <img src="{% static 'assets/img/Warehousing-(Dry-Goods&#45;&#45;Specialized-Cargo).029918d7.png' %}"-->
-    <!--                 data-src="{% static 'assets/img/Warehousing-(Dry-Goods&#45;&#45;Specialized-Cargo).029918d7.png' %}"-->
-    <!--                 alt="Worldwide freight services"/>-->
-    <!--            <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">-->
-    <!--                <div class="ms-anim-layers" style="opacity: 1; display: none;">-->
-    <!--                    <img class="ms-layer"-->
-    <!--                         src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"-->
-    <!--                         alt=""-->
-    <!--                         style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;">-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="300">Warehousing</h2>-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 400px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="600">(Dry Goods &amp;</h2>-->
-    <!--                    <h2 class="ms-layer pi-caption01"-->
-    <!--                        style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"-->
-    <!--                        data-type="text" data-effect="left(short)" data-duration="300" data-hide-effect="fade"-->
-    <!--                        data-delay="900">Specialized Cargo)</h2>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
 </div>
 
 <!-- Services  -->
