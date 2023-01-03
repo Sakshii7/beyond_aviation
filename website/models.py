@@ -22,8 +22,10 @@ STATUS = (
 
 SLIDER_CHOICES = (
     ('left', 'Left'),
+    ('right', 'Right'),
     ('center', 'Center')
 )
+
 
 class Service(models.Model):
     name = models.CharField(max_length=50)
