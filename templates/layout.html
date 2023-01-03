@@ -18,8 +18,20 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="{% static '/assets/icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    {% for header_key in settings %}
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{header_key.google_tag_manager_header_key}}');
+    </script>
+    {% endfor %}
 </head>
 <body>
+{% for body_key in settings %}
+<noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id={{body_key.google_tag_manager_body_key}}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ {% endfor %}
 <div id="root">
 
     <!--  Header -->
@@ -33,8 +45,8 @@
                                 <div class="navbar-header">
                                     <div class="logo">
                                         {% for logo in settings %}
-                                            <a href="/"><img src="{{ media_url }}{{ logo.homepage_logo }}"
-                                                             alt="Go Above & Beyond" style="height:60px"></a>
+                                        <a href="/"><img src="{{ media_url }}{{ logo.homepage_logo }}"
+                                                         alt="Go Above & Beyond" style="height:60px"></a>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -42,25 +54,25 @@
                                     <ul class="nav navbar-nav">
                                         <li class="current-menu-item "></li>
                                         {% for menu in menus %}
-                                            {% if menu.slug == "services" %}
-                                                <li class="dropdown">
-                                                    <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
-                                                    <ul class="dropdown-menu">
-                                                        {% for service in services %}
-                                                            <li>
-                                                                <a href="/services/{{ service.slug }}">{{ service.name }}</a>
-                                                            </li>
-                                                        {% endfor %}
-                                                    </ul>
+                                        {% if menu.slug == "services" %}
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle">Services</a>
+                                            <ul class="dropdown-menu">
+                                                {% for service in services %}
+                                                <li>
+                                                    <a href="/services/{{ service.slug }}">{{ service.name }}</a>
                                                 </li>
-                                                <li></li>
-                                            {% else %}
-                                                {% for page in pages %}
-                                                    {% if menu.slug == page.slug %}
-                                                        <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
-                                                    {% endif %}
                                                 {% endfor %}
-                                            {% endif %}
+                                            </ul>
+                                        </li>
+                                        <li></li>
+                                        {% else %}
+                                        {% for page in pages %}
+                                        {% if menu.slug == page.slug %}
+                                        <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
                                         {% endfor %}
                                     </ul>
                                     <div id="dl-menu" class="dl-menuwrapper">
@@ -68,24 +80,24 @@
                                         <ul class="dl-menu">
                                             <li><a href="/" class="active">Home</a></li>
                                             {% for menu in menus %}
-                                                {% if menu.slug == "services" %}
-                                                    <li><a href="/">Services</a>
-                                                        <ul class="dl-submenu">
-                                                            <li class="dl-back"><a href="#">back</a></li>
-                                                            {% for service in services %}
-                                                                <li>
-                                                                    <a href="/services/{{ service.slug }}">{{ service.name }}</a>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
+                                            {% if menu.slug == "services" %}
+                                            <li><a href="/">Services</a>
+                                                <ul class="dl-submenu">
+                                                    <li class="dl-back"><a href="#">back</a></li>
+                                                    {% for service in services %}
+                                                    <li>
+                                                        <a href="/services/{{ service.slug }}">{{ service.name }}</a>
                                                     </li>
-                                                {% else %}
-                                                    {% for page in pages %}
-                                                        {% if menu.slug == page.slug %}
-                                                            <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
-                                                        {% endif %}
                                                     {% endfor %}
-                                                {% endif %}
+                                                </ul>
+                                            </li>
+                                            {% else %}
+                                            {% for page in pages %}
+                                            {% if menu.slug == page.slug %}
+                                            <li><a href="/{{ page.slug }}">{{ page.title }}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% endif %}
                                             {% endfor %}
                                         </ul>
                                     </div>
@@ -111,10 +123,10 @@
                         <li class="widget widget_newsletterwidget">
                             <div class="title"></div>
                             {% for logo in settings %}
-                                <img src="{{ media_url }}{{ logo.footer_logo }}" alt="LOGO illustration"><br>
+                            <img src="{{ media_url }}{{ logo.footer_logo }}" alt="LOGO illustration"><br>
                             {% endfor %}
                             {% for owner in owner_section %}
-                                <p>{{ owner.description }}</p>
+                            <p>{{ owner.description }}</p>
                             {% endfor %}
                         </li>
                     </ul>
@@ -126,9 +138,9 @@
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 {% for menu in menus %}
-                                    {% if menu.show_in_footer is True %}
-                                        <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
-                                    {% endif %}
+                                {% if menu.show_in_footer is True %}
+                                <li><a href="/{{ menu.slug }}">{{ menu.name }}</a></li>
+                                {% endif %}
                                 {% endfor %}
                             </ul>
                         </li>
@@ -140,7 +152,7 @@
                             </div>
                             <ul>
                                 {% for service in services %}
-                                    <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
+                                <li><a href="/services/{{ service.slug }}">{{ service.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -151,14 +163,14 @@
                                 <h3>contact us</h3>
                             </div>
                             {% for data in settings %}
-                                <address>{{ data.contact_address|safe }}
-                                    <ul class="footer-social-icons">
-                                        <li><a href="{{ data.facebook_url }}"
-                                               class="fa fa-facebook"></a></li>
-                                        <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
-                                        <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
-                                    </ul>
-                                </address>
+                            <address>{{ data.contact_address|safe }}
+                                <ul class="footer-social-icons">
+                                    <li><a href="{{ data.facebook_url }}"
+                                           class="fa fa-facebook"></a></li>
+                                    <li><a href="{{ data.twitter_url }}" class="fa fa-twitter"></a></li>
+                                    <li><a href="{{ data.instagram_url }}" class="fa fa-instagram"></a></li>
+                                </ul>
+                            </address>
                             {% endfor %}
                     </ul>
                 </div>
@@ -200,6 +212,7 @@
             $(this).addClass("active");
         }))
     }))
+
 </script>
 <script>
     jQuery(document).ready(function ($) {
@@ -232,6 +245,7 @@
 
         slider.control('arrows');
     });
+
 
 </script>
 </body>
