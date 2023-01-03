@@ -1,34 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 {% load static %}
-<!--<style>-->
-<!--    #h2_2 {-->
-<!-- left: 0;-->
-<!--  top: 400px;-->
-<!--   margin: 0 0 25px;-->
-<!--    padding: 0;-->
-<!--     font-size: 55px;-->
-<!--      line-height: 26px;-->
-<!--        display: none;-->
-<!--}-->
-<!--#h2_3{-->
-<!--left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;-->
-<!--}-->
-<!--#left_slide_layer{-->
-<!--left: 105px;-->
-<!-- max-width: 1140px;-->
-<!--}-->
-<!--#yellow_line_img{-->
-<!--left: 0;-->
-<!-- top: 310px;-->
-<!--  width: 66px;-->
-<!--   height: 4px;-->
-<!--    margin: 0;-->
-<!--     padding: 0;-->
-<!--      display: none;-->
-<!--}-->
-
-<!--</style>-->
 
 <!-- Master Slider -->
 <div id="masterslider" class="master-slider ms-skin-default mb-0">
@@ -71,16 +43,32 @@
                      alt="Worldwide freight services"/>
                 <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
                     <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                        {% if slide.desc_1 %}
                         <h2 class="ms-layer pi-caption01"
                             style="left: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
                             data-type="text" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
                             data-delay="0">{{slide.desc_1}}</h2>
+                        {% endif %}
+                         {% if slide.desc_2 %}
+                        <h2 class="ms-layer pi-caption01"
+                            style="left: 273px; top: 450px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                            data-type="text" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
+                            data-delay="0">{{slide.desc_2}}</h2>
+                        {% endif %}
+                         {% if slide.desc_3 %}
+                        <h2 class="ms-layer pi-caption01"
+                            style="left: 273px; top: 510px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                            data-type="text" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
+                            data-delay="0">{{slide.desc_3}}</h2>
+                        {% endif %}
+
                         <img class="ms-layer"
                              src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
                              alt=""
                              style="left: 540px; top: 450px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
                              data-type="image" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
                              data-delay="300"></div>
+
                 </div>
             </div>
 {% endif %}
