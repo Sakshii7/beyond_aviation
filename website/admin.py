@@ -170,15 +170,15 @@ class SliderAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
-    list_per_page = 5
     search_fields = ['name']
     ordering = ['-created_on']
-    rows_count = Slider.objects.all().count()
-    print(rows_count, 'count')
-    if rows_count != 0:
 
-        def has_add_permission(self, request, obj=None):
+    def has_add_permission(self, request, obj=None):
+        rows_count = Slider.objects.all().count()
+
+        if rows_count > 0:
             return False
+        return True
 
 
 admin.site.register(Service, ServiceAdmin)

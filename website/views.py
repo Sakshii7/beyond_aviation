@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.template import loader
 
 from beyond_aviation.settings import MEDIA_URL
-from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting
+from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
 # Create your views here.
@@ -19,6 +19,8 @@ def fetch_common_object_data():
     owner_section = Section.objects.filter(section_type="owner", status="active")
     other_sections = Section.objects.filter(section_type="other", status="active")
     sub_sections = SubSection.objects.filter(status="active")
+    sliders = Slider.objects.filter(status="active")
+    slides = Slides.objects.filter(status="active")
     settings = Setting.objects.all()
     fav_icon = ""
     for setting in settings:
@@ -55,7 +57,9 @@ def fetch_common_object_data():
         'other_sections': other_sections,
         'sub_sections': sub_sections,
         'media_url': MEDIA_URL,
-        'fav_icon': fav_icon
+        'fav_icon': fav_icon,
+        'sliders': sliders,
+        'slides': slides
     }
 
     return common_obj_data

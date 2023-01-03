@@ -2739,6 +2739,12 @@ blockquote {
     font-size: 72px;
     font-weight: 800;
     text-transform: uppercase;
+    left: 0;
+  top: 400px;
+   margin: 0 0 25px;
+    padding: 0;
+      line-height: 26px;
+        display: none;
 }
 
 .master-slider .pi-text {

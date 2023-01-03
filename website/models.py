@@ -194,7 +194,7 @@ class Slider(models.Model):
 
 
 class Slides(models.Model):
-    section = models.ForeignKey(Slider, on_delete=models.CASCADE)
+    slider = models.ForeignKey(Slider, on_delete=models.CASCADE)
     slide_name = models.CharField(max_length=50)
     slide_image = models.ImageField(upload_to='SlidesImage', null=True, blank=True)
     text_align = models.CharField(max_length=10, choices=CHOICES, default='left')
