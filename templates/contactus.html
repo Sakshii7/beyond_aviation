@@ -18,6 +18,7 @@
     }
 
 
+
 </style>
 
 
@@ -25,16 +26,17 @@
     <div class="row" style="margin-bottom: 18px">
         <div class="col-md-6">
             {% if messages %}
-                {% for message in messages %}
-                    <div class="alert" role="alert">
-                        <h4 id="click-to-show"
-                            style="background-color: #d4edda; padding: 0.75rem 1.25rem; margin-bottom: 1rem;">{{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span id="close-btn" aria-hidden="true">×</span></button>
-                        </h4>
-                    </div>
-                {% endfor %}
-            {% endif %}</div>
+            {% for message in messages %}
+            <div class="alert" role="alert">
+                <h4 id="click-to-show"
+                    style="background-color: #d4edda; padding: 0.75rem 1.25rem; margin-bottom: 1rem;">{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span id="close-btn" aria-hidden="true">×</span></button>
+                </h4>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
     <div class="row">
 
@@ -70,6 +72,8 @@
                     <textarea rows="8" class="wpcf7-textarea" id="contact-message" name="message"
                               required=""></textarea>
                 </fieldset>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="6LcclMkZAAAAABK9IMp456ab0lv6TasQnXkGsmOZ"></div>
                 <input type="submit" class="wpcf7-submit">
             </form>
         </div>
@@ -85,7 +89,7 @@
             <address>
                 {{ setting }}
                 {% for data in settings %}
-                    {{ data.contact_address|safe }}
+                {{ data.contact_address|safe }}
                 {% endfor %}<br>
             </address>
         </div>
@@ -97,6 +101,7 @@
         $('#click-to-show').hide();
         event.stopPropagation();
     })
+
 
 
 </script>

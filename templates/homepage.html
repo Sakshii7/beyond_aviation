@@ -7,103 +7,110 @@
 
     {% for slider in sliders %}
     {% for slide in slides %}
-    {% if slider.id == slide.slider_id and  slide.text_align == "left" %}
-            <div class="ms-slide">
-                <img src="{{ media_url }}{{ slide.slide_image }}"
-                     data-src="{{ media_url }}{{ slide.slide_image }}"
-                     alt="Strongest distribution network"/>
-                <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
-                    <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                        <img class="ms-layer"
-                             src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                             alt=""
-                             style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                             data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
-                        {% if slide.desc_1 %}
-                        <h2 class="ms-layer pi-caption01" style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">{{slide.desc_1}}</h2>
-                        {% endif %}
-                        {% if slide.desc_2 %}
-                        <h2 class="ms-layer pi-caption01" style="left: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
-                            data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
-                            {{slide.desc_2}}</h2>
-                        {% endif %}
-                        {% if slide.desc_3 %}
-                        <h2 class="ms-layer pi-caption01" style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
-                            {{slide.desc_3}}</h2>
-                        {% endif %}
-                    </div>
-                </div>
+    {% if slider.id == slide.slider_id and slide.text_align == "left" %}
+    <div class="ms-slide">
+        <img src="{{ media_url }}{{ slide.slide_image }}"
+             data-src="{{ media_url }}{{ slide.slide_image }}"
+             alt="Strongest distribution network"/>
+        <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
+            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                <img class="ms-layer"
+                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                     alt=""
+                     style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                     data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
+                {% if slide.desc_1 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">
+                    {{slide.desc_1}}</h2>
+                {% endif %}
+                {% if slide.desc_2 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="left: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
+                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
+                    {{slide.desc_2}}</h2>
+                {% endif %}
+                {% if slide.desc_3 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
+                    {{slide.desc_3}}</h2>
+                {% endif %}
             </div>
+        </div>
+    </div>
 
-    {% elif slider.id == slide.slider_id and  slide.text_align == "right"  %}
-            <div class="ms-slide">
-                <img src="{{ media_url }}{{ slide.slide_image }}"
-                     data-src="{{ media_url }}{{ slide.slide_image }}"
-                     alt="Strongest distribution network"/>
-                <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
-                    <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                        <img class="ms-layer"
-                             src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                             alt=""
-                             style="right: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                             data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
-                        {% if slide.desc_1 %}
-                        <h2 class="ms-layer pi-caption01" style="right: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="600">{{slide.desc_1}}</h2>
-                        {% endif %}
-                        {% if slide.desc_2 %}
-                        <h2 class="ms-layer pi-caption01" style="right: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
-                            data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
-                            {{slide.desc_2}}</h2>
-                        {% endif %}
-                        {% if slide.desc_3 %}
-                        <h2 class="ms-layer pi-caption01" style="right: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
-                            {{slide.desc_3}}</h2>
-                        {% endif %}
-                    </div>
-                </div>
+    {% elif slider.id == slide.slider_id and slide.text_align == "right" %}
+    <div class="ms-slide">
+        <img src="{{ media_url }}{{ slide.slide_image }}"
+             data-src="{{ media_url }}{{ slide.slide_image }}"
+             alt="Strongest distribution network"/>
+        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
+            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                <img class="ms-layer"
+                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                     alt=""
+                     style="right: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                     data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
+                {% if slide.desc_1 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="right: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="600">
+                    {{slide.desc_1}}</h2>
+                {% endif %}
+                {% if slide.desc_2 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="right: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
+                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
+                    {{slide.desc_2}}</h2>
+                {% endif %}
+                {% if slide.desc_3 %}
+                <h2 class="ms-layer pi-caption01"
+                    style="right: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
+                    {{slide.desc_3}}</h2>
+                {% endif %}
             </div>
+        </div>
+    </div>
 
     {% else %}
-            <div class="ms-slide">
-                <img src="{{ media_url }}{{ slide.slide_image }}"
-                     data-src="{{ media_url }}{{ slide.slide_image }}"
-                     alt="Worldwide freight services"/>
-                <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
-                    <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                         <img class="ms-layer"
-                             src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                             alt=""
-                             style="right: 540px; top: 340px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                             data-type="image" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
-                             data-delay="300"></div>
-                        {% if slide.desc_1 %}
-                        <h2 class="ms-layer pi-caption01"
-                            style="right: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                            data-delay="0">{{slide.desc_1}}</h2>
-                        {% endif %}
-                         {% if slide.desc_2 %}
-                        <h2 class="ms-layer pi-caption01"
-                            style="right: 273px; top: 450px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                            data-delay="0">{{slide.desc_2}}</h2>
-                        {% endif %}
-                         {% if slide.desc_3 %}
-                        <h2 class="ms-layer pi-caption01"
-                            style="right: 273px; top: 510px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                            data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                            data-delay="0">{{slide.desc_3}}</h2>
-                        {% endif %}
+    <div class="ms-slide">
+        <img src="{{ media_url }}{{ slide.slide_image }}"
+             data-src="{{ media_url }}{{ slide.slide_image }}"
+             alt="Worldwide freight services"/>
+        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
+            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                <img class="ms-layer"
+                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                     alt=""
+                     style="right: 540px; top: 340px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                     data-type="image" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
+                     data-delay="300"></div>
+            {% if slide.desc_1 %}
+            <h2 class="ms-layer pi-caption01"
+                style="right: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
+                data-delay="0">{{slide.desc_1}}</h2>
+            {% endif %}
+            {% if slide.desc_2 %}
+            <h2 class="ms-layer pi-caption01"
+                style="right: 273px; top: 450px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
+                data-delay="0">{{slide.desc_2}}</h2>
+            {% endif %}
+            {% if slide.desc_3 %}
+            <h2 class="ms-layer pi-caption01"
+                style="right: 273px; top: 510px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
+                data-delay="0">{{slide.desc_3}}</h2>
+            {% endif %}
 
 
-
-                </div>
-            </div>
-{% endif %}
+        </div>
+    </div>
+    {% endif %}
     {% endfor %}
     {% endfor %}
 </div>
@@ -155,7 +162,7 @@
                 </div>
                 <p style="color:{{ section.text_color }};">{{ section.description }}</p>
                 {% for sub_section in sub_sections %}
-                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                {% if section.id == sub_section.section_id%}
                 <ul class="service-list clearfix">
                     <li>
                         <div class="icon-container" style="color:{{ section.text_color }};"><em
@@ -177,7 +184,7 @@
                 </div>
                 <p style="color:{{ section.text_color }};">{{ section.description }}</p>
                 {% for sub_section in sub_sections %}
-                {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                {% if section.id == sub_section.section_id %}
                 <ul class="service-list clearfix">
                     <li>
                         <div class="icon-container"><em class="fa fa-arrow-right"></em></div>
@@ -256,7 +263,7 @@
                 <p style="color:{{ section.text_color }};">{{ section.description }}</p>
                 <ul class="service-list clearfix">
                     {% for sub_section in sub_sections %}
-                    {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                    {% if section.id == sub_section.section_id %}
                     {% if sub_section.icon %}
                     <li>
                         <div style="padding: 10px;" class="icon-container">
@@ -304,7 +311,7 @@
                 <p>{{ section.description }}</p>
                 <ul class="service-list clearfix">
                     {% for sub_section in sub_sections %}
-                    {% if section.id == sub_section.section_id and sub_section.status == "active" %}
+                    {% if section.id == sub_section.section_id %}
                     {% if sub_section.image %}
                     <li>
                         <div style="padding: 10px;" class="icon-container">

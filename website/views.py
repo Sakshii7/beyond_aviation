@@ -1,4 +1,6 @@
+import json
 import re
+import urllib
 
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -6,7 +8,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
 
+from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL
+from .forms import ContactForm
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
@@ -86,7 +90,7 @@ def view_pages(request, slug):
     template = loader.get_template('pages.html')
     context = fetch_common_object_data()
     if slug != 'undefined':
-        print(slug)
+
         get_page_id = Page.objects.get(slug=slug)
         context['get_page_id'] = get_page_id
 
@@ -110,7 +114,26 @@ def query_form(request):
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req = urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
 
+            if result['success']:
+                form.save()
+                messages.success(request, 'New comment added with success!')
+            else:
+                messages.error(request,
+                               'Invalid reCAPTCHA. Please try again.')
+            return redirect('')
         if not re.fullmatch(contact_regex, phone):
             messages.error(request, 'Invalid Phone')
         elif not re.fullmatch(email_regex, email):
