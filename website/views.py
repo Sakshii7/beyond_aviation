@@ -1,6 +1,7 @@
 import json
 import re
-import urllib
+import urllib.parse
+import urllib.request
 
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -25,10 +26,10 @@ def fetch_common_object_data():
     sub_sections = SubSection.objects.filter(status="active")
     sliders = Slider.objects.filter(status="active")
     slides = Slides.objects.filter(status="active")
-    settings = Setting.objects.all()
+    setting = Setting.objects.all()
     fav_icon = ""
-    for setting in settings:
-        fav_icon = setting.fav_icon
+    for sett in setting:
+        fav_icon = sett.fav_icon
 
     pair_first_values = []
     for i in range(0, len(offerings), 2):
@@ -54,7 +55,7 @@ def fetch_common_object_data():
     common_obj_data = {
         'menus': menus,
         'pages': pages,
-        'settings': settings,
+        'settings': setting,
         'services': services,
         'offerings': offerings_pair_list,
         'owner_section': owner_section,
