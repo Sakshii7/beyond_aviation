@@ -60,8 +60,9 @@
 
 
 </style>
-<div class="container">
 
+<!-- Sections  -->
+<div class="container">
     {% for page in pages %}
         {% for section in other_sections %}
             {% if page.id == section.page_id %}
@@ -120,6 +121,8 @@
         {% endfor %}
     {% endfor %}
 </div>
+
+<!-- Table Content -->
 <div class="container">
     <table class="fare-chart">
         <tr>

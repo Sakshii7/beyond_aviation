@@ -67,7 +67,7 @@ class ServiceOffering(models.Model):
         return self.title
 
     def icon_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.icon.url))
+        return mark_safe('<img src="{url}" width="110" height="95"/>'.format(url=self.icon.url))
 
 
 class Page(models.Model):
@@ -87,7 +87,7 @@ class Page(models.Model):
         return self.title
 
     def header_image_preview(self):
-        return mark_safe('<img src="{url}" width="200" height="150"/>'.format(url=self.header_img.url))
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.header_img.url))
 
 
 class Section(models.Model):
@@ -112,7 +112,7 @@ class Section(models.Model):
         return self.title
 
     def image_preview(self):
-        return mark_safe('<img src="{url}" width="320" height="300"/>'.format(url=self.image.url))
+        return mark_safe('<img src="{url}" width="300" height="200"/>'.format(url=self.image.url))
 
 
 class SubSection(models.Model):
@@ -131,7 +131,7 @@ class SubSection(models.Model):
         return self.section.title
 
     def icon_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.icon.url))
+        return mark_safe('<img src="{url}" width="110" height="95"/>'.format(url=self.icon.url))
 
 
 class Menu(models.Model):
@@ -220,4 +220,4 @@ class Slides(models.Model):
         return self.slide_name
 
     def slide_image_preview(self):
-        return mark_safe('<img src="{url}" width="80" height="80"/>'.format(url=self.slide_image.url))
+        return mark_safe('<img src="{url}" width="110" height="95"/>'.format(url=self.slide_image.url))
