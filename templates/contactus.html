@@ -102,7 +102,6 @@
 
             <div class="custom-heading"><h4>Company Information</h4></div>
             <address>
-                {{ setting }}
                 {% for data in settings %}
                     {{ data.contact_address|safe }}
                 {% endfor %}<br>
