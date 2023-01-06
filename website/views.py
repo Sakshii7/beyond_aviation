@@ -10,7 +10,7 @@ from django.template import loader
 
 from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL
-from .forms import ContactForm
+
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
@@ -114,26 +114,25 @@ def query_form(request):
         email = request.POST['email']
         phone = request.POST['phone']
         message = request.POST['message']
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            recaptcha_response = request.POST.get('g-recaptcha-response')
-            url = 'https://www.google.com/recaptcha/api/siteverify'
-            values = {
-                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        values = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
             'response': recaptcha_response
-            }
-            data = urllib.parse.urlencode(values).encode()
-            req = urllib.request.Request(url, data=data)
-            response = urllib.request.urlopen(req)
-            result = json.loads(response.read().decode())
+        }
+        data = urllib.parse.urlencode(values).encode()
+        print(data)
+        req = urllib.request.Request(url, data=data)
+        response = urllib.request.urlopen(req)
+        result = json.loads(response.read().decode())
+        ''' End reCAPTCHA validation '''
 
-            if result['success']:
-                form.save()
-                messages.success(request, 'New comment added with success!')
-            else:
-                messages.error(request,
-                               'Invalid reCAPTCHA. Please try again.')
-            return redirect('')
+        if result['success']:
+            QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
+            # messages.success(request, 'New comment added with success!')
+        else:
+            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+
         if not re.fullmatch(contact_regex, phone):
             messages.error(request, 'Invalid Phone')
         elif not re.fullmatch(email_regex, email):

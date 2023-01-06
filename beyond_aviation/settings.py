@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'website',
     'tinymce',
     'rangefilter',
-'captcha',
 ]
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
@@ -174,5 +173,5 @@ EMAIL_PORT = Environment.get("EMAIL_PORT")
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = Environment.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = Environment.get("EMAIL_HOST_PASSWORD")
-RECAPTCHA_PUBLIC_KEY = ""
-RECAPTCHA_PRIVATE_KEY = ""
+
+GOOGLE_RECAPTCHA_SECRET_KEY = ""
