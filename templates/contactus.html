@@ -28,6 +28,7 @@
         <div class="col-md-6">
             {% if messages %}
             {% for message in messages %}
+            {% if message.success %}
             <div class="alert" role="alert">
                 <h4 id="click-to-show"
                     style="background-color: #d4edda; padding: 0.75rem 1.25rem; margin-bottom: 1rem;">{{ message }}
@@ -35,6 +36,15 @@
                         <span id="close-btn" aria-hidden="true">×</span></button>
                 </h4>
             </div>
+            {% else %}
+            <div class="alert" role="alert">
+                <h4 id="click-to-error-show"
+                    style="background-color: #f8d7da; color: #721c24; padding: 0.75rem 1.25rem; margin-bottom: 1rem;">{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span id="close-error-btn" aria-hidden="true">×</span></button>
+                </h4>
+            </div>
+            {% endif %}
             {% endfor %}
             {% endif %}
         </div>
@@ -73,7 +83,7 @@
                     <textarea rows="8" class="wpcf7-textarea" id="contact-message" name="message"
                               required=""></textarea>
                 </fieldset>
-                <div class="g-recaptcha" data-sitekey="6LdgEtYjAAAAAG9EzCYAdPSn0EbS_k39TQ0Icuxs"></div>
+                <div class="g-recaptcha" data-sitekey="6LdLM9YjAAAAAIHHG2Rgv9vQDY5aKvKt15QZTGAu"></div>
                 <input type="submit" class="wpcf7-submit">
             </form>
         </div>
@@ -101,8 +111,10 @@
         $('#click-to-show').hide();
         event.stopPropagation();
     })
-
-
-
-
+</script>
+<script>
+    $('body, #close-error-btn').click(function () {
+        $('#click-to-error-show').hide();
+        event.stopPropagation();
+    })
 </script>

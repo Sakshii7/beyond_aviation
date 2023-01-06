@@ -129,42 +129,43 @@ def query_form(request):
         ''' End reCAPTCHA validation '''
 
         if result['success']:
-            QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
-            # messages.success(request, 'New comment added with success!')
+            # QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
+            print('New comment added with success!')
+
+            if not re.fullmatch(contact_regex, phone):
+                messages.info(request, 'Invalid Phone')
+            elif not re.fullmatch(email_regex, email):
+                messages.info(request, 'Invalid Email')
+            elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
+                messages.info(request, 'Invalid Name')
+            else:
+                query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
+
+                # if query_id.email_as_send:
+                send_mail(' Above & Beyond - Contact Form',
+                          message,
+                          email,
+                          ['goabovebeyondaviation@gmail.com'],
+                          fail_silently=False,
+                          html_message=loader.render_to_string(
+                              'email_template.html',
+                              {
+                                  'first_name': first_name,
+                                  'last_name': last_name,
+                                  'email': email,
+                                  'phone': phone,
+                                  'message': message,
+                                  'logo': logo,
+                                  'media_url': MEDIA_URL,
+                              }
+                          ))
+                if send_mail:
+                    query_id.email_as_send = True
+                query_id.save()
+
+                messages.success(request, 'Thankyou for Contacting us.')
         else:
-            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+            messages.info(request, 'Please verify that you are not a robot.')
 
-        if not re.fullmatch(contact_regex, phone):
-            messages.error(request, 'Invalid Phone')
-        elif not re.fullmatch(email_regex, email):
-            messages.error(request, 'Invalid Email')
-        elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
-            messages.error(request, 'Invalid Name')
-        else:
-            query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
-
-            # if query_id.email_as_send:
-            send_mail(' Above & Beyond - Contact Form',
-                      message,
-                      email,
-                      ['goabovebeyondaviation@gmail.com'],
-                      fail_silently=False,
-                      html_message=loader.render_to_string(
-                          'email_template.html',
-                          {
-                              'first_name': first_name,
-                              'last_name': last_name,
-                              'email': email,
-                              'phone': phone,
-                              'message': message,
-                              'logo': logo,
-                              'media_url': MEDIA_URL,
-                          }
-                      ))
-            if send_mail:
-                query_id.email_as_send = True
-            query_id.save()
-
-            messages.success(request, 'Thankyou for Contacting us.')
         return redirect(request.META['HTTP_REFERER'])
     return redirect(request.META['HTTP_REFERER'])
