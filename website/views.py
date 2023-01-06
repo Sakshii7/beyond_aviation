@@ -11,7 +11,6 @@ from django.template import loader
 
 from beyond_aviation import settings
 from beyond_aviation.settings import MEDIA_URL
-
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
@@ -91,7 +90,6 @@ def view_pages(request, slug):
     template = loader.get_template('pages.html')
     context = fetch_common_object_data()
     if slug != 'undefined':
-
         get_page_id = Page.objects.get(slug=slug)
         context['get_page_id'] = get_page_id
 
@@ -122,7 +120,6 @@ def query_form(request):
             'response': recaptcha_response
         }
         data = urllib.parse.urlencode(values).encode()
-        print(data)
         req = urllib.request.Request(url, data=data)
         response = urllib.request.urlopen(req)
         result = json.loads(response.read().decode())
@@ -139,7 +136,8 @@ def query_form(request):
             elif not re.fullmatch(name_regex, first_name) or not re.fullmatch(name_regex, last_name):
                 messages.info(request, 'Invalid Name')
             else:
-                query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
+                query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone,
+                                     message=message)
 
                 # if query_id.email_as_send:
                 send_mail(' Above & Beyond - Contact Form',
