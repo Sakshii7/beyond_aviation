@@ -167,3 +167,10 @@ def query_form(request):
 
         return redirect(request.META['HTTP_REFERER'])
     return redirect(request.META['HTTP_REFERER'])
+
+
+def error_500_view(request):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))

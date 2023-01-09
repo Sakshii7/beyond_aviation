@@ -11,12 +11,8 @@ b
 2website/static/assets/masterslider/masterslider.js,8\8\889b188e0e631f01fe118d56c77b1ff218a3696f
 G
 beyond_aviation/asgi.py,a\9\a9c49dd48086b37a91f3bc99ccdecc430da395b1
-K
-beyond_aviation/settings.py,2\e\2e30cd2b7579953ff6c57e7ba85ab02de7fdc1dc
 G
 beyond_aviation/wsgi.py,f\1\f1ef8934b2a652bbbc926345f812e40a4d80f85a
-G
-beyond_aviation/urls.py,a\b\abde1353490b99ddd1b544cf1893ac8d589bd3f3
 j
 :media/HeaderImage/airline-cargo-sales-and-facilitation.png,6\7\676ea8472d706aabc3d0d379c501f97106d1b6fa
 I
