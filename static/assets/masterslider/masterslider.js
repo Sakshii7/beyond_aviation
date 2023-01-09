@@ -1756,7 +1756,7 @@ window.averta = {};
             this._initLayers(false, true);
         }
 
-        this._onReadyCallback.call(this.slide);
+
     };
 
     /**

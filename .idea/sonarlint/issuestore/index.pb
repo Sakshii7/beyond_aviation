@@ -1,8 +1,6 @@
 
 @
 website/tests.py,9\6\96b3248304dfe63d49ac6053e576f82d865cba2d
-Z
-*static/assets/masterslider/masterslider.js,c\6\c6a6d55800f639ca32ee8f8e31bfc3cbdffb4993
 R
 "website/migrations/0001_initial.py,7\b\7b7f164d6a9c08301c07137eac61829cbb13ddb9
 f

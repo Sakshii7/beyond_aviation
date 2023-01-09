@@ -174,3 +174,10 @@ def error_500_view(request):
     context = fetch_common_object_data()
 
     return HttpResponse(template.render(context, request))
+
+
+def error_404_view(request, exception):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))
