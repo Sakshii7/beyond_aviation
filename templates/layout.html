@@ -96,7 +96,6 @@
                                                 {% if menu.slug == "services" %}
                                                     <li><a href="/">Services</a>
                                                         <ul class="dl-submenu">
-                                                            <li class="dl-back"><a href="#">back</a></li>
                                                             {% for service in services %}
                                                                 <li>
                                                                     <a href="/services/{{ service.slug }}">{{ service.name }}</a>

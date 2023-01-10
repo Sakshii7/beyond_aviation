@@ -23,7 +23,7 @@ class SectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status']
     list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ['title']
     ordering = ['-created_on']
 
@@ -36,7 +36,7 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ['name']
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
@@ -50,7 +50,7 @@ class ServiceOfferingAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status', ]
     list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ['title']
     ordering = ['-created_on']
 
@@ -61,7 +61,7 @@ class MenuAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_on', 'status']
     list_filter = (('created_on', DateRangeFilter), 'status')
     list_editable = ['status']
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ['name']
     ordering = ['-created_on']
 
@@ -86,7 +86,7 @@ class PageAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_on', 'status']
     list_editable = ['status']
     list_filter = (('created_on', DateRangeFilter), 'status')
-    list_per_page = 5
+    list_per_page = 10
     search_fields = ['title']
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()}
