@@ -5,3 +5,4 @@ env
 __pycache__/*
 *.xml
 .idea/misc.xml
+beyond_aviation/.DS_Store

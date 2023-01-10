@@ -5,26 +5,13 @@ from tinymce import HTMLField
 
 # Create your models here.
 
-CHOICES = (
-    ('left', 'Left'),
-    ('right', 'Right')
-)
+CHOICES = (('left', 'Left'), ('right', 'Right'))
 
-SECTIONS = (
-    ('other', 'Other'),
-    ('owner', 'Owner'),
-)
+SECTIONS = (('other', 'Other'), ('owner', 'Owner'),)
 
-STATUS = (
-    ('active', 'Active'),
-    ('inactive', 'InActive'),
-)
+STATUS = (('active', 'Active'), ('inactive', 'InActive'),)
 
-SLIDER_CHOICES = (
-    ('left', 'Left'),
-    ('right', 'Right'),
-    ('center', 'Center')
-)
+SLIDER_CHOICES = (('left', 'Left'), ('right', 'Right'), ('center', 'Center'))
 
 
 class Service(models.Model):
@@ -179,7 +166,6 @@ class Setting(models.Model):
     fav_icon = models.ImageField(upload_to='FavIcon', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
     google_tag_manager_key = models.CharField(max_length=50, null=True)
-
 
     class Meta:
         db_table = "setting"

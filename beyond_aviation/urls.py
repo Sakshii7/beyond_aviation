@@ -31,6 +31,5 @@ handler500 = 'website.views.error_500_view'
 handler404 = 'website.views.error_404_view'
 urlpatterns += [
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
