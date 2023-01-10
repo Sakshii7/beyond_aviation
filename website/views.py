@@ -100,7 +100,7 @@ def query_form(request):
     logo = Menu.objects.filter(status="active")
     if request.method == "POST":
         contact_regex = re.compile(
-            r'(^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$)')
+            r'(^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$)')
 
         email_regex = re.compile(
             r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
@@ -126,9 +126,6 @@ def query_form(request):
         ''' End reCAPTCHA validation '''
 
         if result['success']:
-            # QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone, message=message)
-            print('New comment added with success!')
-
             if not re.fullmatch(contact_regex, phone):
                 messages.info(request, 'Invalid Phone')
             elif not re.fullmatch(email_regex, email):
@@ -139,7 +136,6 @@ def query_form(request):
                 query_id = QueryForm(first_name=first_name, last_name=last_name, email=email, phone=phone,
                                      message=message)
 
-                # if query_id.email_as_send:
                 send_mail(' Above & Beyond - Contact Form',
                           message,
                           email,

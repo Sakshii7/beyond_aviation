@@ -115,8 +115,7 @@ class SettingAdmin(admin.ModelAdmin):
             instagram_url = request.POST['instagram_url']
             twitter_url = request.POST['twitter_url']
             common_service_content = request.POST['common_service_content']
-            google_tag_manager_header_key = request.POST['google_tag_manager_header_key']
-            google_tag_manager_body_key = request.POST['google_tag_manager_body_key']
+            google_tag_manager_key = request.POST['google_tag_manager_key']
 
             rows_count = Setting.objects.all().count()
             if rows_count != 0:
@@ -126,8 +125,7 @@ class SettingAdmin(admin.ModelAdmin):
                 settings.instagram_url = instagram_url
                 settings.twitter_url = twitter_url
                 settings.common_service_content = common_service_content
-                settings.google_tag_manager_header_key = google_tag_manager_header_key
-                settings.google_tag_manager_body_key = google_tag_manager_body_key
+                settings.google_tag_manager_key = google_tag_manager_key
                 settings.homepage_logo = request.FILES.get(
                     'homepage_logo') if 'homepage_logo' in request.FILES else settings.homepage_logo
                 settings.footer_logo = request.FILES.get(
@@ -142,8 +140,7 @@ class SettingAdmin(admin.ModelAdmin):
                 query_id = Setting(contact_address=contact_address, facebook_url=facebook_url,
                                    instagram_url=instagram_url, twitter_url=twitter_url,
                                    common_service_content=common_service_content,
-                                   google_tag_manager_header_key=google_tag_manager_header_key,
-                                   google_tag_manager_body_key=google_tag_manager_body_key, homepage_logo=homepage_logo,
+                                   google_tag_manager_key=google_tag_manager_key, homepage_logo=homepage_logo,
                                    footer_logo=footer_logo, fav_icon=fav_icon)
                 query_id.save()
 

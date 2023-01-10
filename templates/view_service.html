@@ -37,13 +37,19 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="custom-heading02 simple">
-                    <div class="text">
-                        {% for data in settings %}
-                        {{ data.common_service_content|safe }}
-                        {% endfor %}
-                    </div>
-                </div>
+                {% comment %}
+                             <div class="custom-heading02 simple">
+                                heading go here
+                            </div>
+                            <div class="statement">
+                                content wrapper
+                            </div>
+                {% endcomment %}
+                {% for data in settings %}
+                {{ data.common_service_content|safe }}
+                {% endfor %}
+
+
             </div>
         </div>
     </div>

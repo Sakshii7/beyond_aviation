@@ -178,8 +178,8 @@ class Setting(models.Model):
     footer_logo = models.ImageField(upload_to='FooterLogo', null=True, blank=True)
     fav_icon = models.ImageField(upload_to='FavIcon', null=True, blank=True)
     common_service_content = HTMLField(null=True, blank=True)
-    google_tag_manager_header_key = models.CharField(max_length=50, null=True)
-    google_tag_manager_body_key = models.CharField(max_length=50, null=True)
+    google_tag_manager_key = models.CharField(max_length=50, null=True)
+
 
     class Meta:
         db_table = "setting"
