@@ -14,22 +14,6 @@ from beyond_aviation.settings import MEDIA_URL
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
-# Server Error 500 Handler View
-def error_500_view(request):
-    template = loader.get_template('error_page.html')
-    context = fetch_common_object_data()
-
-    return HttpResponse(template.render(context, request))
-
-
-# Page Not Found Error 404 Handler View
-def error_404_view(request, exception):
-    template = loader.get_template('error_page.html')
-    context = fetch_common_object_data()
-
-    return HttpResponse(template.render(context, request))
-
-
 # Fetch Common Object Data Method
 def fetch_common_object_data():
     menus = Menu.objects.filter(status="active").order_by('sequence')
@@ -83,6 +67,22 @@ def fetch_common_object_data():
     }
 
     return common_obj_data
+
+
+# Server Error 500 Handler View
+def error_500_view(request):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))
+
+
+# Page Not Found Error 404 Handler View
+def error_404_view(request, exception):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))
 
 
 # Homepage / Index View
