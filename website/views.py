@@ -14,7 +14,23 @@ from beyond_aviation.settings import MEDIA_URL
 from .models import Service, ServiceOffering, Section, SubSection, Menu, QueryForm, Page, Setting, Slider, Slides
 
 
-# Create your views here.
+# Server Error 500 Handler View
+def error_500_view(request):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))
+
+
+# Page Not Found Error 404 Handler View
+def error_404_view(request, exception):
+    template = loader.get_template('error_page.html')
+    context = fetch_common_object_data()
+
+    return HttpResponse(template.render(context, request))
+
+
+# Fetch Common Object Data Method
 def fetch_common_object_data():
     menus = Menu.objects.filter(status="active").order_by('sequence')
     pages = Page.objects.filter(status="active")
@@ -69,6 +85,7 @@ def fetch_common_object_data():
     return common_obj_data
 
 
+# Homepage / Index View
 def index(request):
     template = loader.get_template('homepage.html')
     context = fetch_common_object_data()
@@ -76,6 +93,18 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+# View Page Detail
+def view_page(request, slug):
+    template = loader.get_template('pages.html')
+    context = fetch_common_object_data()
+    if slug != 'undefined':
+        get_page_id = Page.objects.get(slug=slug)
+        context['get_page_id'] = get_page_id
+
+    return HttpResponse(template.render(context, request))
+
+
+# View Service Detail
 def view_service(request, slug):
     get_service_id = Service.objects.get(slug=slug)
 
@@ -86,16 +115,7 @@ def view_service(request, slug):
     return HttpResponse(template.render(context, request))
 
 
-def view_pages(request, slug):
-    template = loader.get_template('pages.html')
-    context = fetch_common_object_data()
-    if slug != 'undefined':
-        get_page_id = Page.objects.get(slug=slug)
-        context['get_page_id'] = get_page_id
-
-    return HttpResponse(template.render(context, request))
-
-
+# Query Form View
 def query_form(request):
     logo = Menu.objects.filter(status="active")
     if request.method == "POST":
@@ -163,17 +183,3 @@ def query_form(request):
 
         return redirect(request.META['HTTP_REFERER'])
     return redirect(request.META['HTTP_REFERER'])
-
-
-def error_500_view(request):
-    template = loader.get_template('error_page.html')
-    context = fetch_common_object_data()
-
-    return HttpResponse(template.render(context, request))
-
-
-def error_404_view(request, exception):
-    template = loader.get_template('error_page.html')
-    context = fetch_common_object_data()
-
-    return HttpResponse(template.render(context, request))
