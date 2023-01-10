@@ -26,8 +26,8 @@
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
             });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            let f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l !== 'dataLayer' ? '&l=' + l : '';
             j.async = true;
             j.src =
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
@@ -218,6 +218,7 @@
 <script src="{% static '/assets/js/include.js' %}"></script>
 
 <script>
+
     $(document).ready((function () {
         $("ul.navbar-nav > li").click((function (a) {
             $("ul.navbar-nav > li").removeClass("active");
@@ -225,15 +226,15 @@
         }))
     }))
 
-
 </script>
 <script>
+
     jQuery(document).ready(function ($) {
         'use strict';
-
+        
         function equalHeight() {
             $('.page-content.column-img-bkg *[class*="custom-col-padding"]').each(function () {
-                var maxHeight = $(this).outerHeight();
+                let maxHeight = $(this).outerHeight();
                 $('.page-content.column-img-bkg *[class*="img-bkg"]').height(maxHeight);
             });
         }
@@ -241,8 +242,7 @@
         $(document).ready(equalHeight);
         $(window).resize(equalHeight);
 
-
-        var slider = new MasterSlider();
+        let slider = new MasterSlider();
         slider.setup('masterslider', {
             width: 1140, // slider standard width
             height: 854, // slider standard height
@@ -252,13 +252,9 @@
             centerControls: false,
             loop: true,
             autoplay: true
-
-
         });
-
         slider.control('arrows');
     });
-
 
 </script>
 </body>
