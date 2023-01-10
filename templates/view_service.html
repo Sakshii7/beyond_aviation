@@ -1,43 +1,43 @@
 {% extends "layout.html" %}
 {% block content %}
-{% load static %}
-<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-<form action="{{ get_service_id.slug }}" method="get">
-    <div class="page-title-style01 page-title-negative-top pt-bkg"
-         style="background-image: url('{{ media_url }}{{ get_service_id.image }}')">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>
-                        GO ABOVE & BEYOND - {{ get_service_id.name }}
-                    </h1>
-                    <div class="breadcrumb-container">
-                        <ul class="breadcrumb clearfix">
-                            <li>You are here:</li>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/services/{{ get_service_id.slug }}">Services</a></li>
-                            <li><a href="/services/{{ get_service_id.slug }}">{{ get_service_id.name }}</a></li>
-                        </ul>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <form action="{{ get_service_id.slug }}" method="get">
+        <div class="page-title-style01 page-title-negative-top pt-bkg"
+             style="background-image: url('{{ media_url }}{{ get_service_id.image }}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>
+                            GO ABOVE & BEYOND - {{ get_service_id.name }}
+                        </h1>
+                        <div class="breadcrumb-container">
+                            <ul class="breadcrumb clearfix">
+                                <li>You are here:</li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/services/{{ get_service_id.slug }}">Services</a></li>
+                                <li><a href="/services/{{ get_service_id.slug }}">{{ get_service_id.name }}</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
-<div class="page-content">
-    <div class="container">
-        <div class="row">
-            {{ get_service_id.description|safe }}
+    </form>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                {{ get_service_id.description|safe }}
+            </div>
         </div>
     </div>
-</div>
 
-{% comment %} Common Service Content {% endcomment %}
-<div class="page-content parallax parallax01 dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                {% comment %}
+    {% comment %} Common Service Content {% endcomment %}
+    <div class="page-content parallax parallax01 dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% comment %}
                              <div class="custom-heading02 simple">
                                 heading go here
                             </div>
@@ -45,48 +45,48 @@
                                 content wrapper
                             </div>
                 {% endcomment %}
-                {% for data in settings %}
-                {{ data.common_service_content|safe }}
+                    {% for data in settings %}
+                        {{ data.common_service_content|safe }}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    {% comment %} Other Services {% endcomment %}
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-heading02">
+                        <h2>Other services</h2>
+                        <p>GO ABOVE & BEYOND LOGISTICS SERVICES</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for service in services %}
+                    {% if service.is_featured is True %}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="service-feature-box">
+                                <div class="service-media"><img src="{{ media_url }}{{ service.image }}"
+                                                                alt="{{ service.name }}"></div>
+                                <div class="service-body">
+                                    <div class="custom-heading"><h4>{{ service.name }}</h4></div>
+                                    <p class="cnt-ab">{{ service.excerpt }}</p>
+                                    <p class="btnbox"><a href="/services/{{ service.slug }}"
+                                                         class="read-more02 btn btn-big btn-yellow"><span>Read more &nbsp; <em
+                                            class="fa fa-chevron-right"></em></span></a></p></div>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
-
-
             </div>
         </div>
     </div>
-</div>
-<br/>
-<br/>
-{% comment %} Other Services {% endcomment %}
-<div class="page-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="custom-heading02">
-                    <h2>Other services</h2>
-                    <p>GO ABOVE & BEYOND LOGISTICS SERVICES</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            {% for service in services %}
-            {% if service.is_featured is True %}
-            <div class="col-md-4 col-sm-4">
-                <div class="service-feature-box">
-                    <div class="service-media"><img src="{{ media_url }}{{ service.image }}"
-                                                    alt="{{ service.name }}"></div>
-                    <div class="service-body">
-                        <div class="custom-heading"><h4>{{ service.name }}</h4></div>
-                        <p class="cnt-ab">{{ service.excerpt }}</p>
-                        <p class="btnbox"><a href="/services/{{ service.slug }}"
-                                             class="read-more02 btn btn-big btn-yellow"><span>Read more &nbsp; <em
-                                class="fa fa-chevron-right"></em></span></a></p></div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-<script src="{% static 'tinymce/js/prism.js' %}"></script>
+    <script src="{% static 'tinymce/js/prism.js' %}"></script>
 {% endblock %}
 

@@ -1,345 +1,357 @@
 {% extends "layout.html" %}
 {% block content %}
-{% load static %}
+    {% load static %}
 
-<!-- Master Slider -->
-<div id="masterslider" class="master-slider ms-skin-default mb-0">
+    <!-- Master Slider -->
+    <div id="masterslider" class="master-slider ms-skin-default mb-0">
 
-    {% for slider in sliders %}
-    {% for slide in slides %}
-    {% if slider.id == slide.slider_id and slide.text_align == "left" %}
-    <div class="ms-slide">
-        <img src="{{ media_url }}{{ slide.slide_image }}"
-             data-src="{{ media_url }}{{ slide.slide_image }}"
-             alt="Strongest distribution network"/>
-        <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
-            <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                <img class="ms-layer"
-                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                     alt=""
-                     style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                     data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
-                {% if slide.desc_1 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="600">
-                    {{slide.desc_1}}</h2>
-                {% endif %}
-                {% if slide.desc_2 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="left: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
-                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
-                    {{slide.desc_2}}</h2>
-                {% endif %}
-                {% if slide.desc_3 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                    data-effect="left(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
-                    {{slide.desc_3}}</h2>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    {% elif slider.id == slide.slider_id and slide.text_align == "right" %}
-    <div class="ms-slide">
-        <img src="{{ media_url }}{{ slide.slide_image }}"
-             data-src="{{ media_url }}{{ slide.slide_image }}"
-             alt="Strongest distribution network"/>
-        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
-            <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                <img class="ms-layer"
-                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                     alt=""
-                     style="right: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                     data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="300">
-                {% if slide.desc_1 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="right: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="600">
-                    {{slide.desc_1}}</h2>
-                {% endif %}
-                {% if slide.desc_2 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="right: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
-                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="900">
-                    {{slide.desc_2}}</h2>
-                {% endif %}
-                {% if slide.desc_3 %}
-                <h2 class="ms-layer pi-caption01"
-                    style="right: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                    data-effect="right(short)" data-duration="300" data-hide-effect="fade" data-delay="1200">
-                    {{slide.desc_3}}</h2>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    {% else %}
-    <div class="ms-slide">
-        <img src="{{ media_url }}{{ slide.slide_image }}"
-             data-src="{{ media_url }}{{ slide.slide_image }}"
-             alt="Worldwide freight services"/>
-        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
-            <div class="ms-anim-layers" style="opacity: 1; display: none;">
-                <img class="ms-layer"
-                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
-                     alt=""
-                     style="right: 540px; top: 340px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
-                     data-type="image" data-effect="top(short)" data-duration="300" data-hide-effect="fade"
-                     data-delay="300"></div>
-            {% if slide.desc_1 %}
-            <h2 class="ms-layer pi-caption01"
-                style="right: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                data-delay="0">{{slide.desc_1}}</h2>
-            {% endif %}
-            {% if slide.desc_2 %}
-            <h2 class="ms-layer pi-caption01"
-                style="right: 273px; top: 450px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                data-delay="0">{{slide.desc_2}}</h2>
-            {% endif %}
-            {% if slide.desc_3 %}
-            <h2 class="ms-layer pi-caption01"
-                style="right: 273px; top: 510px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
-                data-type="text" data-effect="bottom(short)" data-duration="300" data-hide-effect="fade"
-                data-delay="0">{{slide.desc_3}}</h2>
-            {% endif %}
-
-
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-</div>
-
-<!-- Services  -->
-<div class="page-content parallax parallax01">
-    <div class="container">
-        <div class="row services-negative-top">
-
-            {% for service in services %}
-            {% if service.is_featured is True %}
-            <div class="col-md-4 col-sm-4">
-
-                <div class="service-feature-box">
-
-                    <div class="service-media"><img src="{{ media_url }}{{ service.image }}"
-                                                    alt="{{ service.name }}"></div>
-                    <div class="service-body">
-                        <div class="custom-heading">
-                            <h4>{{ service.name }}</h4>
+        {% for slider in sliders %}
+            {% for slide in slides %}
+                {% if slider.id == slide.slider_id and slide.text_align == "left" %}
+                    <div class="ms-slide">
+                        <img src="{{ media_url }}{{ slide.slide_image }}"
+                             data-src="{{ media_url }}{{ slide.slide_image }}"
+                             alt="Strongest distribution network"/>
+                        <div class="ms-slide-layers" style="left: 105px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="left: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                                     data-effect="left(short)" data-duration="300" data-hide-effect="fade"
+                                     data-delay="300">
+                                {% if slide.desc_1 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="left: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                        data-effect="left(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="600">
+                                        {{ slide.desc_1 }}</h2>
+                                {% endif %}
+                                {% if slide.desc_2 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="left: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
+                                        data-effect="left(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="900">
+                                        {{ slide.desc_2 }}</h2>
+                                {% endif %}
+                                {% if slide.desc_3 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="left: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                        data-effect="left(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="1200">
+                                        {{ slide.desc_3 }}</h2>
+                                {% endif %}
+                            </div>
                         </div>
-                        <p class="cnt-ab">{{ service.excerpt }}</p>
-                        <p class="btnbox"><a href="/services/{{ service.slug }}"
-                                             class="read-more02 btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
-                                class="fa fa-chevron-right"></em></span></a></p>
+                    </div>
+
+                {% elif slider.id == slide.slider_id and slide.text_align == "right" %}
+                    <div class="ms-slide">
+                        <img src="{{ media_url }}{{ slide.slide_image }}"
+                             data-src="{{ media_url }}{{ slide.slide_image }}"
+                             alt="Strongest distribution network"/>
+                        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="right: 0; top: 310px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                                     data-effect="right(short)" data-duration="300" data-hide-effect="fade"
+                                     data-delay="300">
+                                {% if slide.desc_1 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="right: 0; top: 340px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                        data-effect="right(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="600">
+                                        {{ slide.desc_1 }}</h2>
+                                {% endif %}
+                                {% if slide.desc_2 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="right: 0;top: 400px;margin: 0 0 25px;padding: 0;font-size: 55px;line-height: 26px;display: none;"
+                                        data-effect="right(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="900">
+                                        {{ slide.desc_2 }}</h2>
+                                {% endif %}
+                                {% if slide.desc_3 %}
+                                    <h2 class="ms-layer pi-caption01"
+                                        style="right: 0; top: 460px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                        data-effect="right(short)" data-duration="300" data-hide-effect="fade"
+                                        data-delay="1200">
+                                        {{ slide.desc_3 }}</h2>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="ms-slide">
+                        <img src="{{ media_url }}{{ slide.slide_image }}"
+                             data-src="{{ media_url }}{{ slide.slide_image }}"
+                             alt="Worldwide freight services"/>
+                        <div class="ms-slide-layers" style="right: 105px; max-width: 1140px;">
+                            <div class="ms-anim-layers" style="opacity: 1; display: none;">
+                                <img class="ms-layer"
+                                     src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwMDAwMDBAMDg8QDw4MExMUFBMTHBsbGxwfHx8fHx8fHx8fAQcHBw0MDRgQEBgaFREVGh8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx//wAARCAAEAEIDAREAAhEBAxEB/8QATQABAQAAAAAAAAAAAAAAAAAAAAcBAQEBAAAAAAAAAAAAAAAAAAAGBxABAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AqbBFmAAAAAAAA//Z"
+                                     alt=""
+                                     style="right: 540px; top: 340px; width: 66px; height: 4px; margin: 0; padding: 0; display: none;"
+                                     data-type="image" data-effect="top(short)" data-duration="300"
+                                     data-hide-effect="fade"
+                                     data-delay="300"></div>
+                            {% if slide.desc_1 %}
+                                <h2 class="ms-layer pi-caption01"
+                                    style="right: 273px; top: 390px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                    data-type="text" data-effect="bottom(short)" data-duration="300"
+                                    data-hide-effect="fade"
+                                    data-delay="0">{{ slide.desc_1 }}</h2>
+                            {% endif %}
+                            {% if slide.desc_2 %}
+                                <h2 class="ms-layer pi-caption01"
+                                    style="right: 273px; top: 450px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                    data-type="text" data-effect="bottom(short)" data-duration="300"
+                                    data-hide-effect="fade"
+                                    data-delay="0">{{ slide.desc_2 }}</h2>
+                            {% endif %}
+                            {% if slide.desc_3 %}
+                                <h2 class="ms-layer pi-caption01"
+                                    style="right: 273px; top: 510px; margin: 0 0 25px; padding: 0; font-size: 55px; line-height: 26px; display: none;"
+                                    data-type="text" data-effect="bottom(short)" data-duration="300"
+                                    data-hide-effect="fade"
+                                    data-delay="0">{{ slide.desc_3 }}</h2>
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <!-- Services  -->
+    <div class="page-content parallax parallax01">
+        <div class="container">
+            <div class="row services-negative-top">
+
+                {% for service in services %}
+                    {% if service.is_featured is True %}
+                        <div class="col-md-4 col-sm-4">
+
+                            <div class="service-feature-box">
+
+                                <div class="service-media"><img src="{{ media_url }}{{ service.image }}"
+                                                                alt="{{ service.name }}"></div>
+                                <div class="service-body">
+                                    <div class="custom-heading">
+                                        <h4>{{ service.name }}</h4>
+                                    </div>
+                                    <p class="cnt-ab">{{ service.excerpt }}</p>
+                                    <p class="btnbox"><a href="/services/{{ service.slug }}"
+                                                         class="read-more02 btn btn-big btn-yellow"><span>Read more &nbsp;&nbsp; <em
+                                            class="fa fa-chevron-right"></em></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Owner  -->
+    <div class="page-content custom-bkg bkg-dark-alice column-img-bkg dark abut-sect">
+        <div class="container-fluid">
+
+            <div class="row">
+                {% for section in owner_section %}
+                    {% if section.text_align == 'right' %}
+                        <div class="col-md-6 col-sm-6 custom-col-padding-both1"
+                             style="background-color: {{ section.background_color }};">
+                            <img class="droji-image" src="{{ media_url }}{{ section.image }}" alt="icon"></div>
+                        <div class="col-md-6  col-sm-6 custom-col-padding-both"
+                             style="background-color: {{ section.background_color }};">
+                            <div class="custom-heading">
+                                <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
+                            </div>
+                            <p style="color:{{ section.text_color }};">{{ section.description }}</p>
+                            {% for sub_section in sub_sections %}
+                                {% if section.id == sub_section.section_id %}
+                                    <ul class="service-list clearfix">
+                                        <li>
+                                            <div class="icon-container" style="color:{{ section.text_color }};"><em
+                                                    class="fa fa-arrow-right"></em></div>
+                                            <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                    {% else %}
+
+
+                        <div class="col-md-6  col-sm-6 custom-col-padding-both"
+                             style="background-color: {{ section.background_color }};">
+                            <div class="custom-heading">
+                                <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
+                            </div>
+                            <p style="color:{{ section.text_color }};">{{ section.description }}</p>
+                            {% for sub_section in sub_sections %}
+                                {% if section.id == sub_section.section_id %}
+                                    <ul class="service-list clearfix">
+                                        <li>
+                                            <div class="icon-container"><em class="fa fa-arrow-right"></em></div>
+                                            <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6 col-sm-6 custom-col-padding-both1"
+                             style="background-color: {{ section.background_color }};">
+                            <img class="droji-image" src="{{ media_url }}{{ section.image }}" alt="icon"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Service Offerings -->
+    <div class="page-content services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-heading02">
+                        <h2>Service Offerings</h2>
+                        <p>Go Above &amp; Beyond For Our Customers</p>
                     </div>
                 </div>
             </div>
-            {% endif %}
+            {% for service_offering in offerings %}
+                <div class="row mb-30">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="service-icon-left-boxed">
+                            <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn"
+                                 style="opacity: 1;">
+                                <img src="{{ media_url }}{{ service_offering.0.icon }}" alt="checklist icon">
+                            </div>
+                            <div class="service-details"><h3>{{ service_offering.0.title }}</h3>
+                                <p>{{ service_offering.0.description }}</p></div>
+                        </div>
+                    </div>
+
+                    {% if service_offering.1 %}
+                        <div class="col-md-6 col-sm-6">
+                            <div class="service-icon-left-boxed">
+                                <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn"
+                                     style="opacity: 1;">
+                                    <img src="{{ media_url }}{{ service_offering.1.icon }}" alt="checklist icon">
+                                </div>
+                                <div class="service-details"><h3>{{ service_offering.1.title }}</h3>
+                                    <p>{{ service_offering.1.description }}</p></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>
-</div>
 
-<!-- Owner  -->
-<div class="page-content custom-bkg bkg-dark-alice column-img-bkg dark abut-sect">
-    <div class="container-fluid">
+    <!-- Sections   -->
+    {% for section in other_sections %}
+        {% if section.page_id == null %}
+            {% if section.text_align == 'left' %}
+                <div class="page-content custom-bkg bkg-dark-blue column-img-bkg dark">
 
-        <div class="row">
-            {% for section in owner_section %}
-            {% if section.text_align == 'right' %}
-            <div class="col-md-6 col-sm-6 custom-col-padding-both1"
-                 style="background-color: {{ section.background_color }};">
-                <img class="droji-image" src="{{ media_url }}{{ section.image }}" alt="icon"></div>
-            <div class="col-md-6  col-sm-6 custom-col-padding-both"
-                 style="background-color: {{ section.background_color }};">
-                <div class="custom-heading">
-                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-md-6 col-md-offset  custom-col-padding-both"
+                                 style="background-color: {{ section.background_color }};">
+
+                                <div class="custom-heading">
+                                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
+                                </div>
+                                <p style="color:{{ section.text_color }};">{{ section.description }}</p>
+                                <ul class="service-list clearfix">
+                                    {% for sub_section in sub_sections %}
+                                        {% if section.id == sub_section.section_id %}
+                                            {% if sub_section.icon %}
+                                                <li>
+                                                    <div style="padding: 10px;" class="icon-container">
+                                                        <img style="float:left;"
+                                                             src="{{ media_url }}{{ sub_section.icon }}" alt=""
+                                                             height="10px" width="50px"/> &nbsp;&nbsp;
+                                                    </div>
+                                                    <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <div class="icon-container" style="padding: 10px;">
+                                                        <em class="fa fa-arrow-right"
+                                                            style="color:{{ section.text_color }} !important"></em>
+                                                        &nbsp;&nbsp;
+                                                    </div>
+                                                    <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6 img-bkg01"
+                                 style="height: 630px; background-image: url('{{ media_url }}{{ section.image }}');">
+                                <div>&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p style="color:{{ section.text_color }};">{{ section.description }}</p>
-                {% for sub_section in sub_sections %}
-                {% if section.id == sub_section.section_id%}
-                <ul class="service-list clearfix">
-                    <li>
-                        <div class="icon-container" style="color:{{ section.text_color }};"><em
-                                class="fa fa-arrow-right"></em></div>
-                        <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
-                    </li>
-                </ul>
-                {% endif %}
-                {% endfor %}
-            </div>
 
             {% else %}
 
+                <div class="page-content custom-bkg bkg-dark-alice column-img-bkg dark">
+                    <div class="container-fluid">
+                        <div class="row" style="background-color: {{ section.background_color }}; ">
+                            <div class="col-md-6 img-bkg04"
+                                 style="height: 630px; background-image: url('{{ media_url }}{{ section.image }}');">
+                                <div>&nbsp;</div>
+                            </div>
+                            <div class="col-md-6   custom-col-padding-both">
+                                <div class="custom-heading">
+                                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
+                                </div>
+                                <p>{{ section.description }}</p>
+                                <ul class="service-list clearfix">
+                                    {% for sub_section in sub_sections %}
+                                        {% if section.id == sub_section.section_id %}
+                                            {% if sub_section.image %}
+                                                <li>
+                                                    <div style="padding: 10px;" class="icon-container">
+                                                        <img style="float:left"
+                                                             src="{{ media_url }}{{ sub_section.icon }}" alt=""
+                                                             height="10px" width="50px"/> &nbsp;&nbsp;
+                                                    </div>
+                                                    <p style="color:{{ section.text_color }} !important">{{ sub_section.content }}</p>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <div class="icon-container">
+                                                        <em class="fa fa-arrow-right"
+                                                            style="color:{{ section.text_color }};"></em>
+                                                    </div>
+                                                    <p style="color:{{ section.text_color }} !important">{{ sub_section.content }}</p>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
 
-            <div class="col-md-6  col-sm-6 custom-col-padding-both"
-                 style="background-color: {{ section.background_color }};">
-                <div class="custom-heading">
-                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
-                </div>
-                <p style="color:{{ section.text_color }};">{{ section.description }}</p>
-                {% for sub_section in sub_sections %}
-                {% if section.id == sub_section.section_id %}
-                <ul class="service-list clearfix">
-                    <li>
-                        <div class="icon-container"><em class="fa fa-arrow-right"></em></div>
-                        <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
-                    </li>
-                </ul>
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div class="col-md-6 col-sm-6 custom-col-padding-both1"
-                 style="background-color: {{ section.background_color }};">
-                <img class="droji-image" src="{{ media_url }}{{ section.image }}" alt="icon"></div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-
-<!-- Service Offerings -->
-<div class="page-content services-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="custom-heading02">
-                    <h2>Service Offerings</h2>
-                    <p>Go Above &amp; Beyond For Our Customers</p>
-                </div>
-            </div>
-        </div>
-        {% for service_offering in offerings %}
-        <div class="row mb-30">
-            <div class="col-md-6 col-sm-6">
-                <div class="service-icon-left-boxed">
-                    <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn"
-                         style="opacity: 1;">
-                        <img src="{{ media_url }}{{ service_offering.0.icon }}" alt="checklist icon">
+                        </div>
                     </div>
-                    <div class="service-details"><h3>{{ service_offering.0.title }}</h3>
-                        <p>{{ service_offering.0.description }}</p></div>
                 </div>
-            </div>
-
-            {% if service_offering.1 %}
-            <div class="col-md-6 col-sm-6">
-                <div class="service-icon-left-boxed">
-                    <div class="icon-container animated triggerAnimation zoomIn" data-animate="zoomIn"
-                         style="opacity: 1;">
-                        <img src="{{ media_url }}{{ service_offering.1.icon }}" alt="checklist icon">
-                    </div>
-                    <div class="service-details"><h3>{{ service_offering.1.title }}</h3>
-                        <p>{{ service_offering.1.description }}</p></div>
-                </div>
-            </div>
             {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- Sections   -->
-{% for section in other_sections %}
-{% if section.page_id == null %}
-{% if section.text_align == 'left' %}
-<div class="page-content custom-bkg bkg-dark-blue column-img-bkg dark">
-
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-md-6 col-md-offset  custom-col-padding-both"
-                 style="background-color: {{ section.background_color }};">
-
-                <div class="custom-heading">
-                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
-                </div>
-                <p style="color:{{ section.text_color }};">{{ section.description }}</p>
-                <ul class="service-list clearfix">
-                    {% for sub_section in sub_sections %}
-                    {% if section.id == sub_section.section_id %}
-                    {% if sub_section.icon %}
-                    <li>
-                        <div style="padding: 10px;" class="icon-container">
-                            <img style="float:left;"
-                                 src="{{ media_url }}{{ sub_section.icon }}" alt=""
-                                 height="10px" width="50px"/> &nbsp;&nbsp;
-                        </div>
-                        <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
-                    </li>
-                    {% else %}
-                    <li>
-                        <div class="icon-container" style="padding: 10px;">
-                            <em class="fa fa-arrow-right"
-                                style="color:{{ section.text_color }} !important"></em>
-                            &nbsp;&nbsp;
-                        </div>
-                        <p style="color:{{ section.text_color }};">{{ sub_section.content }}</p>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-md-6 img-bkg01"
-                 style="height: 630px; background-image: url('{{ media_url }}{{ section.image }}');">
-                <div>&nbsp;</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% else %}
-
-<div class="page-content custom-bkg bkg-dark-alice column-img-bkg dark">
-    <div class="container-fluid">
-        <div class="row" style="background-color: {{ section.background_color }}; ">
-            <div class="col-md-6 img-bkg04"
-                 style="height: 630px; background-image: url('{{ media_url }}{{ section.image }}');">
-                <div>&nbsp;</div>
-            </div>
-            <div class="col-md-6   custom-col-padding-both">
-                <div class="custom-heading">
-                    <h3 style="color:{{ section.text_color }};">{{ section.title }}</h3>
-                </div>
-                <p>{{ section.description }}</p>
-                <ul class="service-list clearfix">
-                    {% for sub_section in sub_sections %}
-                    {% if section.id == sub_section.section_id %}
-                    {% if sub_section.image %}
-                    <li>
-                        <div style="padding: 10px;" class="icon-container">
-                            <img style="float:left"
-                                 src="{{ media_url }}{{ sub_section.icon }}" alt=""
-                                 height="10px" width="50px"/> &nbsp;&nbsp;
-                        </div>
-                        <p style="color:{{ section.text_color }} !important">{{ sub_section.content }}</p>
-                    </li>
-                    {% else %}
-                    <li>
-                        <div class="icon-container">
-                            <em class="fa fa-arrow-right"
-                                style="color:{{ section.text_color }};"></em>
-                        </div>
-                        <p style="color:{{ section.text_color }} !important">{{ sub_section.content }}</p>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endif %}
-{% endfor %}
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}
