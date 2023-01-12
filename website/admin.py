@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from django.db import models
 from django.shortcuts import redirect
@@ -79,8 +80,17 @@ class QueryFormAdmin(admin.ModelAdmin):
         return False
 
 
+class PageModelForm(forms.ModelForm):
+    meta_description = forms.CharField(widget=forms.Textarea)
+
+    class Meta:
+        model = Page
+        fields = '__all__'
+
+
 class PageAdmin(admin.ModelAdmin):
-    fields = ['status', 'title', 'slug', 'header_img', 'header_image_preview', 'content']
+    fields = ['status', 'title', 'slug', 'header_img', 'header_image_preview', 'content', 'meta_title',
+              'meta_description', 'meta_keywords', 'meta_img']
     prepopulated_fields = {'slug': ['title']}
     readonly_fields = ['header_image_preview']
     list_display = ['title', 'created_on', 'status']
@@ -92,6 +102,7 @@ class PageAdmin(admin.ModelAdmin):
         models.TextField: {'widget': TinyMCE()}
     }
     ordering = ['-created_on']
+    form = PageModelForm
 
 
 class SettingAdmin(admin.ModelAdmin):
