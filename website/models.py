@@ -66,6 +66,12 @@ class Page(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    # Seo fields
+    meta_title = models.CharField(null=True, max_length=100)
+    meta_description = models.CharField(null=True, max_length=400)
+    meta_keywords = models.CharField(null=True, max_length=200)
+    meta_img = models.ImageField(upload_to='MetaImage', null=True, blank=True, verbose_name='Meta Image')
+
     class Meta:
         db_table = 'pages'
         ordering = ['created_on']
